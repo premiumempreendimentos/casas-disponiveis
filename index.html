@@ -654,7 +654,12 @@ function ligarGrupoFiltro(containerId, aoClicar) {
 ligarGrupoFiltro('filtros-preco', (v) => { filtroPreco = v; });
 ligarGrupoFiltro('filtros-quartos', (v) => { filtroQuartos = v; });
 
-CASAS.sort((a, b) => a.preco - b.preco);
+CASAS.sort((a, b) => {
+  const aTemFotos = a.fotos && a.fotos.length > 0;
+  const bTemFotos = b.fotos && b.fotos.length > 0;
+  if (aTemFotos !== bTemFotos) return aTemFotos ? -1 : 1; // "em breve" (sem foto) sempre por último
+  return a.preco - b.preco;
+});
 aplicarFiltros();
 </script>
 
