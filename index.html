@@ -5,66 +5,165 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Casas Disponíveis | Premium Empreendimentos</title>
 <meta name="description" content="Casas disponíveis para venda em Pinhalzinho SC. Premium Empreendimentos, mais de 25 casas entregues por ano.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --laranja:#EC4F1F;
     --laranja-ui:#E8820C;
-    --bg:#0b0c0f;
-    --card:#16181d;
-    --card-border:#24272e;
-    --text:#f2f2f2;
-    --muted:#a2a7b0;
+    --ouro:#D9A441;
+    --bg:#08090c;
+    --bg-alt:#0e1015;
+    --card:#14161c;
+    --card-border:#262a33;
+    --card-border-hover:#3a3020;
+    --text:#f5f5f4;
+    --muted:#9a9fa9;
+    --sombra: 0 20px 40px -12px rgba(0,0,0,.55);
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
   body{
-    background:var(--bg);
+    background:
+      radial-gradient(ellipse 1200px 500px at 50% -10%, rgba(236,79,31,.16), transparent 60%),
+      var(--bg);
     color:var(--text);
-    font-family:'Segoe UI',Arial,sans-serif;
+    font-family:'Inter',-apple-system,'Segoe UI',Arial,sans-serif;
     -webkit-font-smoothing:antialiased;
   }
+  h1,h2,h3,.logo,.preco,.cta,.hero-cta{font-family:'Poppins',Inter,sans-serif}
   header{
-    padding:28px 20px 20px;
+    position:relative;
+    padding:40px 20px 110px;
     text-align:center;
-    border-bottom:1px solid var(--card-border);
+    overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(8,9,12,.55) 0%, rgba(8,9,12,.88) 75%, var(--bg) 100%),
+      linear-gradient(135deg, #201207 0%, #120b06 45%, #08090c 100%);
+  }
+  header::before{
+    content:"";
+    position:absolute;
+    top:-30%;left:50%;
+    width:900px;height:900px;
+    transform:translateX(-50%);
+    background:radial-gradient(circle, rgba(236,79,31,.25), transparent 60%);
+    pointer-events:none;
+  }
+  .header-inner{position:relative;z-index:1}
+  .logo-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-bottom:22px;
+  }
+  .logo-mark{
+    width:26px;height:26px;
+    border-radius:7px;
+    background:linear-gradient(135deg,var(--laranja),var(--laranja-ui));
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;
+    box-shadow:0 4px 14px rgba(236,79,31,.45);
   }
   .logo{
     font-size:13px;
-    letter-spacing:2px;
+    letter-spacing:2.5px;
     text-transform:uppercase;
-    color:var(--laranja);
+    color:var(--text);
     font-weight:700;
-    margin-bottom:10px;
+  }
+  .selo{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:rgba(217,164,65,.12);
+    border:1px solid rgba(217,164,65,.35);
+    color:var(--ouro);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.4px;
+    padding:6px 14px;
+    border-radius:30px;
+    margin-bottom:18px;
   }
   h1{
-    font-size:clamp(22px,5vw,32px);
-    margin-bottom:8px;
-    line-height:1.25;
+    font-weight:800;
+    font-size:clamp(28px,5.4vw,44px);
+    margin-bottom:14px;
+    line-height:1.18;
+    letter-spacing:-.5px;
   }
+  h1 span{color:var(--laranja)}
   header p{
     color:var(--muted);
-    font-size:15px;
-    max-width:520px;
+    font-size:16px;
+    max-width:540px;
     margin:0 auto;
+    line-height:1.55;
   }
-  .autoridade{
-    margin-top:14px;
+  .stats-row{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:26px;
+  }
+  .stat-pill{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.1);
+    backdrop-filter:blur(6px);
+    padding:9px 16px;
+    border-radius:30px;
     font-size:13px;
-    color:var(--laranja-ui);
     font-weight:600;
+    color:var(--text);
   }
+  .stat-pill b{color:var(--ouro);font-weight:700}
 
-  .filtros-wrap{
+  .busca-card{
+    position:relative;
     max-width:900px;
-    margin:0 auto;
-    padding:14px 0 6px;
+    margin:-78px auto 0;
+    padding:22px 0 8px;
+    background:linear-gradient(180deg,#191b21,#121318);
+    border:1px solid var(--card-border);
+    border-radius:22px;
+    box-shadow:var(--sombra);
+    z-index:2;
+  }
+  .busca-titulo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:0 20px 14px;
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    color:var(--text);
+    border-bottom:1px solid var(--card-border);
+    margin-bottom:16px;
+  }
+  .busca-titulo .ponto{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--laranja);
+    box-shadow:0 0 0 4px rgba(236,79,31,.18);
+  }
+  .filtros-wrap{
+    padding:0 0 10px;
   }
   .filtro-label{
     font-size:11px;
     text-transform:uppercase;
     letter-spacing:.6px;
     color:var(--muted);
-    padding:0 16px;
-    margin-bottom:8px;
+    padding:0 20px;
+    margin-bottom:9px;
+    font-weight:600;
   }
   .filtros{
     display:flex;
@@ -74,50 +173,110 @@
     scrollbar-width:none;
     -ms-overflow-style:none;
     -webkit-overflow-scrolling:touch;
-    padding:0 16px 14px;
+    padding:0 20px 16px;
     scroll-snap-type:x proximity;
   }
   .filtros::-webkit-scrollbar{display:none}
   .filtro-btn{
     flex-shrink:0;
     scroll-snap-align:start;
-    background:var(--card);
+    background:rgba(255,255,255,.04);
     border:1px solid var(--card-border);
     color:var(--text);
     padding:11px 18px;
     border-radius:30px;
     font-size:13.5px;
+    font-weight:500;
     white-space:nowrap;
     cursor:pointer;
     transition:.15s;
   }
-  .filtro-btn:hover{border-color:var(--laranja-ui)}
+  .filtro-btn:hover{border-color:var(--laranja-ui);background:rgba(236,79,31,.08)}
   .filtro-btn.ativo{
-    background:var(--laranja);
+    background:linear-gradient(135deg,var(--laranja),#d1430f);
     border-color:var(--laranja);
     color:#fff;
     font-weight:600;
+    box-shadow:0 6px 16px -4px rgba(236,79,31,.5);
+  }
+
+  .confianca{
+    max-width:900px;
+    margin:34px auto 6px;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .confianca-item{
+    text-align:center;
+    padding:18px 10px;
+  }
+  .confianca-icone{
+    width:44px;height:44px;
+    margin:0 auto 10px;
+    border-radius:50%;
+    background:rgba(236,79,31,.12);
+    border:1px solid rgba(236,79,31,.3);
+    display:flex;align-items:center;justify-content:center;
+    font-size:19px;
+  }
+  .confianca-item h4{
+    font-family:'Poppins',sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .confianca-item p{
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.4;
+  }
+
+  .secao-titulo{
+    max-width:1100px;
+    margin:44px auto 4px;
+    padding:0 16px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .secao-titulo h2{
+    font-size:clamp(19px,3vw,24px);
+    font-weight:700;
+  }
+  .secao-titulo span{
+    color:var(--muted);
+    font-size:13px;
   }
 
   .grid{
     max-width:1100px;
     margin:0 auto;
-    padding:8px 16px 60px;
+    padding:16px 16px 60px;
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-    gap:20px;
+    gap:22px;
   }
 
   .card{
-    background:var(--card);
+    background:linear-gradient(180deg,var(--card),#101217);
     border:1px solid var(--card-border);
-    border-radius:16px;
+    border-radius:18px;
     overflow:hidden;
     display:flex;
     flex-direction:column;
-    transition:transform .15s, border-color .15s;
+    box-shadow:0 10px 24px -14px rgba(0,0,0,.6);
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
   }
-  .card:hover{transform:translateY(-3px);border-color:var(--laranja-ui)}
+  .card:hover{
+    transform:translateY(-5px);
+    border-color:var(--card-border-hover);
+    box-shadow:0 24px 40px -16px rgba(236,79,31,.28);
+  }
+  .card.destaque{border-color:rgba(217,164,65,.55)}
 
   .card .foto-wrap{
     position:relative;
@@ -180,15 +339,18 @@
     text-align:center;
     padding:20px;
   }
-  .tag-unidades{
+  .tag-destaque{
     position:absolute;top:12px;left:12px;
-    background:rgba(0,0,0,.65);
-    backdrop-filter:blur(4px);
-    color:#fff;
-    font-size:12px;
+    background:linear-gradient(135deg,var(--ouro),#b5822f);
+    color:#1a1206;
+    font-size:11px;
     padding:5px 10px;
     border-radius:20px;
-    font-weight:600;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.3px;
+    box-shadow:0 4px 12px -2px rgba(217,164,65,.5);
+    z-index:2;
   }
   .tag-prazo{
     position:absolute;top:12px;right:12px;
@@ -233,38 +395,81 @@
   }
 
   .preco-wrap{margin-top:2px}
-  .preco-label{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-  .preco{font-size:22px;font-weight:700;color:#fff}
+  .preco-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .preco{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.3px}
   .preco small{font-size:12px;color:var(--muted);font-weight:400}
 
   .cta{
     margin-top:auto;
-    display:block;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
     text-align:center;
-    background:var(--laranja);
+    background:linear-gradient(135deg,var(--laranja),#d1430f);
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    padding:13px 10px;
+    border-radius:11px;
+    font-size:13.5px;
+    line-height:1.3;
+    box-shadow:0 8px 18px -6px rgba(236,79,31,.5);
+    transition:transform .15s, box-shadow .15s;
+  }
+  .cta:hover{transform:translateY(-2px);box-shadow:0 12px 22px -6px rgba(236,79,31,.65)}
+
+  .cta-final{
+    max-width:900px;
+    margin:20px auto 60px;
+    padding:38px 28px;
+    border-radius:24px;
+    text-align:center;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(236,79,31,.35), transparent 55%),
+      linear-gradient(135deg,#1c1006,#0c0d10 65%);
+    border:1px solid rgba(217,164,65,.25);
+    box-shadow:var(--sombra);
+  }
+  .cta-final h2{
+    font-size:clamp(20px,3.4vw,28px);
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .cta-final p{
+    color:var(--muted);
+    font-size:14.5px;
+    max-width:440px;
+    margin:0 auto 22px;
+    line-height:1.55;
+  }
+  .cta-final-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:linear-gradient(135deg,var(--laranja),#d1430f);
     color:#fff;
     text-decoration:none;
     font-weight:700;
-    padding:12px 10px;
-    border-radius:10px;
-    font-size:13.5px;
-    line-height:1.3;
-    transition:.15s;
+    font-size:15px;
+    padding:15px 28px;
+    border-radius:14px;
+    box-shadow:0 10px 24px -8px rgba(236,79,31,.6);
+    transition:transform .15s;
   }
-  .cta:hover{background:#d1430f}
+  .cta-final-btn:hover{transform:translateY(-2px)}
 
   footer{
     text-align:center;
-    padding:40px 20px 60px;
-    border-top:1px solid var(--card-border);
+    padding:8px 20px 46px;
   }
-  footer p{color:var(--muted);font-size:14px;margin-bottom:14px}
+  footer p{color:var(--muted);font-size:13px;margin-bottom:10px}
   .footer-cta{
     display:inline-block;
-    color:var(--laranja);
-    font-weight:700;
+    color:var(--laranja-ui);
+    font-weight:600;
     text-decoration:none;
-    font-size:16px;
+    font-size:14px;
   }
 
   .vazio{
@@ -278,13 +483,25 @@
 <body>
 
 <header>
-  <div class="logo">Premium Empreendimentos</div>
-  <h1>Casas disponíveis em Pinhalzinho, SC</h1>
-  <p>Unidades prontas para negociar, direto da construtora que mais entrega casas por ano na cidade.</p>
-  <div class="autoridade">Mais de 25 casas vendidas por ano em Pinhalzinho SC</div>
+  <div class="header-inner">
+    <div class="logo-row">
+      <div class="logo-mark">🏠</div>
+      <div class="logo">Premium Empreendimentos</div>
+    </div>
+    <div class="selo">✨ Direto com a construtora, sem intermediário</div>
+    <h1>Encontre a <span>casa própria</span><br>que cabe no seu bolso</h1>
+    <p>Unidades prontas para negociar em Pinhalzinho, SC, direto da construtora que mais entrega casas por ano na cidade.</p>
+    <div class="stats-row">
+      <div class="stat-pill">🏗️ <b>25+</b>&nbsp;casas por ano</div>
+      <div class="stat-pill">👨‍👩‍👧 <b>70+</b>&nbsp;famílias atendidas</div>
+      <div class="stat-pill">🏦 Financiamento facilitado</div>
+    </div>
+  </div>
 </header>
 
-<div class="filtros-wrap">
+<div class="busca-card">
+  <div class="busca-titulo"><span class="ponto"></span> Filtre e encontre a sua</div>
+  <div class="filtros-wrap">
   <div class="filtro-label">Preço</div>
   <div class="filtros" id="filtros-preco">
     <button class="filtro-btn ativo" data-filtro="todos">Todas</button>
@@ -302,13 +519,43 @@
     <button class="filtro-btn" data-filtro="2">2 quartos</button>
     <button class="filtro-btn" data-filtro="3">3 quartos</button>
   </div>
+  </div>
+</div>
+
+<div class="confianca">
+  <div class="confianca-item">
+    <div class="confianca-icone">🏗️</div>
+    <h4>Direto com a construtora</h4>
+    <p>Sem intermediário, negociação clara do início ao fim</p>
+  </div>
+  <div class="confianca-item">
+    <div class="confianca-icone">🏦</div>
+    <h4>Financiamento facilitado</h4>
+    <p>Minha Casa Minha Vida ou SBPE, pela Caixa Econômica Federal</p>
+  </div>
+  <div class="confianca-item">
+    <div class="confianca-icone">🔑</div>
+    <h4>Tradição em Pinhalzinho</h4>
+    <p>Mais de 25 casas entregues por ano, mais de 70 famílias atendidas</p>
+  </div>
+</div>
+
+<div class="secao-titulo">
+  <h2>Unidades disponíveis</h2>
+  <span id="contador-unidades"></span>
 </div>
 
 <main class="grid" id="grid"></main>
 
+<div class="cta-final">
+  <h2>Não achou a unidade ideal?</h2>
+  <p>Fala direto com a gente. A lista muda toda semana e a equipe te ajuda a encontrar a casa certa pro seu momento.</p>
+  <a class="cta-final-btn" href="https://wa.me/5549988451307?text=Ol%C3%A1!%20Vi%20a%20vitrine%20de%20casas%20da%20Premium%20e%20quero%20ajuda%20para%20encontrar%20a%20unidade%20ideal." target="_blank" rel="noopener">📲 Falar com a Premium agora</a>
+</div>
+
 <footer>
   <p>Fale direto com a Premium ou com o corretor da sua confiança para agendar uma visita.</p>
-  <a class="footer-cta" href="https://www.instagram.com/premium_empreendimentos" target="_blank" rel="noopener">Chama no direct · Siga a @premium_empreendimentos</a>
+  <a class="footer-cta" href="https://www.instagram.com/premium_empreendimentos" target="_blank" rel="noopener">Siga a @premium_empreendimentos</a>
 </footer>
 
 <script>
@@ -543,6 +790,9 @@ function formatarPreco(v) {
   return v.toLocaleString('pt-BR', {style:'currency', currency:'BRL', maximumFractionDigits:0});
 }
 
+const CASAS_COM_FOTO = CASAS.filter(c => c.fotos && c.fotos.length > 0);
+const PRECO_MAIS_BARATO = Math.min(...(CASAS_COM_FOTO.length ? CASAS_COM_FOTO : CASAS).map(c => c.preco));
+
 function renderCard(casa) {
   const temFotos = casa.fotos && casa.fotos.length > 0;
 
@@ -569,10 +819,13 @@ function renderCard(casa) {
     ? '🏦 Financiamento pela Minha Casa Minha Vida, Caixa Econômica Federal'
     : '🏦 Financiamento SBPE, Caixa Econômica Federal';
 
+  const ehDestaque = casa.preco === PRECO_MAIS_BARATO;
+
   return `
-  <div class="card" data-preco="${casa.preco}">
+  <div class="card${ehDestaque ? ' destaque' : ''}" data-preco="${casa.preco}">
     <div class="foto-wrap${temFotos ? '' : ' placeholder'}">
       ${fotoHtml}
+      ${ehDestaque ? '<span class="tag-destaque">💰 Menor preço</span>' : ''}
       <span class="tag-prazo">Entrega ${casa.prazo}</span>
     </div>
     <div class="card-body">
@@ -643,6 +896,11 @@ function aplicarFiltros() {
   grid.innerHTML = filtradas.length
     ? filtradas.map(renderCard).join('')
     : '<div class="vazio">Nenhuma unidade com esses filtros no momento. Fala com a gente que a lista muda toda semana.</div>';
+
+  const contador = document.getElementById('contador-unidades');
+  if (contador) {
+    contador.textContent = `${filtradas.length} unidade${filtradas.length === 1 ? '' : 's'} encontrada${filtradas.length === 1 ? '' : 's'}`;
+  }
 
   ligarCarrosseis();
 }
