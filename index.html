@@ -53,22 +53,41 @@
     font-weight:600;
   }
 
+  .filtros-wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:14px 0 6px;
+  }
+  .filtro-label{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.6px;
+    color:var(--muted);
+    padding:0 16px;
+    margin-bottom:8px;
+  }
   .filtros{
     display:flex;
     gap:8px;
-    justify-content:center;
-    flex-wrap:wrap;
-    padding:20px 16px;
-    max-width:900px;
-    margin:0 auto;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    -webkit-overflow-scrolling:touch;
+    padding:0 16px 14px;
+    scroll-snap-type:x proximity;
   }
+  .filtros::-webkit-scrollbar{display:none}
   .filtro-btn{
+    flex-shrink:0;
+    scroll-snap-align:start;
     background:var(--card);
     border:1px solid var(--card-border);
     color:var(--text);
-    padding:9px 16px;
+    padding:11px 18px;
     border-radius:30px;
-    font-size:13px;
+    font-size:13.5px;
+    white-space:nowrap;
     cursor:pointer;
     transition:.15s;
   }
@@ -265,13 +284,24 @@
   <div class="autoridade">Mais de 25 casas vendidas por ano em Pinhalzinho SC</div>
 </header>
 
-<div class="filtros" id="filtros">
-  <button class="filtro-btn ativo" data-filtro="todos">Todas</button>
-  <button class="filtro-btn" data-filtro="300000">Até R$ 300 mil</button>
-  <button class="filtro-btn" data-filtro="400000">Até R$ 400 mil</button>
-  <button class="filtro-btn" data-filtro="600000">Até R$ 600 mil</button>
-  <button class="filtro-btn" data-filtro="1000000">Até R$ 1 milhão</button>
-  <button class="filtro-btn" data-filtro="1500000">Até R$ 1,5 milhões</button>
+<div class="filtros-wrap">
+  <div class="filtro-label">Preço</div>
+  <div class="filtros" id="filtros-preco">
+    <button class="filtro-btn ativo" data-filtro="todos">Todas</button>
+    <button class="filtro-btn" data-filtro="300000">Até R$ 300 mil</button>
+    <button class="filtro-btn" data-filtro="400000">Até R$ 400 mil</button>
+    <button class="filtro-btn" data-filtro="600000">Até R$ 600 mil</button>
+    <button class="filtro-btn" data-filtro="1000000">Até R$ 1 milhão</button>
+    <button class="filtro-btn" data-filtro="1500000">Até R$ 1,5 milhões</button>
+  </div>
+
+  <div class="filtro-label">Dormitórios</div>
+  <div class="filtros" id="filtros-quartos">
+    <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
+    <button class="filtro-btn" data-filtro="1">1 quarto</button>
+    <button class="filtro-btn" data-filtro="2">2 quartos</button>
+    <button class="filtro-btn" data-filtro="3">3 quartos</button>
+  </div>
 </div>
 
 <main class="grid" id="grid"></main>
@@ -592,29 +622,40 @@ function ligarCarrosseis() {
   });
 }
 
-function render(filtro) {
+let filtroPreco = 'todos';
+let filtroQuartos = 'todos';
+
+function aplicarFiltros() {
   const grid = document.getElementById('grid');
-  const filtradas = filtro === 'todos'
-    ? CASAS
-    : CASAS.filter(c => c.preco <= Number(filtro));
+  const filtradas = CASAS.filter(c => {
+    const passaPreco = filtroPreco === 'todos' || c.preco <= Number(filtroPreco);
+    const passaQuartos = filtroQuartos === 'todos' || parseInt(c.dorm, 10) === Number(filtroQuartos);
+    return passaPreco && passaQuartos;
+  });
 
   grid.innerHTML = filtradas.length
     ? filtradas.map(renderCard).join('')
-    : '<div class="vazio">Nenhuma unidade nessa faixa no momento. Fala com a gente que a lista muda toda semana.</div>';
+    : '<div class="vazio">Nenhuma unidade com esses filtros no momento. Fala com a gente que a lista muda toda semana.</div>';
 
   ligarCarrosseis();
 }
 
-document.querySelectorAll('.filtro-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('ativo'));
-    btn.classList.add('ativo');
-    render(btn.dataset.filtro);
+function ligarGrupoFiltro(containerId, aoClicar) {
+  document.querySelectorAll(`#${containerId} .filtro-btn`).forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll(`#${containerId} .filtro-btn`).forEach(b => b.classList.remove('ativo'));
+      btn.classList.add('ativo');
+      aoClicar(btn.dataset.filtro);
+      aplicarFiltros();
+    });
   });
-});
+}
+
+ligarGrupoFiltro('filtros-preco', (v) => { filtroPreco = v; });
+ligarGrupoFiltro('filtros-quartos', (v) => { filtroQuartos = v; });
 
 CASAS.sort((a, b) => a.preco - b.preco);
-render('todos');
+aplicarFiltros();
 </script>
 
 </body>
