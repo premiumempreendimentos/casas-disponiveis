@@ -562,6 +562,13 @@ function renderCard(casa) {
   const mensagemWhats = `Quero fazer uma simulação de financiamento gratuita para ${casa.nome} (${casa.empreendimento}). Vi na vitrine da Premium Empreendimentos: https://premiumempreendimentos.github.io/casas-disponiveis/`;
   const ctaLink = `https://wa.me/5549988451307?text=${encodeURIComponent(mensagemWhats)}`;
 
+  const m2Num = parseFloat(String(casa.m2).replace(',', '.'));
+  const mostrarM2 = m2Num > 100;
+
+  const financiamento = casa.preco <= 600000
+    ? '🏦 Financiamento pela Minha Casa Minha Vida, Caixa Econômica Federal'
+    : '🏦 Financiamento SBPE, Caixa Econômica Federal';
+
   return `
   <div class="card" data-preco="${casa.preco}">
     <div class="foto-wrap${temFotos ? '' : ' placeholder'}">
@@ -574,12 +581,12 @@ function renderCard(casa) {
         <div class="categoria">📍 ${casa.categoria} · ${casa.bairro}, Pinhalzinho SC</div>
       </div>
       <div class="specs">
-        <span>📐 ${casa.m2} m²</span>
+        ${mostrarM2 ? `<span>📐 ${casa.m2} m²</span>` : ''}
         <span>🛏️ ${casa.dorm} dorm.</span>
         <span>🚿 ${casa.banh} banh.</span>
         <span>🚗 ${casa.gar} vaga${casa.gar > 1 ? 's' : ''}</span>
       </div>
-      <div class="financiamento">🏦 Financia pelo Minha Casa Minha Vida ou SBPE</div>
+      <div class="financiamento">${financiamento}</div>
       <div class="preco-wrap">
         <div class="preco-label">Valor</div>
         <div class="preco">${formatarPreco(casa.preco)}</div>
