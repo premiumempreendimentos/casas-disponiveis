@@ -217,9 +217,11 @@
 
 <div class="filtros" id="filtros">
   <button class="filtro-btn ativo" data-filtro="todos">Todas</button>
-  <button class="filtro-btn" data-filtro="ate300">Até R$ 300 mil</button>
-  <button class="filtro-btn" data-filtro="300a600">R$ 300 mil a R$ 600 mil</button>
-  <button class="filtro-btn" data-filtro="acima600">Acima de R$ 600 mil</button>
+  <button class="filtro-btn" data-filtro="300000">Até R$ 300 mil</button>
+  <button class="filtro-btn" data-filtro="400000">Até R$ 400 mil</button>
+  <button class="filtro-btn" data-filtro="600000">Até R$ 600 mil</button>
+  <button class="filtro-btn" data-filtro="1000000">Até R$ 1 milhão</button>
+  <button class="filtro-btn" data-filtro="1500000">Até R$ 1,5 milhões</button>
 </div>
 
 <main class="grid" id="grid"></main>
@@ -335,25 +337,6 @@ function formatarPreco(v) {
   return v.toLocaleString('pt-BR', {style:'currency', currency:'BRL', maximumFractionDigits:0});
 }
 
-function faixaDe(casa) {
-  if (casa.precoMax <= 300000) return 'ate300';
-  if (casa.precoMin >= 600000) return 'acima600';
-  if (casa.precoMax < 600000 || (casa.precoMin < 600000)) return '300a600';
-  return 'acima600';
-}
-
-function faixasDaCasa(casa) {
-  // uma casa pode caber em mais de uma faixa se seu range cruza os limites
-  const faixas = new Set();
-  const marcos = [casa.precoMin, casa.precoMax];
-  marcos.forEach(v => {
-    if (v <= 300000) faixas.add('ate300');
-    else if (v < 600000) faixas.add('300a600');
-    else faixas.add('acima600');
-  });
-  return faixas;
-}
-
 function renderCard(casa) {
   const fotoHtml = casa.foto
     ? `<img src="${casa.foto}" alt="${casa.nome}" loading="lazy">`
@@ -366,7 +349,7 @@ function renderCard(casa) {
   const ctaLink = casa.linkPost || "https://www.instagram.com/premium_empreendimentos";
 
   return `
-  <div class="card" data-faixas="${[...faixasDaCasa(casa)].join(',')}">
+  <div class="card" data-preco-min="${casa.precoMin}">
     <div class="foto-wrap${casa.foto ? '' : ' placeholder'}">
       ${fotoHtml}
       <span class="tag-unidades">${casa.unidades} ${casa.unidades > 1 ? 'unidades' : 'unidade'}</span>
@@ -396,7 +379,7 @@ function render(filtro) {
   const grid = document.getElementById('grid');
   const filtradas = filtro === 'todos'
     ? CASAS
-    : CASAS.filter(c => faixasDaCasa(c).has(filtro));
+    : CASAS.filter(c => c.precoMin <= Number(filtro));
 
   grid.innerHTML = filtradas.length
     ? filtradas.map(renderCard).join('')
