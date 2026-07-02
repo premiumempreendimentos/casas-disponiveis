@@ -208,6 +208,11 @@
   }
   .specs span{white-space:nowrap}
 
+  .financiamento{
+    font-size:12.5px;
+    color:var(--muted);
+  }
+
   .preco-wrap{margin-top:2px}
   .preco-label{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
   .preco{font-size:22px;font-weight:700;color:#fff}
@@ -279,103 +284,229 @@
 <script>
 const CASAS = [
   {
-    nome: "Tóquio",
+    nome: "Casa 10",
+    empreendimento: "Casa 10",
+    categoria: "Casa Única",
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/casa10-1.jpg", "images/casa10-2.jpg", "images/casa10-3.jpg", "images/casa10-4.jpg", "images/casa10-5.jpg", "images/casa10-6.jpg"],
+    m2: "150",
+    dorm: "3 (1 suíte)",
+    banh: "2",
+    gar: "2",
+    preco: 953645.0,
+    prazo: "07/27",
+    linkPost: "https://www.instagram.com/p/DZr-OPFkt9t/"
+  },
+  {
+    nome: "Und 06 - Tóquio",
+    empreendimento: "Tóquio",
     categoria: "Studio",
+    bairro: "Nova Divineia",
     fotos: [],
-    unidades: 6,
-    m2: "34,5",
-    dorm: 1,
-    banh: 1,
-    gar: 1,
-    precoMin: 210000,
-    precoMax: 240000,
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 240000.0,
     prazo: "07/27",
     linkPost: null
   },
   {
-    nome: "Barcelona Residence",
-    categoria: "Studio e Casa Geminada",
-    fotos: ["images/barcelona-1.jpg","images/barcelona-2.jpg","images/barcelona-3.jpg","images/barcelona-4.jpg","images/barcelona-5.jpg","images/barcelona-6.jpg"],
-    unidades: 3,
-    m2: "35,5 a 59",
-    dorm: "1 a 2",
-    banh: 1,
-    gar: 1,
-    precoMin: 215000,
-    precoMax: 370000,
+    nome: "Und 05 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: [],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 215000.0,
+    prazo: "07/27",
+    linkPost: null
+  },
+  {
+    nome: "Und 04 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: [],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 210000.0,
+    prazo: "07/27",
+    linkPost: null
+  },
+  {
+    nome: "Und 03 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: [],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 210000.0,
+    prazo: "07/27",
+    linkPost: null
+  },
+  {
+    nome: "Und 02 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: [],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 215000.0,
+    prazo: "07/27",
+    linkPost: null
+  },
+  {
+    nome: "Und 01 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: [],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 225000.0,
+    prazo: "07/27",
+    linkPost: null
+  },
+  {
+    nome: "Und 06 - Barcelona",
+    empreendimento: "Barcelona",
+    categoria: "Casa Geminada",
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/barcelona-1.jpg", "images/barcelona-2.jpg", "images/barcelona-3.jpg", "images/barcelona-4.jpg", "images/barcelona-5.jpg", "images/barcelona-6.jpg"],
+    m2: "59,00",
+    dorm: "2",
+    banh: "1",
+    gar: "1",
+    preco: 370000.0,
     prazo: "01/27",
     linkPost: "https://www.instagram.com/p/DYP2-h4j2V4/"
   },
   {
-    nome: "Viena Residence",
+    nome: "Und 03 - Barcelona",
+    empreendimento: "Barcelona",
     categoria: "Casa Geminada",
-    fotos: ["images/viena-1.jpg","images/viena-2.jpg","images/viena-3.jpg","images/viena-4.jpg","images/viena-5.jpg","images/viena-6.jpg","images/viena-7.jpg"],
-    unidades: 2,
-    m2: "51",
-    dorm: 2,
-    banh: 1,
-    gar: 1,
-    precoMin: 318913.75,
-    precoMax: 318913.75,
-    prazo: "09/26",
-    linkPost: "https://www.instagram.com/p/DRkvlHNklcB/"
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/barcelona-1.jpg", "images/barcelona-2.jpg", "images/barcelona-3.jpg", "images/barcelona-4.jpg", "images/barcelona-5.jpg", "images/barcelona-6.jpg"],
+    m2: "35,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 215000.0,
+    prazo: "01/27",
+    linkPost: "https://www.instagram.com/p/DYP2-h4j2V4/"
   },
   {
-    nome: "Paris Residence",
+    nome: "Und 02 - Barcelona",
+    empreendimento: "Barcelona",
     categoria: "Casa Geminada",
-    fotos: ["images/paris-1.jpg","images/paris-2.jpg","images/paris-3.jpg","images/paris-4.jpg","images/paris-5.jpg","images/paris-6.jpg"],
-    unidades: 2,
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/barcelona-1.jpg", "images/barcelona-2.jpg", "images/barcelona-3.jpg", "images/barcelona-4.jpg", "images/barcelona-5.jpg", "images/barcelona-6.jpg"],
+    m2: "35,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 220000.0,
+    prazo: "01/27",
+    linkPost: "https://www.instagram.com/p/DYP2-h4j2V4/"
+  },
+  {
+    nome: "Und 02 - Paris",
+    empreendimento: "Paris",
+    categoria: "Casa Geminada",
+    bairro: "Nova Divineia",
+    fotos: ["images/paris-1.jpg", "images/paris-2.jpg", "images/paris-3.jpg", "images/paris-4.jpg", "images/paris-5.jpg", "images/paris-6.jpg"],
     m2: "70",
-    dorm: "2 a 3",
-    banh: "1 a 2",
-    gar: 2,
-    precoMin: 442763.75,
-    precoMax: 461341.25,
+    dorm: "3",
+    banh: "1",
+    gar: "2",
+    preco: 442763.75,
+    prazo: "06/26",
+    linkPost: "https://www.instagram.com/p/DXotHsfmsYJ/"
+  },
+  {
+    nome: "Und 01 - Paris",
+    empreendimento: "Paris",
+    categoria: "Casa Geminada",
+    bairro: "Nova Divineia",
+    fotos: ["images/paris-1.jpg", "images/paris-2.jpg", "images/paris-3.jpg", "images/paris-4.jpg", "images/paris-5.jpg", "images/paris-6.jpg"],
+    m2: "70",
+    dorm: "2",
+    banh: "2",
+    gar: "2",
+    preco: 461341.25,
     prazo: "06/26",
     linkPost: "https://www.instagram.com/p/DXotHsfmsYJ/"
   },
   {
     nome: "Casa 08",
+    empreendimento: "Casa 08",
     categoria: "Casa Única",
-    fotos: ["images/casa08-1.jpg","images/casa08-2.jpg","images/casa08-3.jpg","images/casa08-4.jpg","images/casa08-5.jpg","images/casa08-6.jpg"],
-    unidades: 1,
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/casa08-1.jpg", "images/casa08-2.jpg", "images/casa08-3.jpg", "images/casa08-4.jpg", "images/casa08-5.jpg", "images/casa08-6.jpg"],
     m2: "151",
-    dorm: 3,
-    banh: 3,
-    gar: 2,
-    precoMin: 882431.25,
-    precoMax: 882431.25,
+    dorm: "3",
+    banh: "3",
+    gar: "2",
+    preco: 882431.25,
     prazo: "11/26",
     linkPost: "https://www.instagram.com/p/DWBvTAPklzM/"
   },
   {
-    nome: "Casa 10",
-    categoria: "Casa Única",
-    fotos: ["images/casa10-1.jpg","images/casa10-2.jpg","images/casa10-3.jpg","images/casa10-4.jpg","images/casa10-5.jpg","images/casa10-6.jpg"],
-    unidades: 1,
-    m2: "150",
-    dorm: "3 (1 suíte)",
-    banh: 2,
-    gar: 2,
-    precoMin: 953645,
-    precoMax: 953645,
-    prazo: "07/27",
-    linkPost: "https://www.instagram.com/p/DZr-OPFkt9t/"
-  },
-  {
     nome: "Casa 07",
+    empreendimento: "Casa 07",
     categoria: "Casa Única",
-    fotos: ["images/casa07-1.jpg","images/casa07-2.jpg","images/casa07-3.jpg","images/casa07-4.jpg","images/casa07-5.jpg","images/casa07-6.jpg","images/casa07-7.jpg"],
-    unidades: 1,
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/casa07-1.jpg", "images/casa07-2.jpg", "images/casa07-3.jpg", "images/casa07-4.jpg", "images/casa07-5.jpg", "images/casa07-6.jpg", "images/casa07-7.jpg"],
     m2: "195",
-    dorm: 3,
-    banh: 4,
-    gar: 2,
-    precoMin: 975318.75,
-    precoMax: 975318.75,
+    dorm: "3",
+    banh: "4",
+    gar: "2",
+    preco: 975318.75,
     prazo: "10/26",
     linkPost: "https://www.instagram.com/p/DRz8LChExjE/"
-  }
+  },
+  {
+    nome: "Und 03 - Viena",
+    empreendimento: "Viena",
+    categoria: "Casa Geminada",
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/viena-1.jpg", "images/viena-2.jpg", "images/viena-3.jpg", "images/viena-4.jpg", "images/viena-5.jpg", "images/viena-6.jpg", "images/viena-7.jpg"],
+    m2: "51",
+    dorm: "2",
+    banh: "1",
+    gar: "1",
+    preco: 318913.75,
+    prazo: "09/26",
+    linkPost: "https://www.instagram.com/p/DRkvlHNklcB/"
+  },
+  {
+    nome: "Und 02 - Viena",
+    empreendimento: "Viena",
+    categoria: "Casa Geminada",
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/viena-1.jpg", "images/viena-2.jpg", "images/viena-3.jpg", "images/viena-4.jpg", "images/viena-5.jpg", "images/viena-6.jpg", "images/viena-7.jpg"],
+    m2: "51",
+    dorm: "2",
+    banh: "1",
+    gar: "1",
+    preco: 318913.75,
+    prazo: "09/26",
+    linkPost: "https://www.instagram.com/p/DRkvlHNklcB/"
+  },
 ];
 
 function formatarPreco(v) {
@@ -398,24 +529,19 @@ function renderCard(casa) {
       ` : ''}`
     : `Fotos em breve<br>(lançamento)`;
 
-  const precoHtml = casa.precoMin === casa.precoMax
-    ? `<div class="preco">${formatarPreco(casa.precoMin)}</div>`
-    : `<div class="preco">${formatarPreco(casa.precoMin)} <small>a ${formatarPreco(casa.precoMax)}</small></div>`;
-
-  const mensagemWhats = `Quero fazer uma simulação de financiamento gratuita para o ${casa.nome}. Vi na vitrine da Premium Empreendimentos: https://premiumempreendimentos.github.io/casas-disponiveis/`;
+  const mensagemWhats = `Quero fazer uma simulação de financiamento gratuita para ${casa.nome} (${casa.empreendimento}). Vi na vitrine da Premium Empreendimentos: https://premiumempreendimentos.github.io/casas-disponiveis/`;
   const ctaLink = `https://wa.me/5549988451307?text=${encodeURIComponent(mensagemWhats)}`;
 
   return `
-  <div class="card" data-preco-min="${casa.precoMin}">
+  <div class="card" data-preco="${casa.preco}">
     <div class="foto-wrap${temFotos ? '' : ' placeholder'}">
       ${fotoHtml}
-      <span class="tag-unidades">${casa.unidades} ${casa.unidades > 1 ? 'unidades' : 'unidade'}</span>
       <span class="tag-prazo">Entrega ${casa.prazo}</span>
     </div>
     <div class="card-body">
       <div>
         <h3>${casa.nome}</h3>
-        <div class="categoria">${casa.categoria} · Pinhalzinho, SC</div>
+        <div class="categoria">📍 ${casa.categoria} · ${casa.bairro}, Pinhalzinho SC</div>
       </div>
       <div class="specs">
         <span>📐 ${casa.m2} m²</span>
@@ -423,9 +549,10 @@ function renderCard(casa) {
         <span>🚿 ${casa.banh} banh.</span>
         <span>🚗 ${casa.gar} vaga${casa.gar > 1 ? 's' : ''}</span>
       </div>
+      <div class="financiamento">🏦 Financia pelo Minha Casa Minha Vida ou SBPE</div>
       <div class="preco-wrap">
-        <div class="preco-label">${casa.precoMin === casa.precoMax ? 'Valor' : 'A partir de'}</div>
-        ${precoHtml}
+        <div class="preco-label">Valor</div>
+        <div class="preco">${formatarPreco(casa.preco)}</div>
       </div>
       <a class="cta" href="${ctaLink}" target="_blank" rel="noopener">Faça uma simulação de financiamento gratuita</a>
     </div>
@@ -469,7 +596,7 @@ function render(filtro) {
   const grid = document.getElementById('grid');
   const filtradas = filtro === 'todos'
     ? CASAS
-    : CASAS.filter(c => c.precoMin <= Number(filtro));
+    : CASAS.filter(c => c.preco <= Number(filtro));
 
   grid.innerHTML = filtradas.length
     ? filtradas.map(renderCard).join('')
@@ -486,6 +613,7 @@ document.querySelectorAll('.filtro-btn').forEach(btn => {
   });
 });
 
+CASAS.sort((a, b) => a.preco - b.preco);
 render('todos');
 </script>
 
