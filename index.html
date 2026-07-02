@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casas Disponíveis | Premium Empreendimentos</title>
+<meta name="description" content="Casas e apartamentos disponíveis para venda em Pinhalzinho SC. Premium Empreendimentos, mais de 25 casas entregues por ano.">
+<style>
+  :root{
+    --laranja:#EC4F1F;
+    --laranja-ui:#E8820C;
+    --bg:#0b0c0f;
+    --card:#16181d;
+    --card-border:#24272e;
+    --text:#f2f2f2;
+    --muted:#a2a7b0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI',Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  header{
+    padding:28px 20px 20px;
+    text-align:center;
+    border-bottom:1px solid var(--card-border);
+  }
+  .logo{
+    font-size:13px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--laranja);
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  h1{
+    font-size:clamp(22px,5vw,32px);
+    margin-bottom:8px;
+    line-height:1.25;
+  }
+  header p{
+    color:var(--muted);
+    font-size:15px;
+    max-width:520px;
+    margin:0 auto;
+  }
+  .autoridade{
+    margin-top:14px;
+    font-size:13px;
+    color:var(--laranja-ui);
+    font-weight:600;
+  }
+
+  .filtros{
+    display:flex;
+    gap:8px;
+    justify-content:center;
+    flex-wrap:wrap;
+    padding:20px 16px;
+    max-width:900px;
+    margin:0 auto;
+  }
+  .filtro-btn{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    color:var(--text);
+    padding:9px 16px;
+    border-radius:30px;
+    font-size:13px;
+    cursor:pointer;
+    transition:.15s;
+  }
+  .filtro-btn:hover{border-color:var(--laranja-ui)}
+  .filtro-btn.ativo{
+    background:var(--laranja);
+    border-color:var(--laranja);
+    color:#fff;
+    font-weight:600;
+  }
+
+  .grid{
+    max-width:1100px;
+    margin:0 auto;
+    padding:8px 16px 60px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:20px;
+  }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:16px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    transition:transform .15s, border-color .15s;
+  }
+  .card:hover{transform:translateY(-3px);border-color:var(--laranja-ui)}
+
+  .card .foto-wrap{
+    position:relative;
+    aspect-ratio:4/5;
+    background:#000;
+    overflow:hidden;
+  }
+  .card .foto-wrap img{
+    width:100%;height:100%;object-fit:cover;display:block;
+  }
+  .card .foto-wrap.placeholder{
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#1f2128,#0e0f12);
+    color:var(--muted);
+    font-size:13px;
+    text-align:center;
+    padding:20px;
+  }
+  .tag-unidades{
+    position:absolute;top:12px;left:12px;
+    background:rgba(0,0,0,.65);
+    backdrop-filter:blur(4px);
+    color:#fff;
+    font-size:12px;
+    padding:5px 10px;
+    border-radius:20px;
+    font-weight:600;
+  }
+  .tag-prazo{
+    position:absolute;top:12px;right:12px;
+    background:var(--laranja);
+    color:#fff;
+    font-size:11px;
+    padding:5px 10px;
+    border-radius:20px;
+    font-weight:700;
+    text-transform:uppercase;
+  }
+
+  .card-body{
+    padding:16px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1;
+  }
+  .card-body h3{
+    font-size:19px;
+  }
+  .card-body .categoria{
+    font-size:13px;
+    color:var(--muted);
+  }
+  .specs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:12.5px;
+    color:var(--muted);
+    padding:8px 0;
+    border-top:1px solid var(--card-border);
+    border-bottom:1px solid var(--card-border);
+  }
+  .specs span{white-space:nowrap}
+
+  .preco-wrap{margin-top:2px}
+  .preco-label{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .preco{font-size:22px;font-weight:700;color:#fff}
+  .preco small{font-size:12px;color:var(--muted);font-weight:400}
+
+  .cta{
+    margin-top:auto;
+    display:block;
+    text-align:center;
+    background:var(--laranja);
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    padding:12px;
+    border-radius:10px;
+    font-size:14.5px;
+    transition:.15s;
+  }
+  .cta:hover{background:#d1430f}
+
+  footer{
+    text-align:center;
+    padding:40px 20px 60px;
+    border-top:1px solid var(--card-border);
+  }
+  footer p{color:var(--muted);font-size:14px;margin-bottom:14px}
+  .footer-cta{
+    display:inline-block;
+    color:var(--laranja);
+    font-weight:700;
+    text-decoration:none;
+    font-size:16px;
+  }
+
+  .vazio{
+    grid-column:1/-1;
+    text-align:center;
+    color:var(--muted);
+    padding:40px 0;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Premium Empreendimentos</div>
+  <h1>Casas e apartamentos disponíveis em Pinhalzinho, SC</h1>
+  <p>Unidades prontas para negociar, direto da construtora que mais entrega casas por ano na cidade.</p>
+  <div class="autoridade">Mais de 25 casas entregues por ano · Mais de 70 famílias atendidas</div>
+</header>
+
+<div class="filtros" id="filtros">
+  <button class="filtro-btn ativo" data-filtro="todos">Todas</button>
+  <button class="filtro-btn" data-filtro="ate300">Até R$ 300 mil</button>
+  <button class="filtro-btn" data-filtro="300a600">R$ 300 mil a R$ 600 mil</button>
+  <button class="filtro-btn" data-filtro="acima600">Acima de R$ 600 mil</button>
+</div>
+
+<main class="grid" id="grid"></main>
+
+<footer>
+  <p>Fale direto com a Premium ou com o corretor da sua confiança para agendar uma visita.</p>
+  <a class="footer-cta" href="https://www.instagram.com/premium_empreendimentos" target="_blank" rel="noopener">Chama no direct · Siga a @premium_empreendimentos</a>
+</footer>
+
+<script>
+const CASAS = [
+  {
+    nome: "Tóquio",
+    categoria: "Studio",
+    foto: null,
+    unidades: 6,
+    m2: "34,5",
+    dorm: 1,
+    banh: 1,
+    gar: 1,
+    precoMin: 210000,
+    precoMax: 240000,
+    prazo: "07/27",
+    linkPost: null
+  },
+  {
+    nome: "Barcelona Residence",
+    categoria: "Studio e Casa Geminada",
+    foto: "images/barcelona.jpg",
+    unidades: 3,
+    m2: "35,5 a 59",
+    dorm: "1 a 2",
+    banh: 1,
+    gar: 1,
+    precoMin: 215000,
+    precoMax: 370000,
+    prazo: "01/27",
+    linkPost: "https://www.instagram.com/p/DYP2-h4j2V4/"
+  },
+  {
+    nome: "Viena Residence",
+    categoria: "Casa Geminada",
+    foto: "images/viena.jpg",
+    unidades: 2,
+    m2: "51",
+    dorm: 2,
+    banh: 1,
+    gar: 1,
+    precoMin: 318913.75,
+    precoMax: 318913.75,
+    prazo: "09/26",
+    linkPost: "https://www.instagram.com/p/DRkvlHNklcB/"
+  },
+  {
+    nome: "Paris Residence",
+    categoria: "Casa Geminada",
+    foto: "images/paris.jpg",
+    unidades: 2,
+    m2: "70",
+    dorm: "2 a 3",
+    banh: "1 a 2",
+    gar: 2,
+    precoMin: 442763.75,
+    precoMax: 461341.25,
+    prazo: "06/26",
+    linkPost: "https://www.instagram.com/p/DXotHsfmsYJ/"
+  },
+  {
+    nome: "Casa 08",
+    categoria: "Casa Única",
+    foto: "images/casa08.jpg",
+    unidades: 1,
+    m2: "151",
+    dorm: 3,
+    banh: 3,
+    gar: 2,
+    precoMin: 882431.25,
+    precoMax: 882431.25,
+    prazo: "11/26",
+    linkPost: "https://www.instagram.com/p/DWBvTAPklzM/"
+  },
+  {
+    nome: "Casa 10",
+    categoria: "Casa Única",
+    foto: "images/casa10.jpg",
+    unidades: 1,
+    m2: "150",
+    dorm: "3 (1 suíte)",
+    banh: 2,
+    gar: 2,
+    precoMin: 953645,
+    precoMax: 953645,
+    prazo: "07/27",
+    linkPost: "https://www.instagram.com/p/DZr-OPFkt9t/"
+  },
+  {
+    nome: "Casa 07",
+    categoria: "Casa Única",
+    foto: "images/casa07.jpg",
+    unidades: 1,
+    m2: "195",
+    dorm: 3,
+    banh: 4,
+    gar: 2,
+    precoMin: 975318.75,
+    precoMax: 975318.75,
+    prazo: "10/26",
+    linkPost: "https://www.instagram.com/p/DRz8LChExjE/"
+  }
+];
+
+function formatarPreco(v) {
+  return v.toLocaleString('pt-BR', {style:'currency', currency:'BRL', maximumFractionDigits:0});
+}
+
+function faixaDe(casa) {
+  if (casa.precoMax <= 300000) return 'ate300';
+  if (casa.precoMin >= 600000) return 'acima600';
+  if (casa.precoMax < 600000 || (casa.precoMin < 600000)) return '300a600';
+  return 'acima600';
+}
+
+function faixasDaCasa(casa) {
+  // uma casa pode caber em mais de uma faixa se seu range cruza os limites
+  const faixas = new Set();
+  const marcos = [casa.precoMin, casa.precoMax];
+  marcos.forEach(v => {
+    if (v <= 300000) faixas.add('ate300');
+    else if (v < 600000) faixas.add('300a600');
+    else faixas.add('acima600');
+  });
+  return faixas;
+}
+
+function renderCard(casa) {
+  const fotoHtml = casa.foto
+    ? `<img src="${casa.foto}" alt="${casa.nome}" loading="lazy">`
+    : `Fotos em breve<br>(lançamento)`;
+
+  const precoHtml = casa.precoMin === casa.precoMax
+    ? `<div class="preco">${formatarPreco(casa.precoMin)}</div>`
+    : `<div class="preco">${formatarPreco(casa.precoMin)} <small>a ${formatarPreco(casa.precoMax)}</small></div>`;
+
+  const ctaLink = casa.linkPost || "https://www.instagram.com/premium_empreendimentos";
+
+  return `
+  <div class="card" data-faixas="${[...faixasDaCasa(casa)].join(',')}">
+    <div class="foto-wrap${casa.foto ? '' : ' placeholder'}">
+      ${fotoHtml}
+      <span class="tag-unidades">${casa.unidades} ${casa.unidades > 1 ? 'unidades' : 'unidade'}</span>
+      <span class="tag-prazo">Entrega ${casa.prazo}</span>
+    </div>
+    <div class="card-body">
+      <div>
+        <h3>${casa.nome}</h3>
+        <div class="categoria">${casa.categoria} · Pinhalzinho, SC</div>
+      </div>
+      <div class="specs">
+        <span>📐 ${casa.m2} m²</span>
+        <span>🛏️ ${casa.dorm} dorm.</span>
+        <span>🚿 ${casa.banh} banh.</span>
+        <span>🚗 ${casa.gar} vaga${casa.gar > 1 ? 's' : ''}</span>
+      </div>
+      <div class="preco-wrap">
+        <div class="preco-label">${casa.precoMin === casa.precoMax ? 'Valor' : 'A partir de'}</div>
+        ${precoHtml}
+      </div>
+      <a class="cta" href="${ctaLink}" target="_blank" rel="noopener">Chama no direct</a>
+    </div>
+  </div>`;
+}
+
+function render(filtro) {
+  const grid = document.getElementById('grid');
+  const filtradas = filtro === 'todos'
+    ? CASAS
+    : CASAS.filter(c => faixasDaCasa(c).has(filtro));
+
+  grid.innerHTML = filtradas.length
+    ? filtradas.map(renderCard).join('')
+    : '<div class="vazio">Nenhuma unidade nessa faixa no momento. Fala com a gente que a lista muda toda semana.</div>';
+}
+
+document.querySelectorAll('.filtro-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('ativo'));
+    btn.classList.add('ativo');
+    render(btn.dataset.filtro);
+  });
+});
+
+render('todos');
+</script>
+
+</body>
+</html>
