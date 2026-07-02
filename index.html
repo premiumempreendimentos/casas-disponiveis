@@ -199,9 +199,10 @@
     color:#fff;
     text-decoration:none;
     font-weight:700;
-    padding:12px;
+    padding:12px 10px;
     border-radius:10px;
-    font-size:14.5px;
+    font-size:13.5px;
+    line-height:1.3;
     transition:.15s;
   }
   .cta:hover{background:#d1430f}
@@ -373,7 +374,8 @@ function renderCard(casa) {
     ? `<div class="preco">${formatarPreco(casa.precoMin)}</div>`
     : `<div class="preco">${formatarPreco(casa.precoMin)} <small>a ${formatarPreco(casa.precoMax)}</small></div>`;
 
-  const ctaLink = casa.linkPost || "https://www.instagram.com/premium_empreendimentos";
+  const mensagemWhats = `Quero fazer uma simulação de financiamento gratuita para o ${casa.nome}. Vi na vitrine da Premium Empreendimentos: https://premiumempreendimentos.github.io/casas-disponiveis/`;
+  const ctaLink = `https://wa.me/5549988451307?text=${encodeURIComponent(mensagemWhats)}`;
 
   return `
   <div class="card" data-preco-min="${casa.precoMin}">
@@ -397,7 +399,7 @@ function renderCard(casa) {
         <div class="preco-label">${casa.precoMin === casa.precoMax ? 'Valor' : 'A partir de'}</div>
         ${precoHtml}
       </div>
-      <a class="cta" href="${ctaLink}" target="_blank" rel="noopener">Chama no direct</a>
+      <a class="cta" href="${ctaLink}" target="_blank" rel="noopener">Faça uma simulação de financiamento gratuita</a>
     </div>
   </div>`;
 }
