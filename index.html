@@ -66,6 +66,12 @@
     white-space:nowrap;
   }
   .navbar-links a:hover{color:var(--text)}
+  .navbar-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-shrink:0;
+  }
   .navbar-whats{
     display:flex;
     align-items:center;
@@ -79,10 +85,32 @@
     padding:8px 14px;
     border-radius:30px;
     white-space:nowrap;
-    flex-shrink:0;
     transition:.15s;
   }
   .navbar-whats:hover{background:rgba(37,211,102,.2)}
+  .navbar-instagram{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:34px;height:34px;
+    border-radius:50%;
+    background:rgba(20,18,15,.045);
+    border:1px solid var(--card-border);
+    color:var(--text);
+    transition:.15s;
+  }
+  .navbar-instagram svg{width:17px;height:17px}
+  .navbar-instagram:hover{background:rgba(236,79,31,.1);border-color:var(--laranja-ui);color:var(--laranja)}
+  .footer-social{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:var(--laranja-ui);
+    font-weight:600;
+    text-decoration:none;
+    font-size:14px;
+  }
+  .footer-social svg{width:16px;height:16px}
   @media (max-width:680px){
     .navbar-links{display:none}
   }
@@ -591,13 +619,6 @@
     padding:8px 20px 46px;
   }
   footer p{color:var(--muted);font-size:13px;margin-bottom:10px}
-  .footer-cta{
-    display:inline-block;
-    color:var(--laranja-ui);
-    font-weight:600;
-    text-decoration:none;
-    font-size:14px;
-  }
 
   .vazio{
     grid-column:1/-1;
@@ -625,7 +646,16 @@
     <a href="#imoveis">Imóveis</a>
     <a href="#contato">Contato</a>
   </div>
-  <a class="navbar-whats" href="https://wa.me/5549988451307" target="_blank" rel="noopener">📲 (49) 98845-1307</a>
+  <div class="navbar-actions">
+    <a class="navbar-instagram" href="https://www.instagram.com/premium_empreendimentos/" target="_blank" rel="noopener" aria-label="Instagram da Premium Empreendimentos">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+        <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+      </svg>
+    </a>
+    <a class="navbar-whats" href="https://wa.me/5549988451307" target="_blank" rel="noopener">📲 (49) 98845-1307</a>
+  </div>
 </nav>
 
 <header id="topo">
@@ -708,7 +738,7 @@
   <div class="confianca-item">
     <div class="confianca-icone">🔑</div>
     <h4>Tradição em Pinhalzinho</h4>
-    <p>Mais de 25 casas entregues por ano, mais de 70 famílias atendidas</p>
+    <p>Mais de 25 casas entregues por ano, mais de 90 famílias atendidas</p>
   </div>
 </div>
 
@@ -720,7 +750,7 @@
     <p>Trabalhamos com os corretores parceiros de toda a cidade, então você negocia sempre com quem já conhece e confia.</p>
     <div class="quem-somos-stats">
       <div><b>25+</b><span>casas entregues por ano</span></div>
-      <div><b>70+</b><span>famílias atendidas</span></div>
+      <div><b>90+</b><span>famílias atendidas</span></div>
       <div><b id="stat-empreendimentos">-</b><span>empreendimentos ativos</span></div>
     </div>
   </div>
@@ -741,7 +771,14 @@
 
 <footer>
   <p>Fale direto com a Premium ou com o corretor da sua confiança para agendar uma visita.</p>
-  <a class="footer-cta" href="https://www.instagram.com/premium_empreendimentos" target="_blank" rel="noopener">Siga a @premium_empreendimentos</a>
+  <a class="footer-social" href="https://www.instagram.com/premium_empreendimentos/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+      <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+      <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+    </svg>
+    Siga a @premium_empreendimentos
+  </a>
 </footer>
 
 <script>
