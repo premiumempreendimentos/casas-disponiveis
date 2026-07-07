@@ -66,34 +66,29 @@
     white-space:nowrap;
   }
   .navbar-links a:hover{color:var(--text)}
-  .navbar-actions{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    flex-shrink:0;
-  }
-  .whats-flutuante{
+  .flutuantes{
     position:fixed;
     right:20px;bottom:20px;
-    width:58px;height:58px;
     z-index:100;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .fab{
+    width:54px;height:54px;
+    flex-shrink:0;
     display:flex;align-items:center;justify-content:center;
     border-radius:50%;
     box-shadow:0 10px 24px -6px rgba(0,0,0,.35);
     transition:transform .2s;
   }
-  .whats-flutuante svg{width:58px;height:58px}
-  .whats-flutuante:hover{transform:scale(1.08)}
-  .navbar-instagram{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:34px;height:34px;
-    flex-shrink:0;
-    transition:transform .15s;
+  .fab svg{width:54px;height:54px}
+  .fab:hover{transform:scale(1.08)}
+  @media (max-width:420px){
+    .flutuantes{right:14px;bottom:14px;gap:10px}
+    .fab{width:48px;height:48px}
+    .fab svg{width:48px;height:48px}
   }
-  .navbar-instagram svg{width:30px;height:30px}
-  .navbar-instagram:hover{transform:scale(1.08)}
   .footer-social{
     display:inline-flex;
     align-items:center;
@@ -633,33 +628,33 @@
     <a href="#imoveis">Imóveis</a>
     <a href="#contato">Contato</a>
   </div>
-  <div class="navbar-actions">
-    <a class="navbar-instagram" href="https://www.instagram.com/premium_empreendimentos/" target="_blank" rel="noopener" aria-label="Instagram da Premium Empreendimentos">
-      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="igGradientNav" cx="30%" cy="107%" r="150%">
-            <stop offset="0" stop-color="#fdf497"/>
-            <stop offset=".05" stop-color="#fdf497"/>
-            <stop offset=".45" stop-color="#fd5949"/>
-            <stop offset=".6" stop-color="#d6249f"/>
-            <stop offset=".9" stop-color="#285AEB"/>
-          </radialGradient>
-        </defs>
-        <rect width="48" height="48" rx="13" fill="url(#igGradientNav)"/>
-        <rect x="12" y="12" width="24" height="24" rx="7" fill="none" stroke="white" stroke-width="2.6"/>
-        <circle cx="24" cy="24" r="6.3" fill="none" stroke="white" stroke-width="2.6"/>
-        <circle cx="33" cy="15" r="1.9" fill="white"/>
-      </svg>
-    </a>
-  </div>
 </nav>
 
-<a class="whats-flutuante" href="https://wa.me/5549988451307?text=Ol%C3%A1!%20Vi%20a%20vitrine%20de%20casas%20da%20Premium%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
-  <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="24" cy="24" r="24" fill="#25D366"/>
-    <path fill="#fff" d="M32.85 15.11a12.09 12.09 0 0 0-19.2 14.56L12 34l4.5-1.58a12.1 12.1 0 0 0 17.35-15.31zm-8.8 18.6a10.05 10.05 0 0 1-5.13-1.4l-.37-.22-3.8.99.99-3.7-.24-.38a10.06 10.06 0 1 1 18.7-5.3 10.07 10.07 0 0 1-10.15 10.01zm5.53-7.53c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15s-.78.98-.96 1.18-.35.22-.65.07a8.2 8.2 0 0 1-2.42-1.5 9.06 9.06 0 0 1-1.67-2.08c-.18-.3 0-.46.14-.6.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53s-.68-1.64-.93-2.24c-.24-.58-.5-.5-.68-.51h-.58c-.2 0-.53.08-.8.38a3.44 3.44 0 0 0-1.08 2.56c0 1.5 1.1 2.96 1.26 3.16.15.2 2.16 3.3 5.24 4.62.73.32 1.3.5 1.75.65.73.23 1.4.2 1.93.12.59-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.2-.57-.35z"/>
-  </svg>
-</a>
+<div class="flutuantes">
+  <a class="fab fab-instagram" href="https://www.instagram.com/premium_empreendimentos/" target="_blank" rel="noopener" aria-label="Instagram da Premium Empreendimentos">
+    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="igGradientFab" cx="30%" cy="107%" r="150%">
+          <stop offset="0" stop-color="#fdf497"/>
+          <stop offset=".05" stop-color="#fdf497"/>
+          <stop offset=".45" stop-color="#fd5949"/>
+          <stop offset=".6" stop-color="#d6249f"/>
+          <stop offset=".9" stop-color="#285AEB"/>
+        </radialGradient>
+      </defs>
+      <circle cx="24" cy="24" r="24" fill="url(#igGradientFab)"/>
+      <rect x="13" y="13" width="22" height="22" rx="6.5" fill="none" stroke="white" stroke-width="2.6"/>
+      <circle cx="24" cy="24" r="5.8" fill="none" stroke="white" stroke-width="2.6"/>
+      <circle cx="32" cy="16" r="1.8" fill="white"/>
+    </svg>
+  </a>
+  <a class="fab fab-whats" href="https://wa.me/5549988451307?text=Ol%C3%A1!%20Vi%20a%20vitrine%20de%20casas%20da%20Premium%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
+    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="24" fill="#25D366"/>
+      <path fill="#fff" transform="translate(24,24) scale(1.32) translate(-24,-24)" d="M32.85 15.11a12.09 12.09 0 0 0-19.2 14.56L12 34l4.5-1.58a12.1 12.1 0 0 0 17.35-15.31zm-8.8 18.6a10.05 10.05 0 0 1-5.13-1.4l-.37-.22-3.8.99.99-3.7-.24-.38a10.06 10.06 0 1 1 18.7-5.3 10.07 10.07 0 0 1-10.15 10.01zm5.53-7.53c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15s-.78.98-.96 1.18-.35.22-.65.07a8.2 8.2 0 0 1-2.42-1.5 9.06 9.06 0 0 1-1.67-2.08c-.18-.3 0-.46.14-.6.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53s-.68-1.64-.93-2.24c-.24-.58-.5-.5-.68-.51h-.58c-.2 0-.53.08-.8.38a3.44 3.44 0 0 0-1.08 2.56c0 1.5 1.1 2.96 1.26 3.16.15.2 2.16 3.3 5.24 4.62.73.32 1.3.5 1.75.65.73.23 1.4.2 1.93.12.59-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.2-.57-.35z"/>
+    </svg>
+  </a>
+</div>
 
 <header id="topo">
   <div class="header-inner">
