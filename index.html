@@ -724,7 +724,7 @@
     <div class="quem-somos-stats">
       <div><b>25+</b><span>casas entregues por ano</span></div>
       <div><b>90+</b><span>famílias atendidas</span></div>
-      <div><b id="stat-empreendimentos">-</b><span>empreendimentos ativos</span></div>
+      <div><b id="stat-empreendimentos">-</b><span>unidades em construção</span></div>
     </div>
   </div>
 </section>
@@ -1150,8 +1150,9 @@ function preencherContadoresCategoria() {
 }
 
 function preencherStatEmpreendimentos() {
+  // conta as unidades disponíveis agora (CASAS.length) — atualiza sozinho conforme o array muda
   const el = document.getElementById('stat-empreendimentos');
-  if (el) el.textContent = new Set(CASAS.map(c => c.empreendimento)).size;
+  if (el) el.textContent = CASAS.length;
 }
 
 CASAS.sort((a, b) => {
