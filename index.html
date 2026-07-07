@@ -97,6 +97,14 @@
     font-size:14px;
   }
   .footer-social svg{width:20px;height:20px}
+  .area-premium{margin-top:18px}
+  .area-premium a{
+    color:var(--muted);
+    font-size:11.5px;
+    text-decoration:none;
+    opacity:.6;
+  }
+  .area-premium a:hover{opacity:1;color:var(--laranja-ui)}
   @media (max-width:680px){
     .navbar-links{display:none}
   }
@@ -138,7 +146,7 @@
     line-height:1.18;
     letter-spacing:-.5px;
   }
-  h1 span{color:var(--laranja)}
+  #txt-hero-destaque{color:var(--laranja)}
   header p{
     color:var(--muted);
     font-size:16px;
@@ -632,7 +640,7 @@
       <circle cx="32" cy="16" r="1.8" fill="white"/>
     </svg>
   </a>
-  <a class="fab fab-whats" href="https://wa.me/5549988451307?text=Ol%C3%A1!%20Vi%20a%20vitrine%20de%20casas%20da%20Premium%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
+  <a class="fab fab-whats" id="link-fab-whats" href="https://wa.me/5549988451307?text=Ol%C3%A1!%20Vi%20a%20vitrine%20de%20casas%20da%20Premium%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
     <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
       <circle cx="24" cy="24" r="24" fill="#25D366"/>
       <path fill="#fff" transform="translate(24,24) scale(1.32) translate(-24,-24)" d="M32.85 15.11a12.09 12.09 0 0 0-19.2 14.56L12 34l4.5-1.58a12.1 12.1 0 0 0 17.35-15.31zm-8.8 18.6a10.05 10.05 0 0 1-5.13-1.4l-.37-.22-3.8.99.99-3.7-.24-.38a10.06 10.06 0 1 1 18.7-5.3 10.07 10.07 0 0 1-10.15 10.01zm5.53-7.53c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15s-.78.98-.96 1.18-.35.22-.65.07a8.2 8.2 0 0 1-2.42-1.5 9.06 9.06 0 0 1-1.67-2.08c-.18-.3 0-.46.14-.6.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53s-.68-1.64-.93-2.24c-.24-.58-.5-.5-.68-.51h-.58c-.2 0-.53.08-.8.38a3.44 3.44 0 0 0-1.08 2.56c0 1.5 1.1 2.96 1.26 3.16.15.2 2.16 3.3 5.24 4.62.73.32 1.3.5 1.75.65.73.23 1.4.2 1.93.12.59-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.2-.57-.35z"/>
@@ -642,11 +650,11 @@
 
 <header id="topo">
   <div class="header-inner">
-    <div class="selo">✨ A construtora que mais entrega casas em Pinhalzinho</div>
-    <h1>Encontre a <span>casa própria</span><br>que cabe no seu bolso</h1>
-    <p>Confira as unidades disponíveis em Pinhalzinho, SC, e fale com a gente no WhatsApp para simular o seu financiamento.</p>
+    <div class="selo" id="txt-hero-selo">✨ A construtora que mais entrega casas em Pinhalzinho</div>
+    <h1><span id="txt-hero-titulo-pre">Encontre a</span> <span id="txt-hero-destaque">casa própria</span><br><span id="txt-hero-titulo-pos">que cabe no seu bolso</span></h1>
+    <p id="txt-hero-subtitulo">Confira as unidades disponíveis em Pinhalzinho, SC, e fale com a gente no WhatsApp para simular o seu financiamento.</p>
     <div class="stats-row">
-      <div class="stat-pill">🏗️ <b>25+</b>&nbsp;casas por ano</div>
+      <div class="stat-pill">🏗️ <b id="txt-stat-casas-ano">25+</b>&nbsp;casas por ano</div>
     </div>
   </div>
 </header>
@@ -718,12 +726,12 @@
 <section id="quem-somos" class="quem-somos">
   <div class="quem-somos-inner">
     <div class="quem-somos-tag">Quem somos</div>
-    <h2>A construtora que mais entrega casas em Pinhalzinho</h2>
-    <p>A Premium Empreendimentos constrói casas populares em Pinhalzinho, SC, dentro do programa Minha Casa Minha Vida, com tijolo à vista e acabamento que você pode conferir de perto antes de fechar negócio.</p>
-    <p>Trabalhamos com os corretores parceiros de toda a cidade, então você negocia sempre com quem já conhece e confia.</p>
+    <h2 id="txt-quem-somos-titulo">A construtora que mais entrega casas em Pinhalzinho</h2>
+    <p id="txt-quem-somos-p1">A Premium Empreendimentos constrói casas populares em Pinhalzinho, SC, dentro do programa Minha Casa Minha Vida, com tijolo à vista e acabamento que você pode conferir de perto antes de fechar negócio.</p>
+    <p id="txt-quem-somos-p2">Trabalhamos com os corretores parceiros de toda a cidade, então você negocia sempre com quem já conhece e confia.</p>
     <div class="quem-somos-stats">
-      <div><b>25+</b><span>casas entregues por ano</span></div>
-      <div><b>90+</b><span>famílias atendidas</span></div>
+      <div><b id="txt-stat-casas-ano-2">25+</b><span>casas entregues por ano</span></div>
+      <div><b id="txt-stat-familias">90+</b><span>famílias atendidas</span></div>
       <div><b id="stat-empreendimentos">-</b><span>unidades em construção</span></div>
     </div>
   </div>
@@ -737,13 +745,13 @@
 <main class="grid" id="grid"></main>
 
 <div class="cta-final" id="contato">
-  <h2>Não achou a unidade ideal?</h2>
-  <p>Chama no WhatsApp e faz uma simulação. A lista muda toda semana e a equipe te ajuda a encontrar a casa certa pro seu momento.</p>
-  <a class="cta-final-btn" href="https://wa.me/5549988451307?text=Ol%C3%A1!%20Vi%20a%20vitrine%20de%20casas%20da%20Premium%20e%20quero%20fazer%20uma%20simula%C3%A7%C3%A3o%20de%20financiamento." target="_blank" rel="noopener">📲 Chama no WhatsApp</a>
+  <h2 id="txt-cta-final-titulo">Não achou a unidade ideal?</h2>
+  <p id="txt-cta-final-texto">Chama no WhatsApp e faz uma simulação. A lista muda toda semana e a equipe te ajuda a encontrar a casa certa pro seu momento.</p>
+  <a class="cta-final-btn" id="link-cta-final" href="https://wa.me/5549988451307?text=Ol%C3%A1!%20Vi%20a%20vitrine%20de%20casas%20da%20Premium%20e%20quero%20fazer%20uma%20simula%C3%A7%C3%A3o%20de%20financiamento." target="_blank" rel="noopener">📲 Chama no WhatsApp</a>
 </div>
 
 <footer>
-  <p>Fale com o corretor da sua confiança para agendar uma visita e fechar negócio.</p>
+  <p id="txt-footer">Fale com o corretor da sua confiança para agendar uma visita e fechar negócio.</p>
   <a class="footer-social" href="https://www.instagram.com/premium_empreendimentos/" target="_blank" rel="noopener">
     <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -762,10 +770,17 @@
     </svg>
     Siga a @premium_empreendimentos
   </a>
+  <div class="area-premium">
+    <a href="#" id="link-area-premium" target="_blank" rel="noopener">Área da Premium</a>
+  </div>
 </footer>
 
 <script>
-const CASAS = [
+// URL da API/painel administrativo (backend no Railway).
+const API_BASE = 'https://casas-disponiveis-api-production.up.railway.app';
+
+// Dados usados só se a API estiver fora do ar (o site nunca fica em branco).
+const CASAS_FALLBACK = [
   {
     nome: "Casa 10",
     empreendimento: "Casa 10",
@@ -992,12 +1007,36 @@ const CASAS = [
   },
 ];
 
+const TEXTOS_FALLBACK = {
+  hero_selo: "✨ A construtora que mais entrega casas em Pinhalzinho",
+  hero_titulo_pre: "Encontre a",
+  hero_destaque: "casa própria",
+  hero_titulo_pos: "que cabe no seu bolso",
+  hero_subtitulo: "Confira as unidades disponíveis em Pinhalzinho, SC, e fale com a gente no WhatsApp para simular o seu financiamento.",
+  stat_casas_ano: "25",
+  stat_familias: "90",
+  quem_somos_titulo: "A construtora que mais entrega casas em Pinhalzinho",
+  quem_somos_paragrafo1: "A Premium Empreendimentos constrói casas populares em Pinhalzinho, SC, dentro do programa Minha Casa Minha Vida, com tijolo à vista e acabamento que você pode conferir de perto antes de fechar negócio.",
+  quem_somos_paragrafo2: "Trabalhamos com os corretores parceiros de toda a cidade, então você negocia sempre com quem já conhece e confia.",
+  whatsapp_numero: "5549988451307",
+  footer_texto: "Fale com o corretor da sua confiança para agendar uma visita e fechar negócio.",
+  cta_final_titulo: "Não achou a unidade ideal?",
+  cta_final_texto: "Chama no WhatsApp e faz uma simulação. A lista muda toda semana e a equipe te ajuda a encontrar a casa certa pro seu momento.",
+};
+
+let CASAS = [];
+let CASAS_COM_FOTO = [];
+let PRECO_MAIS_BARATO = 0;
+let WHATSAPP_NUMERO = TEXTOS_FALLBACK.whatsapp_numero;
+
 function formatarPreco(v) {
   return v.toLocaleString('pt-BR', {style:'currency', currency:'BRL', maximumFractionDigits:0});
 }
 
-const CASAS_COM_FOTO = CASAS.filter(c => c.fotos && c.fotos.length > 0);
-const PRECO_MAIS_BARATO = Math.min(...(CASAS_COM_FOTO.length ? CASAS_COM_FOTO : CASAS).map(c => c.preco));
+function recomputarDerivados() {
+  CASAS_COM_FOTO = CASAS.filter(c => c.fotos && c.fotos.length > 0);
+  PRECO_MAIS_BARATO = Math.min(...(CASAS_COM_FOTO.length ? CASAS_COM_FOTO : CASAS).map(c => c.preco));
+}
 
 function renderCard(casa) {
   const temFotos = casa.fotos && casa.fotos.length > 0;
@@ -1016,7 +1055,7 @@ function renderCard(casa) {
     : `Fotos em breve<br>(lançamento)`;
 
   const mensagemWhats = `Quero fazer uma simulação de financiamento gratuita para ${casa.nome} (${casa.empreendimento}). Vi na vitrine da Premium Empreendimentos: https://premiumempreendimentos.github.io/casas-disponiveis/`;
-  const ctaLink = `https://wa.me/5549988451307?text=${encodeURIComponent(mensagemWhats)}`;
+  const ctaLink = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensagemWhats)}`;
 
   const m2Num = parseFloat(String(casa.m2).replace(',', '.'));
   const mostrarM2 = m2Num > 100;
@@ -1155,15 +1194,88 @@ function preencherStatEmpreendimentos() {
   if (el) el.textContent = CASAS.length;
 }
 
-CASAS.sort((a, b) => {
-  const aTemFotos = a.fotos && a.fotos.length > 0;
-  const bTemFotos = b.fotos && b.fotos.length > 0;
-  if (aTemFotos !== bTemFotos) return aTemFotos ? -1 : 1; // "em breve" (sem foto) sempre por último
-  return a.preco - b.preco;
-});
-preencherContadoresCategoria();
-preencherStatEmpreendimentos();
-aplicarFiltros();
+function ordenarCasas() {
+  CASAS.sort((a, b) => {
+    const aTemFotos = a.fotos && a.fotos.length > 0;
+    const bTemFotos = b.fotos && b.fotos.length > 0;
+    if (aTemFotos !== bTemFotos) return aTemFotos ? -1 : 1; // "em breve" (sem foto) sempre por último
+    return a.preco - b.preco;
+  });
+}
+
+function aplicarTextos(t) {
+  const def = (chave) => t[chave] ?? TEXTOS_FALLBACK[chave] ?? '';
+
+  document.getElementById('txt-hero-selo').textContent = def('hero_selo');
+  document.getElementById('txt-hero-titulo-pre').textContent = def('hero_titulo_pre');
+  document.getElementById('txt-hero-destaque').textContent = def('hero_destaque');
+  document.getElementById('txt-hero-titulo-pos').textContent = def('hero_titulo_pos');
+  document.getElementById('txt-hero-subtitulo').textContent = def('hero_subtitulo');
+  document.getElementById('txt-stat-casas-ano').textContent = `${def('stat_casas_ano')}+`;
+  document.getElementById('txt-stat-casas-ano-2').textContent = `${def('stat_casas_ano')}+`;
+  document.getElementById('txt-stat-familias').textContent = `${def('stat_familias')}+`;
+  document.getElementById('txt-quem-somos-titulo').textContent = def('quem_somos_titulo');
+  document.getElementById('txt-quem-somos-p1').textContent = def('quem_somos_paragrafo1');
+  document.getElementById('txt-quem-somos-p2').textContent = def('quem_somos_paragrafo2');
+  document.getElementById('txt-footer').textContent = def('footer_texto');
+  document.getElementById('txt-cta-final-titulo').textContent = def('cta_final_titulo');
+  document.getElementById('txt-cta-final-texto').textContent = def('cta_final_texto');
+
+  WHATSAPP_NUMERO = def('whatsapp_numero') || TEXTOS_FALLBACK.whatsapp_numero;
+
+  const linkCtaFinal = document.getElementById('link-cta-final');
+  const msgCtaFinal = 'Olá! Vi a vitrine de casas da Premium e quero fazer uma simulação de financiamento.';
+  linkCtaFinal.href = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msgCtaFinal)}`;
+
+  const linkFabWhats = document.getElementById('link-fab-whats');
+  const msgFabWhats = 'Olá! Vi a vitrine de casas da Premium e quero saber mais.';
+  linkFabWhats.href = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msgFabWhats)}`;
+}
+
+function normalizarCasaDaApi(c) {
+  return {
+    nome: c.nome,
+    empreendimento: c.empreendimento,
+    categoria: c.categoria,
+    bairro: c.bairro,
+    fotos: (c.fotos || []).map(f => f.url),
+    m2: c.m2,
+    dorm: c.dorm,
+    banh: c.banh,
+    gar: c.gar,
+    preco: c.preco,
+    prazo: c.prazo,
+    linkPost: c.link_post,
+  };
+}
+
+async function iniciar() {
+  document.getElementById('link-area-premium').href = `${API_BASE}/admin/login.html`;
+
+  let textos = TEXTOS_FALLBACK;
+  try {
+    const [respCasas, respTextos] = await Promise.all([
+      fetch(`${API_BASE}/api/casas`),
+      fetch(`${API_BASE}/api/textos`),
+    ]);
+    if (!respCasas.ok || !respTextos.ok) throw new Error('API respondeu com erro');
+    const casasDaApi = await respCasas.json();
+    textos = await respTextos.json();
+    CASAS = casasDaApi.map(normalizarCasaDaApi);
+  } catch (erro) {
+    console.warn('Não deu pra buscar da API, usando dados salvos localmente:', erro);
+    CASAS = CASAS_FALLBACK;
+  }
+
+  ordenarCasas();
+  recomputarDerivados();
+  aplicarTextos(textos);
+  preencherContadoresCategoria();
+  preencherStatEmpreendimentos();
+  aplicarFiltros();
+}
+
+iniciar();
 </script>
 
 </body>
