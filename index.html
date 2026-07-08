@@ -97,14 +97,6 @@
     font-size:14px;
   }
   .footer-social svg{width:20px;height:20px}
-  .area-premium{margin-top:18px}
-  .area-premium a{
-    color:var(--muted);
-    font-size:11.5px;
-    text-decoration:none;
-    opacity:.6;
-  }
-  .area-premium a:hover{opacity:1;color:var(--laranja-ui)}
   @media (max-width:680px){
     .navbar-links{display:none}
   }
@@ -747,9 +739,6 @@
     </svg>
     Siga a @premium_empreendimentos
   </a>
-  <div class="area-premium">
-    <a href="#" id="link-area-premium" target="_blank" rel="noopener">Área da Premium</a>
-  </div>
 </footer>
 
 <script>
@@ -1227,8 +1216,6 @@ function normalizarCasaDaApi(c) {
 }
 
 async function iniciar() {
-  document.getElementById('link-area-premium').href = `${API_BASE}/admin/login.html`;
-
   let textos = TEXTOS_FALLBACK;
   try {
     const [respCasas, respTextos] = await Promise.all([
