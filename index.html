@@ -670,12 +670,9 @@
 
 <header id="topo">
   <div class="header-inner">
-    <div class="selo" id="txt-hero-selo">✨ A construtora que mais entrega casas em Pinhalzinho</div>
+    <div class="selo" id="txt-hero-selo">A construtora que mais entrega casas em Pinhalzinho</div>
     <h1><span id="txt-hero-titulo-pre">Encontre a</span> <span id="txt-hero-destaque">casa própria</span><br><span id="txt-hero-titulo-pos">que cabe no seu bolso</span></h1>
     <p id="txt-hero-subtitulo">Confira as unidades disponíveis em Pinhalzinho, SC, e fale com a gente no WhatsApp para simular o seu financiamento.</p>
-    <div class="stats-row">
-      <div class="stat-pill">🏗️ <b id="txt-stat-casas-ano">25+</b>&nbsp;casas por ano</div>
-    </div>
   </div>
 </header>
 
@@ -707,39 +704,6 @@
     <button class="filtro-btn" data-filtro="Casa Geminada">Casa Geminada</button>
     <button class="filtro-btn" data-filtro="Studio">Studio</button>
   </div>
-  </div>
-</div>
-
-<div class="categorias-wrap">
-  <div class="categorias">
-    <button type="button" class="categoria-card" data-tipo="Casa Única">
-      <div class="categoria-icone">🏠</div>
-      <h4>Casa Única</h4>
-      <span class="categoria-count" data-tipo-count="Casa Única"></span>
-    </button>
-    <button type="button" class="categoria-card" data-tipo="Casa Geminada">
-      <div class="categoria-icone">🏘️</div>
-      <h4>Casa Geminada</h4>
-      <span class="categoria-count" data-tipo-count="Casa Geminada"></span>
-    </button>
-    <button type="button" class="categoria-card" data-tipo="Studio">
-      <div class="categoria-icone">🏢</div>
-      <h4>Studio</h4>
-      <span class="categoria-count" data-tipo-count="Studio"></span>
-    </button>
-  </div>
-</div>
-
-<div class="confianca">
-  <div class="confianca-item">
-    <div class="confianca-icone">🏦</div>
-    <h4>Financiamento facilitado</h4>
-    <p>Minha Casa Minha Vida ou SBPE, pela Caixa Econômica Federal</p>
-  </div>
-  <div class="confianca-item">
-    <div class="confianca-icone">🔑</div>
-    <h4>Tradição em Pinhalzinho</h4>
-    <p>Mais de 25 casas entregues por ano, mais de 90 famílias atendidas</p>
   </div>
 </div>
 
@@ -1028,7 +992,7 @@ const CASAS_FALLBACK = [
 ];
 
 const TEXTOS_FALLBACK = {
-  hero_selo: "✨ A construtora que mais entrega casas em Pinhalzinho",
+  hero_selo: "A construtora que mais entrega casas em Pinhalzinho",
   hero_titulo_pre: "Encontre a",
   hero_destaque: "casa própria",
   hero_titulo_pos: "que cabe no seu bolso",
@@ -1252,7 +1216,6 @@ function aplicarTextos(t) {
   document.getElementById('txt-hero-destaque').textContent = def('hero_destaque');
   document.getElementById('txt-hero-titulo-pos').textContent = def('hero_titulo_pos');
   document.getElementById('txt-hero-subtitulo').textContent = def('hero_subtitulo');
-  document.getElementById('txt-stat-casas-ano').textContent = `${def('stat_casas_ano')}+`;
   document.getElementById('txt-stat-casas-ano-2').textContent = `${def('stat_casas_ano')}+`;
   document.getElementById('txt-stat-familias').textContent = `${def('stat_familias')}+`;
   document.getElementById('txt-quem-somos-titulo').textContent = def('quem_somos_titulo');
