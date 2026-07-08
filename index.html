@@ -514,6 +514,26 @@
     font-size:13px;
     color:var(--muted);
   }
+  .btn-ver-mapa{
+    margin-top:6px;
+    background:none;
+    border:none;
+    padding:0;
+    color:var(--laranja-ui);
+    font-size:12.5px;
+    font-weight:600;
+    cursor:pointer;
+    text-decoration:underline;
+  }
+  .btn-ver-mapa:hover{color:var(--laranja)}
+  .mapa-embed{
+    margin-top:10px;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid var(--card-border);
+    height:180px;
+  }
+  .mapa-embed iframe{width:100%;height:100%;border:0;display:block}
   .specs{
     display:flex;
     flex-wrap:wrap;
@@ -1077,6 +1097,10 @@ function renderCard(casa) {
       <div>
         <h3>${casa.nome}</h3>
         <div class="categoria">📍 ${casa.categoria} · ${casa.bairro}, Pinhalzinho SC</div>
+        ${casa.mapaLat && casa.mapaLng ? `
+        <button type="button" class="btn-ver-mapa" data-lat="${casa.mapaLat}" data-lng="${casa.mapaLng}">🗺️ Ver localização no mapa</button>
+        <div class="mapa-embed" hidden></div>
+        ` : ''}
       </div>
       <div class="specs">
         ${mostrarM2 ? `<span>📐 ${casa.m2} m²</span>` : ''}
@@ -1127,6 +1151,22 @@ function ligarCarrosseis() {
   });
 }
 
+function ligarMapas() {
+  document.querySelectorAll('.btn-ver-mapa').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const container = btn.nextElementSibling;
+      const abrindo = container.hidden;
+      container.hidden = !abrindo;
+      btn.textContent = abrindo ? '🗺️ Fechar mapa' : '🗺️ Ver localização no mapa';
+      if (abrindo && !container.dataset.carregado) {
+        const { lat, lng } = btn.dataset;
+        container.innerHTML = `<iframe src="https://www.google.com/maps?q=${lat},${lng}&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+        container.dataset.carregado = '1';
+      }
+    });
+  });
+}
+
 let filtroPreco = 'todos';
 let filtroQuartos = 'todos';
 let filtroTipo = 'todos';
@@ -1150,6 +1190,7 @@ function aplicarFiltros() {
   }
 
   ligarCarrosseis();
+  ligarMapas();
 }
 
 function ligarGrupoFiltro(containerId, aoClicar) {
@@ -1246,6 +1287,9 @@ function normalizarCasaDaApi(c) {
     preco: c.preco,
     prazo: c.prazo,
     linkPost: c.link_post,
+    linkLocalizacao: c.link_localizacao,
+    mapaLat: c.mapa_lat,
+    mapaLng: c.mapa_lng,
   };
 }
 
