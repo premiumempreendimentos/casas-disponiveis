@@ -205,51 +205,42 @@
     box-shadow:0 0 0 4px rgba(236,79,31,.18);
   }
   .filtros-wrap{
-    padding:0 0 10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    padding:0 20px 16px;
+  }
+  .filtro-grupo{
+    flex:1;
+    min-width:160px;
   }
   .filtro-label{
+    display:block;
     font-size:11px;
     text-transform:uppercase;
     letter-spacing:.6px;
     color:var(--muted);
-    padding:0 20px;
-    margin-bottom:9px;
+    margin-bottom:7px;
     font-weight:600;
   }
-  .filtros{
-    display:flex;
-    gap:8px;
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    scrollbar-width:none;
-    -ms-overflow-style:none;
-    -webkit-overflow-scrolling:touch;
-    padding:0 20px 16px;
-    scroll-snap-type:x proximity;
-  }
-  .filtros::-webkit-scrollbar{display:none}
-  .filtro-btn{
-    flex-shrink:0;
-    scroll-snap-align:start;
-    background:rgba(20,18,15,.035);
+  .filtro-select{
+    width:100%;
+    background:rgba(20,18,15,.035) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="%236b7076" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat right 14px center;
     border:1px solid var(--card-border);
     color:var(--text);
-    padding:11px 18px;
-    border-radius:30px;
-    font-size:13.5px;
+    padding:12px 34px 12px 14px;
+    border-radius:12px;
+    font-size:14px;
+    font-family:inherit;
     font-weight:500;
-    white-space:nowrap;
     cursor:pointer;
     transition:.15s;
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
   }
-  .filtro-btn:hover{border-color:var(--laranja-ui);background:rgba(236,79,31,.08)}
-  .filtro-btn.ativo{
-    background:linear-gradient(135deg,var(--laranja),#d1430f);
-    border-color:var(--laranja);
-    color:#fff;
-    font-weight:600;
-    box-shadow:0 6px 16px -4px rgba(236,79,31,.5);
-  }
+  .filtro-select:hover{border-color:var(--laranja-ui)}
+  .filtro-select:focus{outline:none;border-color:var(--laranja);box-shadow:0 0 0 3px rgba(236,79,31,.15)}
 
   .categorias-wrap{
     max-width:1100px;
@@ -679,30 +670,36 @@
 <div class="busca-card">
   <div class="busca-titulo"><span class="ponto"></span> Filtre e encontre a sua</div>
   <div class="filtros-wrap">
-  <div class="filtro-label">Preço</div>
-  <div class="filtros" id="filtros-preco">
-    <button class="filtro-btn ativo" data-filtro="todos">Todas</button>
-    <button class="filtro-btn" data-filtro="300000">Até R$ 300 mil</button>
-    <button class="filtro-btn" data-filtro="400000">Até R$ 400 mil</button>
-    <button class="filtro-btn" data-filtro="600000">Até R$ 600 mil</button>
-    <button class="filtro-btn" data-filtro="1000000">Até R$ 1 milhão</button>
-    <button class="filtro-btn" data-filtro="1500000">Até R$ 1,5 milhões</button>
+  <div class="filtro-grupo">
+    <label class="filtro-label" for="filtro-preco">Preço</label>
+    <select class="filtro-select" id="filtro-preco">
+      <option value="todos">Todas</option>
+      <option value="300000">Até R$ 300 mil</option>
+      <option value="400000">Até R$ 400 mil</option>
+      <option value="600000">Até R$ 600 mil</option>
+      <option value="1000000">Até R$ 1 milhão</option>
+      <option value="1500000">Até R$ 1,5 milhões</option>
+    </select>
   </div>
 
-  <div class="filtro-label">Dormitórios</div>
-  <div class="filtros" id="filtros-quartos">
-    <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
-    <button class="filtro-btn" data-filtro="1">1 quarto</button>
-    <button class="filtro-btn" data-filtro="2">2 quartos</button>
-    <button class="filtro-btn" data-filtro="3">3 quartos</button>
+  <div class="filtro-grupo">
+    <label class="filtro-label" for="filtro-quartos">Dormitórios</label>
+    <select class="filtro-select" id="filtro-quartos">
+      <option value="todos">Todos</option>
+      <option value="1">1 quarto</option>
+      <option value="2">2 quartos</option>
+      <option value="3">3 quartos</option>
+    </select>
   </div>
 
-  <div class="filtro-label">Tipo de imóvel</div>
-  <div class="filtros" id="filtros-tipo">
-    <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
-    <button class="filtro-btn" data-filtro="Casa Única">Casa Única</button>
-    <button class="filtro-btn" data-filtro="Casa Geminada">Casa Geminada</button>
-    <button class="filtro-btn" data-filtro="Studio">Studio</button>
+  <div class="filtro-grupo">
+    <label class="filtro-label" for="filtro-tipo">Tipo de imóvel</label>
+    <select class="filtro-select" id="filtro-tipo">
+      <option value="todos">Todos</option>
+      <option value="Casa Única">Casa Única</option>
+      <option value="Casa Geminada">Casa Geminada</option>
+      <option value="Studio">Studio</option>
+    </select>
   </div>
   </div>
 </div>
@@ -1157,41 +1154,18 @@ function aplicarFiltros() {
   ligarMapas();
 }
 
-function ligarGrupoFiltro(containerId, aoClicar) {
-  document.querySelectorAll(`#${containerId} .filtro-btn`).forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll(`#${containerId} .filtro-btn`).forEach(b => b.classList.remove('ativo'));
-      btn.classList.add('ativo');
-      aoClicar(btn.dataset.filtro);
-      aplicarFiltros();
-    });
-  });
-}
-
-ligarGrupoFiltro('filtros-preco', (v) => { filtroPreco = v; });
-ligarGrupoFiltro('filtros-quartos', (v) => { filtroQuartos = v; });
-ligarGrupoFiltro('filtros-tipo', (v) => { filtroTipo = v; });
-
-function irParaCategoria(tipo) {
-  filtroTipo = tipo;
-  document.querySelectorAll('#filtros-tipo .filtro-btn').forEach(b => {
-    b.classList.toggle('ativo', b.dataset.filtro === tipo);
-  });
+document.getElementById('filtro-preco').addEventListener('change', (e) => {
+  filtroPreco = e.target.value;
   aplicarFiltros();
-  document.getElementById('imoveis').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-document.querySelectorAll('.categoria-card').forEach(card => {
-  card.addEventListener('click', () => irParaCategoria(card.dataset.tipo));
 });
-
-function preencherContadoresCategoria() {
-  document.querySelectorAll('[data-tipo-count]').forEach(el => {
-    const tipo = el.dataset.tipoCount;
-    const qtd = CASAS.filter(c => c.categoria === tipo).length;
-    el.textContent = `${qtd} unidade${qtd === 1 ? '' : 's'}`;
-  });
-}
+document.getElementById('filtro-quartos').addEventListener('change', (e) => {
+  filtroQuartos = e.target.value;
+  aplicarFiltros();
+});
+document.getElementById('filtro-tipo').addEventListener('change', (e) => {
+  filtroTipo = e.target.value;
+  aplicarFiltros();
+});
 
 function preencherStatEmpreendimentos() {
   // conta as unidades disponíveis agora (CASAS.length) — atualiza sozinho conforme o array muda
@@ -1277,7 +1251,6 @@ async function iniciar() {
   ordenarCasas();
   recomputarDerivados();
   aplicarTextos(textos);
-  preencherContadoresCategoria();
   preencherStatEmpreendimentos();
   aplicarFiltros();
 }
