@@ -565,6 +565,59 @@
     transition:transform .15s, box-shadow .15s;
   }
   .cta:hover{transform:translateY(-2px);box-shadow:0 12px 22px -6px rgba(37,211,102,.6)}
+  .btn-compartilhar{
+    width:100%;
+    margin-top:8px;
+    background:none;
+    border:1px solid var(--card-border);
+    color:var(--muted);
+    font-size:12.5px;
+    font-weight:600;
+    padding:9px 10px;
+    border-radius:11px;
+    cursor:pointer;
+    transition:.15s;
+  }
+  .btn-compartilhar:hover{border-color:var(--laranja-ui);color:var(--laranja-ui)}
+
+  .barra-ver-todas{
+    max-width:1100px;
+    margin:24px auto 0;
+    padding:0 16px;
+  }
+  .btn-ver-todas{
+    background:var(--laranja);
+    color:#fff;
+    border:none;
+    padding:13px 24px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 8px 18px -6px rgba(236,79,31,.45);
+    transition:.15s;
+  }
+  .btn-ver-todas:hover{background:#d1430f;transform:translateY(-1px)}
+
+  .toast-share{
+    position:fixed;
+    bottom:88px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#1a1a1a;
+    color:#fff;
+    padding:12px 20px;
+    border-radius:30px;
+    font-size:13.5px;
+    font-weight:500;
+    z-index:250;
+    opacity:0;
+    transition:opacity .2s;
+    pointer-events:none;
+    max-width:90vw;
+    text-align:center;
+  }
+  .toast-share.mostrar{opacity:1}
 
   .cta-final{
     max-width:900px;
@@ -715,6 +768,10 @@
     </div>
   </div>
 </section>
+
+<div class="barra-ver-todas" id="barra-ver-todas" hidden>
+  <button type="button" class="btn-ver-todas" onclick="location.href = location.pathname">🏠 Ver todas as casas disponíveis</button>
+</div>
 
 <div class="secao-titulo" id="imoveis">
   <h2>Unidades disponíveis</h2>
@@ -1077,7 +1134,8 @@ function renderCard(casa) {
         <div class="preco-label">Valor</div>
         <div class="preco">${formatarPreco(casa.preco)}</div>
       </div>
-      <a class="cta" href="${ctaLink}" target="_blank" rel="noopener">Faça uma simulação de financiamento gratuita</a>
+      <a class="cta" href="${ctaLink}" target="_blank" rel="noopener">Simular financiamento grátis</a>
+      <button type="button" class="btn-compartilhar" data-id="${casa.id ?? ''}" data-nome="${String(casa.nome || '').replace(/"/g, '&quot;')}">🔗 Compartilhar esta casa</button>
     </div>
   </div>`;
 }
@@ -1170,6 +1228,7 @@ function aplicarFiltros() {
 
   ligarCarrosseis();
   ligarMapas();
+  ligarCompartilhar();
 }
 
 document.getElementById('filtro-preco').addEventListener('change', (e) => {
@@ -1228,6 +1287,7 @@ function aplicarTextos(t) {
 
 function normalizarCasaDaApi(c) {
   return {
+    id: c.id,
     nome: c.nome,
     empreendimento: c.empreendimento,
     categoria: c.categoria,
@@ -1244,6 +1304,74 @@ function normalizarCasaDaApi(c) {
     mapaLat: c.mapa_lat,
     mapaLng: c.mapa_lng,
   };
+}
+
+// ─── Compartilhar uma casa específica ───────────────────────────────
+function mostrarToastShare(msg) {
+  let t = document.getElementById('toast-share');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'toast-share';
+    t.className = 'toast-share';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.classList.add('mostrar');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('mostrar'), 3000);
+}
+
+function compartilharCasa(id, nome) {
+  const url = (location.origin + location.pathname) + (id ? `?casa=${id}` : '');
+  const dados = { title: `${nome} · Premium Empreendimentos`, text: `Olha essa casa da Premium: ${nome}`, url };
+  if (navigator.share) {
+    navigator.share(dados).catch(() => {}); // abre o menu nativo de compartilhar (celular)
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(url)
+      .then(() => mostrarToastShare('🔗 Link copiado! Agora é só colar no WhatsApp.'))
+      .catch(() => prompt('Copie o link desta casa:', url));
+  } else {
+    prompt('Copie o link desta casa:', url);
+  }
+}
+
+function ligarCompartilhar() {
+  document.querySelectorAll('.btn-compartilhar').forEach(btn => {
+    btn.addEventListener('click', () => compartilharCasa(btn.dataset.id, btn.dataset.nome));
+  });
+}
+
+// Se a URL tem ?casa=ID, mostra SÓ aquela casa (link compartilhado) + botão "ver todas".
+function tratarCasaCompartilhada() {
+  const casaId = new URLSearchParams(location.search).get('casa');
+  if (!casaId) return; // modo normal: mostra tudo
+
+  // esconde o que não faz sentido quando é uma casa só
+  ['topo', 'quem-somos', 'contato'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  const busca = document.querySelector('.busca-card');
+  if (busca) busca.style.display = 'none';
+  document.getElementById('barra-ver-todas').hidden = false;
+
+  const casa = CASAS.find(c => String(c.id) === String(casaId));
+  const grid = document.getElementById('grid');
+  const titulo = document.querySelector('.secao-titulo h2');
+  const contador = document.getElementById('contador-unidades');
+  if (contador) contador.textContent = '';
+
+  if (casa) {
+    if (titulo) titulo.textContent = casa.nome;
+    grid.innerHTML = renderCard(casa);
+    ligarCarrosseis();
+    ligarMapas();
+    ligarCompartilhar();
+  } else {
+    if (titulo) titulo.textContent = 'Casa não encontrada';
+    grid.innerHTML = '<div class="vazio">Essa casa não está mais disponível ou o link expirou. Toque em "Ver todas as casas" acima pra conferir as unidades disponíveis.</div>';
+  }
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 async function iniciar() {
@@ -1266,6 +1394,7 @@ async function iniciar() {
   recomputarDerivados();
   aplicarTextos(textos);
   aplicarFiltros();
+  tratarCasaCompartilhada();
 }
 
 iniciar();
