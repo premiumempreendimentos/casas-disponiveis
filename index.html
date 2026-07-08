@@ -699,9 +699,9 @@
     <p id="txt-quem-somos-p1">A Premium Empreendimentos constrói casas populares em Pinhalzinho, SC, dentro do programa Minha Casa Minha Vida, com tijolo à vista e acabamento que você pode conferir de perto antes de fechar negócio.</p>
     <p id="txt-quem-somos-p2">Trabalhamos com os corretores parceiros de toda a cidade, então você negocia sempre com quem já conhece e confia.</p>
     <div class="quem-somos-stats">
-      <div><b id="txt-stat-casas-ano-2">25+</b><span>casas entregues por ano</span></div>
-      <div><b id="txt-stat-familias">90+</b><span>famílias atendidas</span></div>
-      <div><b id="stat-empreendimentos">-</b><span>unidades em construção</span></div>
+      <div><b id="txt-stat-casas-ano-2">25+</b><span id="txt-stat-casas-ano-label">casas entregues por ano</span></div>
+      <div><b id="txt-stat-familias">90+</b><span id="txt-stat-familias-label">famílias atendidas</span></div>
+      <div><b id="txt-stat-unidades">14</b><span id="txt-stat-unidades-label">unidades em construção</span></div>
     </div>
   </div>
 </section>
@@ -979,8 +979,12 @@ const TEXTOS_FALLBACK = {
   hero_destaque: "casa própria",
   hero_titulo_pos: "que cabe no seu bolso",
   hero_subtitulo: "Confira as unidades disponíveis em Pinhalzinho, SC, e fale com a gente no WhatsApp para simular o seu financiamento.",
-  stat_casas_ano: "25",
-  stat_familias: "90",
+  stat_casas_ano: "25+",
+  stat_casas_ano_label: "casas entregues por ano",
+  stat_familias: "90+",
+  stat_familias_label: "famílias atendidas",
+  stat_unidades: "14",
+  stat_unidades_label: "unidades em construção",
   quem_somos_titulo: "A construtora que mais entrega casas em Pinhalzinho",
   quem_somos_paragrafo1: "A Premium Empreendimentos constrói casas populares em Pinhalzinho, SC, dentro do programa Minha Casa Minha Vida, com tijolo à vista e acabamento que você pode conferir de perto antes de fechar negócio.",
   quem_somos_paragrafo2: "Trabalhamos com os corretores parceiros de toda a cidade, então você negocia sempre com quem já conhece e confia.",
@@ -1152,12 +1156,6 @@ document.getElementById('filtro-tipo').addEventListener('change', (e) => {
   aplicarFiltros();
 });
 
-function preencherStatEmpreendimentos() {
-  // conta as unidades disponíveis agora (CASAS.length) — atualiza sozinho conforme o array muda
-  const el = document.getElementById('stat-empreendimentos');
-  if (el) el.textContent = CASAS.length;
-}
-
 function ordenarCasas() {
   CASAS.sort((a, b) => {
     const aTemFotos = a.fotos && a.fotos.length > 0;
@@ -1175,8 +1173,12 @@ function aplicarTextos(t) {
   document.getElementById('txt-hero-destaque').textContent = def('hero_destaque');
   document.getElementById('txt-hero-titulo-pos').textContent = def('hero_titulo_pos');
   document.getElementById('txt-hero-subtitulo').textContent = def('hero_subtitulo');
-  document.getElementById('txt-stat-casas-ano-2').textContent = `${def('stat_casas_ano')}+`;
-  document.getElementById('txt-stat-familias').textContent = `${def('stat_familias')}+`;
+  document.getElementById('txt-stat-casas-ano-2').textContent = def('stat_casas_ano');
+  document.getElementById('txt-stat-casas-ano-label').textContent = def('stat_casas_ano_label');
+  document.getElementById('txt-stat-familias').textContent = def('stat_familias');
+  document.getElementById('txt-stat-familias-label').textContent = def('stat_familias_label');
+  document.getElementById('txt-stat-unidades').textContent = def('stat_unidades');
+  document.getElementById('txt-stat-unidades-label').textContent = def('stat_unidades_label');
   document.getElementById('txt-quem-somos-titulo').textContent = def('quem_somos_titulo');
   document.getElementById('txt-quem-somos-p1').textContent = def('quem_somos_paragrafo1');
   document.getElementById('txt-quem-somos-p2').textContent = def('quem_somos_paragrafo2');
@@ -1234,7 +1236,6 @@ async function iniciar() {
   ordenarCasas();
   recomputarDerivados();
   aplicarTextos(textos);
-  preencherStatEmpreendimentos();
   aplicarFiltros();
 }
 
