@@ -375,6 +375,7 @@
     padding:16px 16px 60px;
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    align-items:start; /* cada card com a altura da sua foto, sem esticar pra emparelhar */
     gap:22px;
   }
 
@@ -396,8 +397,8 @@
 
   .card .foto-wrap{
     position:relative;
-    aspect-ratio:4/5;
-    background:#000;
+    aspect-ratio:4/3; /* padrão enquanto a foto carrega; o JS ajusta pra proporção real da capa */
+    background:#f4f3f1;
     overflow:hidden;
   }
   .foto-scroll{
@@ -412,7 +413,7 @@
   .foto-scroll img{
     flex:0 0 100%;
     scroll-snap-align:start;
-    width:100%;height:100%;object-fit:cover;display:block;
+    width:100%;height:100%;object-fit:contain;display:block;
   }
   .dots{
     position:absolute;bottom:10px;left:0;right:0;
@@ -1140,6 +1141,21 @@ function renderCard(casa) {
   </div>`;
 }
 
+// Faz o quadro da foto ter a MESMA proporção da capa, pra foto aparecer inteira (sem corte).
+function ajustarAlturaFotos() {
+  document.querySelectorAll('#grid .card .foto-wrap:not(.placeholder)').forEach(wrap => {
+    const img = wrap.querySelector('.foto-scroll img');
+    if (!img) return;
+    const aplicar = () => {
+      if (img.naturalWidth && img.naturalHeight) {
+        wrap.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+      }
+    };
+    if (img.complete) aplicar();
+    else img.addEventListener('load', aplicar, { once: true });
+  });
+}
+
 function ligarCarrosseis() {
   document.querySelectorAll('.foto-scroll').forEach(scroller => {
     const wrap = scroller.parentElement;
@@ -1229,6 +1245,7 @@ function aplicarFiltros() {
   ligarCarrosseis();
   ligarMapas();
   ligarCompartilhar();
+  ajustarAlturaFotos();
 }
 
 document.getElementById('filtro-preco').addEventListener('change', (e) => {
@@ -1367,6 +1384,7 @@ function tratarCasaCompartilhada() {
     ligarCarrosseis();
     ligarMapas();
     ligarCompartilhar();
+    ajustarAlturaFotos();
   } else {
     if (titulo) titulo.textContent = 'Casa não encontrada';
     grid.innerHTML = '<div class="vazio">Essa casa não está mais disponível ou o link expirou. Toque em "Ver todas as casas" acima pra conferir as unidades disponíveis.</div>';
