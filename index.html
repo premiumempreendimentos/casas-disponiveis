@@ -393,7 +393,6 @@
     border-color:var(--card-border-hover);
     box-shadow:0 24px 36px -16px rgba(236,79,31,.22);
   }
-  .card.destaque{border-color:rgba(217,164,65,.55)}
 
   .card .foto-wrap{
     position:relative;
@@ -456,30 +455,6 @@
     text-align:center;
     padding:20px;
   }
-  .tag-destaque{
-    position:absolute;top:12px;left:12px;
-    background:linear-gradient(135deg,var(--ouro),#b5822f);
-    color:#1a1206;
-    font-size:11px;
-    padding:5px 10px;
-    border-radius:20px;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.3px;
-    box-shadow:0 4px 12px -2px rgba(217,164,65,.5);
-    z-index:2;
-  }
-  .tag-prazo{
-    position:absolute;top:12px;right:12px;
-    background:var(--laranja);
-    color:#fff;
-    font-size:11px;
-    padding:5px 10px;
-    border-radius:20px;
-    font-weight:700;
-    text-transform:uppercase;
-  }
-
   .card-body{
     padding:16px 18px 18px;
     display:flex;
@@ -1077,14 +1052,10 @@ function renderCard(casa) {
     ? '🏦 Financiamento pela Minha Casa Minha Vida, Caixa Econômica Federal'
     : '🏦 Financiamento SBPE, Caixa Econômica Federal';
 
-  const ehDestaque = casa.preco === PRECO_MAIS_BARATO;
-
   return `
-  <div class="card${ehDestaque ? ' destaque' : ''}" data-preco="${casa.preco}">
+  <div class="card" data-preco="${casa.preco}">
     <div class="foto-wrap${temFotos ? '' : ' placeholder'}">
       ${fotoHtml}
-      ${ehDestaque ? '<span class="tag-destaque">💰 Menor preço</span>' : ''}
-      <span class="tag-prazo">Entrega ${casa.prazo}</span>
     </div>
     <div class="card-body">
       <div>
@@ -1099,6 +1070,7 @@ function renderCard(casa) {
         <span>🛏️ ${casa.dorm} dorm.</span>
         <span>🚿 ${casa.banh} banh.</span>
         <span>🚗 ${casa.gar} vaga${casa.gar > 1 ? 's' : ''}</span>
+        <span>🔑 Entrega ${casa.prazo}</span>
       </div>
       <div class="financiamento">${financiamento}</div>
       <div class="preco-wrap">
