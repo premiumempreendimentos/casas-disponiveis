@@ -506,14 +506,49 @@
     text-decoration:underline;
   }
   .btn-ver-mapa:hover{color:var(--laranja)}
-  .mapa-embed{
-    margin-top:10px;
-    border-radius:12px;
-    overflow:hidden;
-    border:1px solid var(--card-border);
-    height:180px;
+  .mapa-modal{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    background:rgba(0,0,0,.72);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    animation:aparecerMapa .18s ease;
   }
-  .mapa-embed iframe{width:100%;height:100%;border:0;display:block}
+  .mapa-modal[hidden]{display:none}
+  @keyframes aparecerMapa{from{opacity:0}to{opacity:1}}
+  .mapa-modal-caixa{
+    position:relative;
+    width:min(960px,96vw);
+    height:min(80vh,720px);
+    background:#fff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.6);
+  }
+  .mapa-modal-frame{width:100%;height:100%}
+  .mapa-modal-frame iframe{width:100%;height:100%;border:0;display:block}
+  .mapa-modal-fechar{
+    position:absolute;
+    top:12px;
+    right:12px;
+    z-index:2;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:rgba(0,0,0,.62);
+    color:#fff;
+    border:none;
+    font-size:24px;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .mapa-modal-fechar:hover{background:rgba(0,0,0,.85)}
   .specs{
     display:flex;
     flex-wrap:wrap;
@@ -740,6 +775,14 @@
     Siga a @premium_empreendimentos
   </a>
 </footer>
+
+<!-- Modal do mapa (satélite) — sobreposto à página, fecha ao clicar fora -->
+<div class="mapa-modal" id="mapa-modal" hidden>
+  <div class="mapa-modal-caixa">
+    <button type="button" class="mapa-modal-fechar" aria-label="Fechar mapa">×</button>
+    <div class="mapa-modal-frame" id="mapa-modal-frame"></div>
+  </div>
+</div>
 
 <script>
 // URL da API/painel administrativo (backend no Railway).
@@ -1049,7 +1092,6 @@ function renderCard(casa) {
         <div class="categoria">📍 ${casa.categoria} · ${casa.bairro}, Pinhalzinho SC</div>
         ${casa.mapaLat && casa.mapaLng ? `
         <button type="button" class="btn-ver-mapa" data-lat="${casa.mapaLat}" data-lng="${casa.mapaLng}">🗺️ Ver localização no mapa</button>
-        <div class="mapa-embed" hidden></div>
         ` : ''}
       </div>
       <div class="specs">
@@ -1101,19 +1143,34 @@ function ligarCarrosseis() {
   });
 }
 
+const mapaModal = document.getElementById('mapa-modal');
+const mapaModalFrame = document.getElementById('mapa-modal-frame');
+
+function abrirMapaModal(lat, lng) {
+  // t=k = visão satélite (padrão pedido); z=18 = zoom de rua
+  mapaModalFrame.innerHTML = `<iframe src="https://maps.google.com/maps?q=${lat},${lng}&t=k&z=18&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`;
+  mapaModal.hidden = false;
+  document.body.style.overflow = 'hidden'; // trava o scroll do fundo enquanto o mapa está aberto
+}
+
+function fecharMapaModal() {
+  mapaModal.hidden = true;
+  mapaModalFrame.innerHTML = ''; // descarrega o mapa ao fechar (libera memória)
+  document.body.style.overflow = '';
+}
+
+// fecha ao clicar fora (no fundo escuro) ou no X
+mapaModal.addEventListener('click', (e) => {
+  if (e.target === mapaModal || e.target.classList.contains('mapa-modal-fechar')) fecharMapaModal();
+});
+// fecha com a tecla Esc
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !mapaModal.hidden) fecharMapaModal();
+});
+
 function ligarMapas() {
   document.querySelectorAll('.btn-ver-mapa').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const container = btn.nextElementSibling;
-      const abrindo = container.hidden;
-      container.hidden = !abrindo;
-      btn.textContent = abrindo ? '🗺️ Fechar mapa' : '🗺️ Ver localização no mapa';
-      if (abrindo && !container.dataset.carregado) {
-        const { lat, lng } = btn.dataset;
-        container.innerHTML = `<iframe src="https://www.google.com/maps?q=${lat},${lng}&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
-        container.dataset.carregado = '1';
-      }
-    });
+    btn.addEventListener('click', () => abrirMapaModal(btn.dataset.lat, btn.dataset.lng));
   });
 }
 
