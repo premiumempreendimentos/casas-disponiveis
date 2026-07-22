@@ -781,16 +781,6 @@
 
 <main class="grid" id="grid"></main>
 
-<div class="cta-final" id="contato">
-  <h2 id="txt-cta-final-titulo">Não achou a unidade ideal?</h2>
-  <p id="txt-cta-final-texto">Chama no WhatsApp e faz uma simulação.</p>
-  <a class="cta-final-btn" id="link-cta-final" href="https://wa.me/5549988451307?text=Ol%C3%A1!%20Vi%20a%20vitrine%20de%20casas%20da%20Premium%20e%20quero%20fazer%20uma%20simula%C3%A7%C3%A3o%20de%20financiamento." target="_blank" rel="noopener">📲 Chama no WhatsApp</a>
-</div>
-
-<footer>
-  <p id="txt-footer">Fale com o corretor da sua confiança para agendar uma visita e fechar negócio.</p>
-</footer>
-
 <!-- Modal do mapa (satélite) — sobreposto à página, fecha ao clicar fora -->
 <div class="mapa-modal" id="mapa-modal" hidden>
   <div class="mapa-modal-caixa">
@@ -1295,15 +1285,8 @@ function aplicarTextos(t) {
   document.getElementById('txt-quem-somos-titulo').textContent = def('quem_somos_titulo');
   document.getElementById('txt-quem-somos-p1').textContent = def('quem_somos_paragrafo1');
   document.getElementById('txt-quem-somos-p2').textContent = def('quem_somos_paragrafo2');
-  document.getElementById('txt-footer').textContent = def('footer_texto');
-  document.getElementById('txt-cta-final-titulo').textContent = def('cta_final_titulo');
-  document.getElementById('txt-cta-final-texto').textContent = def('cta_final_texto');
 
   WHATSAPP_NUMERO = def('whatsapp_numero') || TEXTOS_FALLBACK.whatsapp_numero;
-
-  const linkCtaFinal = document.getElementById('link-cta-final');
-  const msgCtaFinal = 'Olá! Vi a vitrine de casas da Premium e quero fazer uma simulação de financiamento.';
-  linkCtaFinal.href = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msgCtaFinal)}`;
 
   const linkFabWhats = document.getElementById('link-fab-whats');
   const msgFabWhats = 'Olá! Vi a vitrine de casas da Premium e quero saber mais.';
