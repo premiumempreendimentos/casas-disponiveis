@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[RASCUNHO] Casas Disponíveis | Premium Empreendimentos</title>
+<meta name="description" content="Casas disponíveis para venda em Pinhalzinho SC. Premium Empreendimentos, mais de 25 casas entregues por ano.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --laranja:#EC4F1F;
+    --laranja-ui:#E8820C;
+    --ouro:#C48A1E;
+    --whats:#25D366;
+    --whats-escuro:#1DA851;
+    --bg:#ffffff;
+    --bg-alt:#f7f6f4;
+    --card:#ffffff;
+    --card-border:#e8e6e2;
+    --card-border-hover:#f2cd9a;
+    --text:#1a1a1a;
+    --muted:#6b7076;
+    --sombra: 0 16px 32px -14px rgba(20,18,15,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',-apple-system,'Segoe UI',Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.logo,.preco,.cta,.hero-cta{font-family:'Poppins',Inter,sans-serif}
+
+  .navbar{
+    position:sticky;top:0;z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px 20px;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(0,0,0,.07);
+  }
+  .navbar-logo{
+    display:flex;align-items:center;
+    text-decoration:none;
+    flex-shrink:0;
+  }
+  .navbar-logo img{display:block;height:44px;width:auto}
+  .navbar-links{
+    display:flex;
+    gap:26px;
+  }
+  .navbar-links a{
+    color:var(--muted);
+    text-decoration:none;
+    font-size:13.5px;
+    font-weight:500;
+    transition:color .15s;
+    white-space:nowrap;
+  }
+  .navbar-links a:hover{color:var(--text)}
+  .flutuantes{
+    position:fixed;
+    right:20px;bottom:20px;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .fab{
+    width:54px;height:54px;
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;
+    box-shadow:0 10px 24px -6px rgba(0,0,0,.35);
+    transition:transform .2s;
+  }
+  .fab svg{width:54px;height:54px}
+  .fab:hover{transform:scale(1.08)}
+  @media (max-width:420px){
+    .flutuantes{right:14px;bottom:14px;gap:10px}
+    .fab{width:48px;height:48px}
+    .fab svg{width:48px;height:48px}
+  }
+  .footer-social{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    color:var(--laranja-ui);
+    font-weight:600;
+    text-decoration:none;
+    font-size:14px;
+  }
+  .footer-social svg{width:20px;height:20px}
+  @media (max-width:680px){
+    .navbar-links{display:none}
+  }
+
+  header{
+    position:relative;
+    padding:40px 20px 110px;
+    text-align:center;
+    overflow:hidden;
+    background:#ffffff;
+  }
+  header::before{
+    content:"";
+    position:absolute;
+    top:-30%;left:50%;
+    width:900px;height:900px;
+    transform:translateX(-50%);
+    pointer-events:none;
+  }
+  .header-inner{position:relative;z-index:1}
+  .selo{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:rgba(196,138,30,.1);
+    border:1px solid rgba(196,138,30,.35);
+    color:var(--ouro);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.4px;
+    padding:6px 14px;
+    border-radius:30px;
+    margin-bottom:18px;
+  }
+  h1{
+    font-weight:800;
+    font-size:clamp(28px,5.4vw,44px);
+    margin-bottom:14px;
+    line-height:1.18;
+    letter-spacing:-.5px;
+  }
+  #txt-hero-destaque{color:var(--laranja)}
+  header p{
+    color:var(--muted);
+    font-size:16px;
+    max-width:540px;
+    margin:0 auto;
+    line-height:1.55;
+  }
+  .stats-row{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:26px;
+  }
+  .stat-pill{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(20,18,15,.045);
+    border:1px solid rgba(20,18,15,.09);
+    backdrop-filter:blur(6px);
+    padding:9px 16px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--text);
+  }
+  .stat-pill b{color:var(--ouro);font-weight:700}
+
+  .busca-card{
+    position:relative;
+    max-width:900px;
+    margin:-78px auto 0;
+    padding:22px 0 8px;
+    background:linear-gradient(180deg,#ffffff,#fbfaf8);
+    border:1px solid var(--card-border);
+    border-radius:22px;
+    box-shadow:var(--sombra);
+    z-index:2;
+  }
+  .busca-titulo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:0 20px 14px;
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    color:var(--text);
+    border-bottom:1px solid var(--card-border);
+    margin-bottom:16px;
+  }
+  .busca-titulo .ponto{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--laranja);
+    box-shadow:0 0 0 4px rgba(236,79,31,.18);
+  }
+  .filtros-wrap{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    padding:0 20px 16px;
+  }
+  .filtro-grupo{
+    flex:1;
+    min-width:160px;
+  }
+  .filtro-label{
+    display:block;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.6px;
+    color:var(--muted);
+    margin-bottom:7px;
+    font-weight:600;
+  }
+  .filtro-select{
+    width:100%;
+    background:rgba(20,18,15,.035) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="%236b7076" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat right 14px center;
+    border:1px solid var(--card-border);
+    color:var(--text);
+    padding:12px 34px 12px 14px;
+    border-radius:12px;
+    font-size:14px;
+    font-family:inherit;
+    font-weight:500;
+    cursor:pointer;
+    transition:.15s;
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+  }
+  .filtro-select:hover{border-color:var(--laranja-ui)}
+  .filtro-select:focus{outline:none;border-color:var(--laranja);box-shadow:0 0 0 3px rgba(236,79,31,.15)}
+
+  .categorias-wrap{
+    max-width:1100px;
+    margin:40px auto 0;
+    padding:0 16px;
+  }
+  .categorias{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:14px;
+  }
+  .categoria-card{
+    background:linear-gradient(180deg,#ffffff,#fbfaf8);
+    border:1px solid var(--card-border);
+    border-radius:16px;
+    padding:22px 16px;
+    text-align:center;
+    cursor:pointer;
+    font-family:inherit;
+    color:var(--text);
+    box-shadow:0 8px 18px -14px rgba(20,18,15,.15);
+    transition:transform .15s, border-color .15s, box-shadow .15s;
+  }
+  .categoria-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--laranja-ui);
+    box-shadow:0 16px 28px -14px rgba(236,79,31,.22);
+  }
+  .categoria-icone{font-size:26px;margin-bottom:8px}
+  .categoria-card h4{font-size:15px;font-weight:600;margin-bottom:4px}
+  .categoria-count{font-size:12px;color:var(--muted)}
+
+  .quem-somos{
+    max-width:900px;
+    margin:50px auto 0;
+  }
+  .quem-somos-inner{
+    background:#ffffff;
+    border:1px solid var(--card-border);
+    border-radius:24px;
+    padding:36px 30px;
+    box-shadow:var(--sombra);
+  }
+  .quem-somos-tag{
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:var(--laranja-ui);
+    margin-bottom:12px;
+  }
+  .quem-somos h2{
+    font-size:clamp(20px,3.2vw,26px);
+    font-weight:700;
+    margin-bottom:14px;
+    line-height:1.25;
+  }
+  .quem-somos p{
+    color:var(--muted);
+    font-size:14.5px;
+    line-height:1.65;
+    margin-bottom:12px;
+  }
+  .quem-somos-stats{
+    display:flex;
+    gap:28px;
+    margin-top:22px;
+    flex-wrap:wrap;
+  }
+  .quem-somos-stats div{display:flex;flex-direction:column}
+  .quem-somos-stats b{
+    font-family:'Poppins',sans-serif;
+    font-size:26px;
+    font-weight:800;
+    color:var(--ouro);
+    line-height:1.1;
+  }
+  .quem-somos-stats span{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:2px;
+  }
+
+  .confianca{
+    max-width:640px;
+    margin:34px auto 6px;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+  }
+  .confianca-item{
+    text-align:center;
+    padding:18px 10px;
+  }
+  .confianca-icone{
+    width:44px;height:44px;
+    margin:0 auto 10px;
+    border-radius:50%;
+    background:rgba(236,79,31,.12);
+    border:1px solid rgba(236,79,31,.3);
+    display:flex;align-items:center;justify-content:center;
+    font-size:19px;
+  }
+  .confianca-item h4{
+    font-family:'Poppins',sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .confianca-item p{
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.4;
+  }
+
+  .secao-titulo{
+    max-width:1100px;
+    margin:44px auto 4px;
+    padding:0 16px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .secao-titulo h2{
+    font-size:clamp(19px,3vw,24px);
+    font-weight:700;
+  }
+  .secao-titulo span{
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  .grid{
+    max-width:1100px;
+    margin:0 auto;
+    padding:16px 16px 60px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    align-items:start; /* cada card com a altura da sua foto, sem esticar pra emparelhar */
+    gap:22px;
+  }
+
+  .card{
+    background:linear-gradient(180deg,#ffffff,#fdfcfb);
+    border:1px solid var(--card-border);
+    border-radius:18px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 10px 24px -16px rgba(20,18,15,.18);
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{
+    transform:translateY(-5px);
+    border-color:var(--card-border-hover);
+    box-shadow:0 24px 36px -16px rgba(236,79,31,.22);
+  }
+
+  .card .foto-wrap{
+    position:relative;
+    aspect-ratio:4/3; /* padrão enquanto a foto carrega; o JS ajusta pra proporção real da capa */
+    background:#f4f3f1;
+    overflow:hidden;
+  }
+  .foto-scroll{
+    display:flex;
+    width:100%;height:100%;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+  }
+  .foto-scroll::-webkit-scrollbar{display:none}
+  .foto-scroll img{
+    flex:0 0 100%;
+    scroll-snap-align:start;
+    width:100%;height:100%;object-fit:contain;display:block;
+  }
+  .dots{
+    position:absolute;bottom:10px;left:0;right:0;
+    display:flex;justify-content:center;gap:5px;
+    z-index:2;
+  }
+  .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:rgba(255,255,255,.4);
+    border:none;padding:0;
+    cursor:pointer;
+    transition:background .15s, transform .15s;
+  }
+  .dot.ativo{background:#fff;transform:scale(1.3)}
+
+  .seta{
+    position:absolute;top:50%;
+    transform:translateY(-50%);
+    width:32px;height:32px;
+    border-radius:50%;
+    background:rgba(0,0,0,.5);
+    backdrop-filter:blur(2px);
+    border:none;
+    color:#fff;
+    font-size:16px;
+    line-height:1;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    z-index:3;
+    transition:background .15s;
+  }
+  .seta:hover{background:rgba(0,0,0,.75)}
+  .seta.esquerda{left:10px}
+  .seta.direita{right:10px}
+  .card .foto-wrap.placeholder{
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#f1efeb,#e6e3dd);
+    color:var(--muted);
+    font-size:13px;
+    text-align:center;
+    padding:20px;
+  }
+  .card-body{
+    padding:16px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1;
+  }
+  .card-body h3{
+    font-size:19px;
+  }
+  .card-body .categoria{
+    font-size:13px;
+    color:var(--muted);
+  }
+  .btn-ver-mapa{
+    margin-top:6px;
+    background:none;
+    border:none;
+    padding:0;
+    color:var(--laranja-ui);
+    font-size:12.5px;
+    font-weight:600;
+    cursor:pointer;
+    text-decoration:underline;
+  }
+  .btn-ver-mapa:hover{color:var(--laranja)}
+  .mapa-modal{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    background:rgba(0,0,0,.72);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    animation:aparecerMapa .18s ease;
+  }
+  .mapa-modal[hidden]{display:none}
+  @keyframes aparecerMapa{from{opacity:0}to{opacity:1}}
+  .mapa-modal-caixa{
+    position:relative;
+    width:min(960px,96vw);
+    height:min(80vh,720px);
+    background:#fff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.6);
+  }
+  .mapa-modal-frame{width:100%;height:100%}
+  .mapa-modal-frame iframe{width:100%;height:100%;border:0;display:block}
+  .mapa-modal-fechar{
+    position:absolute;
+    top:12px;
+    right:12px;
+    z-index:2;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:rgba(0,0,0,.62);
+    color:#fff;
+    border:none;
+    font-size:24px;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .mapa-modal-fechar:hover{background:rgba(0,0,0,.85)}
+  .specs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:12.5px;
+    color:var(--muted);
+    padding:8px 0;
+    border-top:1px solid var(--card-border);
+    border-bottom:1px solid var(--card-border);
+  }
+  .specs span{white-space:nowrap}
+
+  .financiamento{
+    font-size:12.5px;
+    color:var(--muted);
+  }
+
+  .preco-wrap{margin-top:2px}
+  .preco-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .preco{font-size:24px;font-weight:700;color:var(--text);letter-spacing:-.3px}
+  .preco small{font-size:12px;color:var(--muted);font-weight:400}
+
+  .cta{
+    margin-top:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    text-align:center;
+    background:linear-gradient(135deg,var(--whats),var(--whats-escuro));
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    padding:13px 10px;
+    border-radius:11px;
+    font-size:13.5px;
+    line-height:1.3;
+    box-shadow:0 8px 18px -6px rgba(37,211,102,.45);
+    transition:transform .15s, box-shadow .15s;
+  }
+  .cta:hover{transform:translateY(-2px);box-shadow:0 12px 22px -6px rgba(37,211,102,.6)}
+  .btn-compartilhar{
+    width:100%;
+    margin-top:8px;
+    background:none;
+    border:1px solid var(--card-border);
+    color:var(--whats-escuro);
+    font-size:12.5px;
+    font-weight:600;
+    padding:9px 10px;
+    border-radius:11px;
+    cursor:pointer;
+    transition:.15s;
+  }
+  .btn-compartilhar:hover{border-color:var(--whats);color:var(--whats-escuro)}
+
+  .barra-ver-todas{
+    max-width:1100px;
+    margin:24px auto 0;
+    padding:0 16px;
+  }
+  .btn-ver-todas{
+    background:var(--laranja);
+    color:#fff;
+    border:none;
+    padding:13px 24px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 8px 18px -6px rgba(236,79,31,.45);
+    transition:.15s;
+  }
+  .btn-ver-todas:hover{background:#d1430f;transform:translateY(-1px)}
+
+  .toast-share{
+    position:fixed;
+    bottom:88px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#1a1a1a;
+    color:#fff;
+    padding:12px 20px;
+    border-radius:30px;
+    font-size:13.5px;
+    font-weight:500;
+    z-index:250;
+    opacity:0;
+    transition:opacity .2s;
+    pointer-events:none;
+    max-width:90vw;
+    text-align:center;
+  }
+  .toast-share.mostrar{opacity:1}
+
+  .cta-final{
+    max-width:900px;
+    margin:20px auto 60px;
+    padding:38px 28px;
+    border-radius:24px;
+    text-align:center;
+    background:#ffffff;
+    border:1px solid rgba(196,138,30,.25);
+    box-shadow:var(--sombra);
+  }
+  .cta-final h2{
+    font-size:clamp(20px,3.4vw,28px);
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .cta-final p{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 auto 22px;
+    line-height:1.55;
+  }
+  .cta-final-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:linear-gradient(135deg,var(--whats),var(--whats-escuro));
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:15px;
+    padding:15px 28px;
+    border-radius:14px;
+    box-shadow:0 10px 24px -8px rgba(37,211,102,.55);
+    transition:transform .15s;
+  }
+  .cta-final-btn:hover{transform:translateY(-2px)}
+
+  footer{
+    text-align:center;
+    padding:8px 20px 46px;
+  }
+  footer p{color:var(--muted);font-size:13px;margin-bottom:10px}
+
+  .vazio{
+    grid-column:1/-1;
+    text-align:center;
+    color:var(--muted);
+    padding:40px 0;
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="#topo" class="navbar-logo" aria-label="Premium Empreendimentos">
+    <img src="images/logo-premium.png" alt="Premium Empreendimentos">
+  </a>
+  <div class="navbar-links">
+    <a href="#topo">Início</a>
+    <a href="#quem-somos">Quem Somos</a>
+    <a href="#imoveis">Imóveis</a>
+    <a href="#contato">Contato</a>
+  </div>
+</nav>
+
+<div class="flutuantes">
+  <a class="fab fab-instagram" href="https://www.instagram.com/premium_empreendimentos/" target="_blank" rel="noopener" aria-label="Instagram da Premium Empreendimentos">
+    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="igGradientFab" cx="30%" cy="107%" r="150%">
+          <stop offset="0" stop-color="#fdf497"/>
+          <stop offset=".05" stop-color="#fdf497"/>
+          <stop offset=".45" stop-color="#fd5949"/>
+          <stop offset=".6" stop-color="#d6249f"/>
+          <stop offset=".9" stop-color="#285AEB"/>
+        </radialGradient>
+      </defs>
+      <circle cx="24" cy="24" r="24" fill="url(#igGradientFab)"/>
+      <rect x="13" y="13" width="22" height="22" rx="6.5" fill="none" stroke="white" stroke-width="2.6"/>
+      <circle cx="24" cy="24" r="5.8" fill="none" stroke="white" stroke-width="2.6"/>
+      <circle cx="32" cy="16" r="1.8" fill="white"/>
+    </svg>
+  </a>
+  <a class="fab fab-whats" id="link-fab-whats" href="https://wa.me/5549988451307?text=Ol%C3%A1!%20Vi%20a%20vitrine%20de%20casas%20da%20Premium%20e%20quero%20saber%20mais." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
+    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="24" fill="#25D366"/>
+      <path fill="#fff" transform="translate(24,24) scale(1.32) translate(-24,-24)" d="M32.85 15.11a12.09 12.09 0 0 0-19.2 14.56L12 34l4.5-1.58a12.1 12.1 0 0 0 17.35-15.31zm-8.8 18.6a10.05 10.05 0 0 1-5.13-1.4l-.37-.22-3.8.99.99-3.7-.24-.38a10.06 10.06 0 1 1 18.7-5.3 10.07 10.07 0 0 1-10.15 10.01zm5.53-7.53c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15s-.78.98-.96 1.18-.35.22-.65.07a8.2 8.2 0 0 1-2.42-1.5 9.06 9.06 0 0 1-1.67-2.08c-.18-.3 0-.46.14-.6.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53s-.68-1.64-.93-2.24c-.24-.58-.5-.5-.68-.51h-.58c-.2 0-.53.08-.8.38a3.44 3.44 0 0 0-1.08 2.56c0 1.5 1.1 2.96 1.26 3.16.15.2 2.16 3.3 5.24 4.62.73.32 1.3.5 1.75.65.73.23 1.4.2 1.93.12.59-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.2-.57-.35z"/>
+    </svg>
+  </a>
+</div>
+
+<header id="topo">
+  <div class="header-inner">
+    <div class="selo" id="txt-hero-selo">A construtora que mais entrega casas em Pinhalzinho</div>
+    <h1><span id="txt-hero-titulo-pre">Encontre aqui as casas da</span> <span id="txt-hero-destaque">Premium</span><br><span id="txt-hero-titulo-pos">disponíveis pra venda</span></h1>
+    <p id="txt-hero-subtitulo">Confira as unidades disponíveis em Pinhalzinho, SC, e fale com a gente no WhatsApp para simular o seu financiamento.</p>
+  </div>
+</header>
+
+<div class="busca-card">
+  <div class="busca-titulo"><span class="ponto"></span> Filtre e encontre a sua</div>
+  <div class="filtros-wrap">
+  <div class="filtro-grupo">
+    <label class="filtro-label" for="filtro-preco">Preço</label>
+    <select class="filtro-select" id="filtro-preco">
+      <option value="todos">Todas</option>
+      <option value="300000">Até R$ 300 mil</option>
+      <option value="400000">Até R$ 400 mil</option>
+      <option value="600000">Até R$ 600 mil</option>
+      <option value="1000000">Até R$ 1 milhão</option>
+      <option value="1500000">Até R$ 1,5 milhões</option>
+    </select>
+  </div>
+
+  <div class="filtro-grupo">
+    <label class="filtro-label" for="filtro-quartos">Dormitórios</label>
+    <select class="filtro-select" id="filtro-quartos">
+      <option value="todos">Todos</option>
+      <option value="1">1 quarto</option>
+      <option value="2">2 quartos</option>
+      <option value="3">3 quartos</option>
+    </select>
+  </div>
+
+  <div class="filtro-grupo">
+    <label class="filtro-label" for="filtro-tipo">Tipo de imóvel</label>
+    <select class="filtro-select" id="filtro-tipo">
+      <option value="todos">Todos</option>
+      <option value="Casa Única">Casa Única</option>
+      <option value="Casa Geminada">Casa Geminada</option>
+      <option value="Studio">Studio</option>
+    </select>
+  </div>
+  </div>
+</div>
+
+<section id="quem-somos" class="quem-somos">
+  <div class="quem-somos-inner">
+    <div class="quem-somos-tag">Quem somos</div>
+    <h2 id="txt-quem-somos-titulo">A construtora que mais entrega casas em Pinhalzinho</h2>
+    <p id="txt-quem-somos-p1">A Premium Empreendimentos constrói casas populares em Pinhalzinho, SC, dentro do programa Minha Casa Minha Vida, com tijolo à vista e acabamento que você pode conferir de perto antes de fechar negócio.</p>
+    <p id="txt-quem-somos-p2">Trabalhamos com os corretores parceiros de toda a cidade, então você negocia sempre com quem já conhece e confia.</p>
+    <div class="quem-somos-stats">
+      <div><b id="txt-stat-casas-ano-2">25+</b><span id="txt-stat-casas-ano-label">casas entregues por ano</span></div>
+      <div><b id="txt-stat-familias">90+</b><span id="txt-stat-familias-label">famílias atendidas</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="barra-ver-todas" id="barra-ver-todas" hidden>
+  <button type="button" class="btn-ver-todas" onclick="location.href = location.pathname">🏠 Ver todas as casas disponíveis</button>
+</div>
+
+<div class="secao-titulo" id="imoveis">
+  <h2>Unidades disponíveis</h2>
+  <span id="contador-unidades"></span>
+</div>
+
+<main class="grid" id="grid"></main>
+
+<div class="cta-final" id="contato">
+  <h2 id="txt-cta-final-titulo">Não achou a unidade ideal?</h2>
+  <p id="txt-cta-final-texto">Chama no WhatsApp e faz uma simulação.</p>
+  <a class="cta-final-btn" id="link-cta-final" href="https://wa.me/5549988451307?text=Ol%C3%A1!%20Vi%20a%20vitrine%20de%20casas%20da%20Premium%20e%20quero%20fazer%20uma%20simula%C3%A7%C3%A3o%20de%20financiamento." target="_blank" rel="noopener">📲 Chama no WhatsApp</a>
+</div>
+
+<footer>
+  <p id="txt-footer">Fale com o corretor da sua confiança para agendar uma visita e fechar negócio.</p>
+</footer>
+
+<!-- Modal do mapa (satélite) — sobreposto à página, fecha ao clicar fora -->
+<div class="mapa-modal" id="mapa-modal" hidden>
+  <div class="mapa-modal-caixa">
+    <button type="button" class="mapa-modal-fechar" aria-label="Fechar mapa">×</button>
+    <div class="mapa-modal-frame" id="mapa-modal-frame"></div>
+  </div>
+</div>
+
+<script>
+// URL da API/painel administrativo (backend no Railway).
+const API_BASE = 'https://casas-disponiveis-api-production.up.railway.app';
+
+// Dados usados só se a API estiver fora do ar (o site nunca fica em branco).
+const CASAS_FALLBACK = [
+  {
+    id: 4,
+    nome: "Und 04 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: ["images/d1c43c623a194f2b9751a59603199bcf.jpg", "images/9b5c878f871e45a5bd04d5305e067e81.jpg", "images/aea40ed5d1c44abebd597bd44a9a9bde.jpg", "images/00df3d4b7d1d4df6abc29a7605cc741a.jpg", "images/247d5d531bc24c209c970a4f012825b1.jpg", "images/20305aabdc8d4740a8841b9c7690e8f2.jpg", "images/363d84429e2e44e19f47ffc90c04abbd.jpg", "images/28b61fd319984ee9bf9120f0ba42020a.jpg"],
+    m2: "",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 210000.0,
+    prazo: "07/27",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 5,
+    nome: "Und 03 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: ["images/d1c43c623a194f2b9751a59603199bcf.jpg", "images/9b5c878f871e45a5bd04d5305e067e81.jpg", "images/aea40ed5d1c44abebd597bd44a9a9bde.jpg", "images/00df3d4b7d1d4df6abc29a7605cc741a.jpg", "images/247d5d531bc24c209c970a4f012825b1.jpg", "images/20305aabdc8d4740a8841b9c7690e8f2.jpg", "images/363d84429e2e44e19f47ffc90c04abbd.jpg", "images/28b61fd319984ee9bf9120f0ba42020a.jpg"],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 210000.0,
+    prazo: "07/27",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 3,
+    nome: "Und 05 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: ["images/d1c43c623a194f2b9751a59603199bcf.jpg", "images/9b5c878f871e45a5bd04d5305e067e81.jpg", "images/aea40ed5d1c44abebd597bd44a9a9bde.jpg", "images/00df3d4b7d1d4df6abc29a7605cc741a.jpg", "images/247d5d531bc24c209c970a4f012825b1.jpg", "images/20305aabdc8d4740a8841b9c7690e8f2.jpg", "images/363d84429e2e44e19f47ffc90c04abbd.jpg", "images/28b61fd319984ee9bf9120f0ba42020a.jpg"],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 215000.0,
+    prazo: "07/27",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 6,
+    nome: "Und 02 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: ["images/d1c43c623a194f2b9751a59603199bcf.jpg", "images/9b5c878f871e45a5bd04d5305e067e81.jpg", "images/aea40ed5d1c44abebd597bd44a9a9bde.jpg", "images/00df3d4b7d1d4df6abc29a7605cc741a.jpg", "images/247d5d531bc24c209c970a4f012825b1.jpg", "images/20305aabdc8d4740a8841b9c7690e8f2.jpg", "images/363d84429e2e44e19f47ffc90c04abbd.jpg", "images/28b61fd319984ee9bf9120f0ba42020a.jpg"],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 215000.0,
+    prazo: "07/27",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 7,
+    nome: "Und 01 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: ["images/d1c43c623a194f2b9751a59603199bcf.jpg", "images/9b5c878f871e45a5bd04d5305e067e81.jpg", "images/aea40ed5d1c44abebd597bd44a9a9bde.jpg", "images/00df3d4b7d1d4df6abc29a7605cc741a.jpg", "images/247d5d531bc24c209c970a4f012825b1.jpg", "images/20305aabdc8d4740a8841b9c7690e8f2.jpg", "images/363d84429e2e44e19f47ffc90c04abbd.jpg", "images/28b61fd319984ee9bf9120f0ba42020a.jpg"],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 225000.0,
+    prazo: "07/27",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 2,
+    nome: "Und 06 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: ["images/d1c43c623a194f2b9751a59603199bcf.jpg", "images/9b5c878f871e45a5bd04d5305e067e81.jpg", "images/aea40ed5d1c44abebd597bd44a9a9bde.jpg", "images/00df3d4b7d1d4df6abc29a7605cc741a.jpg", "images/247d5d531bc24c209c970a4f012825b1.jpg", "images/20305aabdc8d4740a8841b9c7690e8f2.jpg", "images/363d84429e2e44e19f47ffc90c04abbd.jpg", "images/28b61fd319984ee9bf9120f0ba42020a.jpg"],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 240000.0,
+    prazo: "07/27",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 15,
+    nome: "Und 03 - Viena",
+    empreendimento: "Viena",
+    categoria: "Casa Geminada",
+    bairro: "Bairro Pioneiro",
+    fotos: ["https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-1.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-2.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-3.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-4.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-5.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-6.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-7.jpg"],
+    m2: "51",
+    dorm: "2",
+    banh: "1",
+    gar: "1",
+    preco: 321526.86,
+    prazo: "09/26",
+    linkPost: "https://www.instagram.com/p/DRkvlHNklcB/",
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 16,
+    nome: "Und 02 - Viena",
+    empreendimento: "Viena",
+    categoria: "Casa Geminada",
+    bairro: "Bairro Pioneiro",
+    fotos: ["https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-1.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-2.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-3.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-4.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-5.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-6.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-7.jpg"],
+    m2: "51",
+    dorm: "2",
+    banh: "1",
+    gar: "1",
+    preco: 321526.86,
+    prazo: "09/26",
+    linkPost: "https://www.instagram.com/p/DRkvlHNklcB/",
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 8,
+    nome: "Und 06 - Barcelona",
+    empreendimento: "Barcelona",
+    categoria: "Casa Geminada",
+    bairro: "Bairro Pioneiro",
+    fotos: ["https://premiumempreendimentos.github.io/casas-disponiveis/images/barcelona-1.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/barcelona-3.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/barcelona-4.jpg", "images/3d4a0ca0d19a41f686ca7d86e3b590e0.jpg"],
+    m2: "59,00",
+    dorm: "2",
+    banh: "1",
+    gar: "1",
+    preco: 370000.0,
+    prazo: "01/27",
+    linkPost: "https://www.instagram.com/p/DYP2-h4j2V4/",
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 11,
+    nome: "Und 02 - Paris",
+    empreendimento: "Paris",
+    categoria: "Casa Geminada",
+    bairro: "Nova Divineia",
+    fotos: ["https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-1.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-2.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-3.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-4.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-5.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-6.jpg"],
+    m2: "70",
+    dorm: "3",
+    banh: "1",
+    gar: "2",
+    preco: 446391.66,
+    prazo: "06/26",
+    linkPost: "https://www.instagram.com/p/DXotHsfmsYJ/",
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 12,
+    nome: "Und 01 - Paris",
+    empreendimento: "Paris",
+    categoria: "Casa Geminada",
+    bairro: "Nova Divineia",
+    fotos: ["https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-1.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-2.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-3.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-4.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-5.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-6.jpg"],
+    m2: "70",
+    dorm: "2",
+    banh: "2",
+    gar: "2",
+    preco: 465121.38,
+    prazo: "06/26",
+    linkPost: "https://www.instagram.com/p/DXotHsfmsYJ/",
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 13,
+    nome: "Casa 08",
+    empreendimento: "Casa 08",
+    categoria: "Casa Única",
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/b69130f81493463084af4cec7d0d6dff.jpg", "images/91360ccdd7124db6ac1681c818eacee5.jpg", "images/b94fdef82c9d43bcacf1fabcd18ed58f.jpg", "images/aab6cf72d32c43598f81e5a7ed88a99a.jpg", "images/50e4cb270bc64fe1bf1c087d4b7c86e7.jpg", "images/aa4c3a1491954d66a2f108a3a511000b.jpg"],
+    m2: "151",
+    dorm: "3",
+    banh: "3",
+    gar: "2",
+    preco: 889661.7,
+    prazo: "11/26",
+    linkPost: null,
+    linkLocalizacao: "https://maps.app.goo.gl/eq5u14izDvLfKxbZ6",
+    mapaLat: -26.8668861,
+    mapaLng: -52.9931251,
+  },
+  {
+    id: 1,
+    nome: "Casa 10",
+    empreendimento: "Casa 10",
+    categoria: "Casa Única",
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/4aed3979bf794048823804dc455bf8a2.jpg", "images/5a7e701be4d0435d93e7a1d7a8bc2164.jpg", "images/676602c7c7974cb3857682083b6fb324.jpg", "images/118d7ba810e54501bbf55fd42ad70113.jpg", "images/ab26c693244b4f2baa620edd3a694143.jpg"],
+    m2: "150",
+    dorm: "3 (1 suíte)",
+    banh: "2",
+    gar: "2",
+    preco: 961458.96,
+    prazo: "07/27",
+    linkPost: "https://www.instagram.com/p/DZr-OPFkt9t/",
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 14,
+    nome: "Casa 07",
+    empreendimento: "Casa 07",
+    categoria: "Casa Única",
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/6705d226d14449a3a73bdbdb13ad61cb.jpg", "images/84e58a9968d54953a96d9b38156885f5.jpg", "images/e310f3acb9cc423c862a4de2387cf395.jpg", "images/83bea02d500540cc9798e063b9be1101.jpg", "images/2dda49cea0764042adc241f650f09f07.jpg"],
+    m2: "195",
+    dorm: "3",
+    banh: "4",
+    gar: "2",
+    preco: 983310.3,
+    prazo: "10/26",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+];
+
+const TEXTOS_FALLBACK = {
+  hero_selo: "A construtora que mais entrega casas em Pinhalzinho",
+  hero_titulo_pre: "Encontre aqui as casas da",
+  hero_destaque: "Premium",
+  hero_titulo_pos: "disponíveis pra venda",
+  hero_subtitulo: "Confira as unidades disponíveis em Pinhalzinho, SC, e fale com a gente no WhatsApp para simular o seu financiamento.",
+  stat_casas_ano: "25+",
+  stat_casas_ano_label: "casas entregues por ano",
+  stat_familias: "90+",
+  stat_familias_label: "famílias atendidas",
+  stat_unidades: "14",
+  stat_unidades_label: "unidades em construção",
+  quem_somos_titulo: "A construtora que mais entrega casas em Pinhalzinho",
+  quem_somos_paragrafo1: "A Premium Empreendimentos constrói casas populares em Pinhalzinho, SC, dentro do programa Minha Casa Minha Vida, com tijolo à vista e acabamento que você pode conferir de perto antes de fechar negócio.",
+  quem_somos_paragrafo2: "Trabalhamos com os corretores parceiros de toda a cidade, então você negocia sempre com quem já conhece e confia.",
+  whatsapp_numero: "5549988451307",
+  footer_texto: "Fale com o corretor da sua confiança para agendar uma visita e fechar negócio.",
+  cta_final_titulo: "Não achou a unidade ideal?",
+  cta_final_texto: "Chama no WhatsApp e faz uma simulação.",
+};
+
+let CASAS = [];
+let CASAS_COM_FOTO = [];
+let PRECO_MAIS_BARATO = 0;
+let WHATSAPP_NUMERO = TEXTOS_FALLBACK.whatsapp_numero;
+
+function formatarPreco(v) {
+  return v.toLocaleString('pt-BR', {style:'currency', currency:'BRL', maximumFractionDigits:0});
+}
+
+function recomputarDerivados() {
+  CASAS_COM_FOTO = CASAS.filter(c => c.fotos && c.fotos.length > 0);
+  PRECO_MAIS_BARATO = Math.min(...(CASAS_COM_FOTO.length ? CASAS_COM_FOTO : CASAS).map(c => c.preco));
+}
+
+function renderCard(casa) {
+  const temFotos = casa.fotos && casa.fotos.length > 0;
+
+  const temVariasFotos = temFotos && casa.fotos.length > 1;
+
+  const fotoHtml = temFotos
+    ? `<div class="foto-scroll">
+        ${casa.fotos.map(f => `<img src="${f}" alt="${casa.nome}" loading="lazy">`).join('')}
+      </div>
+      ${temVariasFotos ? `
+      <button type="button" class="seta esquerda" aria-label="Foto anterior">&#8249;</button>
+      <button type="button" class="seta direita" aria-label="Próxima foto">&#8250;</button>
+      <div class="dots">${casa.fotos.map((_,i) => `<button type="button" class="dot${i===0?' ativo':''}" aria-label="Ir para foto ${i+1}"></button>`).join('')}</div>
+      ` : ''}`
+    : `Fotos em breve<br>(lançamento)`;
+
+  const mensagemWhats = `Quero fazer uma simulação de financiamento gratuita para ${casa.nome} (${casa.empreendimento}). Vi na vitrine da Premium Empreendimentos: https://premiumempreendimentos.github.io/casas-disponiveis/`;
+  const ctaLink = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensagemWhats)}`;
+
+  const m2Num = parseFloat(String(casa.m2).replace(',', '.'));
+  const mostrarM2 = m2Num > 100;
+
+  const financiamento = casa.preco <= 600000
+    ? '🏦 Financiamento pela Minha Casa Minha Vida, Caixa Econômica Federal'
+    : '🏦 Financiamento SBPE, Caixa Econômica Federal';
+
+  return `
+  <div class="card" data-preco="${casa.preco}">
+    <div class="foto-wrap${temFotos ? '' : ' placeholder'}">
+      ${fotoHtml}
+    </div>
+    <div class="card-body">
+      <div>
+        <h3>${casa.nome}</h3>
+        <div class="categoria">📍 ${casa.categoria} · ${casa.bairro}, Pinhalzinho SC</div>
+        ${casa.mapaLat && casa.mapaLng ? `
+        <button type="button" class="btn-ver-mapa" data-lat="${casa.mapaLat}" data-lng="${casa.mapaLng}">🗺️ Ver localização no mapa</button>
+        ` : ''}
+      </div>
+      <div class="specs">
+        ${mostrarM2 ? `<span>📐 ${casa.m2} m²</span>` : ''}
+        <span>🛏️ ${casa.dorm} dorm.</span>
+        <span>🚿 ${casa.banh} banh.</span>
+        <span>🚗 ${casa.gar} vaga${casa.gar > 1 ? 's' : ''}</span>
+        <span>🔑 Entrega ${casa.prazo}</span>
+      </div>
+      <div class="financiamento">${financiamento}</div>
+      <div class="preco-wrap">
+        <div class="preco-label">Valor</div>
+        <div class="preco">${formatarPreco(casa.preco)}</div>
+      </div>
+      <a class="cta" href="${ctaLink}" target="_blank" rel="noopener">Simular financiamento grátis</a>
+      <button type="button" class="btn-compartilhar" data-id="${casa.id ?? ''}" data-nome="${String(casa.nome || '').replace(/"/g, '&quot;')}">🔗 Compartilhar esta casa</button>
+    </div>
+  </div>`;
+}
+
+// Faz o quadro da foto ter a MESMA proporção da capa, pra foto aparecer inteira (sem corte).
+function ajustarAlturaFotos() {
+  document.querySelectorAll('#grid .card .foto-wrap:not(.placeholder)').forEach(wrap => {
+    const img = wrap.querySelector('.foto-scroll img');
+    if (!img) return;
+    const aplicar = () => {
+      if (img.naturalWidth && img.naturalHeight) {
+        wrap.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+      }
+    };
+    if (img.complete) aplicar();
+    else img.addEventListener('load', aplicar, { once: true });
+  });
+}
+
+function ligarCarrosseis() {
+  document.querySelectorAll('.foto-scroll').forEach(scroller => {
+    const wrap = scroller.parentElement;
+    const dots = wrap.querySelectorAll('.dot');
+    if (!dots.length) return;
+    const total = dots.length;
+
+    const irPara = (i) => {
+      scroller.scrollTo({ left: i * scroller.clientWidth, behavior: 'smooth' });
+    };
+
+    scroller.addEventListener('scroll', () => {
+      const i = Math.round(scroller.scrollLeft / scroller.clientWidth);
+      dots.forEach((d, idx) => d.classList.toggle('ativo', idx === i));
+    }, { passive: true });
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => irPara(i)));
+
+    const setaEsq = wrap.querySelector('.seta.esquerda');
+    const setaDir = wrap.querySelector('.seta.direita');
+    if (setaEsq && setaDir) {
+      setaEsq.addEventListener('click', () => {
+        const atual = Math.round(scroller.scrollLeft / scroller.clientWidth);
+        irPara(Math.max(0, atual - 1));
+      });
+      setaDir.addEventListener('click', () => {
+        const atual = Math.round(scroller.scrollLeft / scroller.clientWidth);
+        irPara(Math.min(total - 1, atual + 1));
+      });
+    }
+  });
+}
+
+const mapaModal = document.getElementById('mapa-modal');
+const mapaModalFrame = document.getElementById('mapa-modal-frame');
+
+function abrirMapaModal(lat, lng) {
+  // t=k = visão satélite (padrão pedido); z=18 = zoom de rua
+  mapaModalFrame.innerHTML = `<iframe src="https://maps.google.com/maps?q=${lat},${lng}&t=k&z=18&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`;
+  mapaModal.hidden = false;
+  document.body.style.overflow = 'hidden'; // trava o scroll do fundo enquanto o mapa está aberto
+}
+
+function fecharMapaModal() {
+  mapaModal.hidden = true;
+  mapaModalFrame.innerHTML = ''; // descarrega o mapa ao fechar (libera memória)
+  document.body.style.overflow = '';
+}
+
+// fecha ao clicar fora (no fundo escuro) ou no X
+mapaModal.addEventListener('click', (e) => {
+  if (e.target === mapaModal || e.target.classList.contains('mapa-modal-fechar')) fecharMapaModal();
+});
+// fecha com a tecla Esc
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !mapaModal.hidden) fecharMapaModal();
+});
+
+function ligarMapas() {
+  document.querySelectorAll('.btn-ver-mapa').forEach(btn => {
+    btn.addEventListener('click', () => abrirMapaModal(btn.dataset.lat, btn.dataset.lng));
+  });
+}
+
+let filtroPreco = 'todos';
+let filtroQuartos = 'todos';
+let filtroTipo = 'todos';
+
+function aplicarFiltros() {
+  const grid = document.getElementById('grid');
+  const filtradas = CASAS.filter(c => {
+    const passaPreco = filtroPreco === 'todos' || c.preco <= Number(filtroPreco);
+    const passaQuartos = filtroQuartos === 'todos' || parseInt(c.dorm, 10) === Number(filtroQuartos);
+    const passaTipo = filtroTipo === 'todos' || c.categoria === filtroTipo;
+    return passaPreco && passaQuartos && passaTipo;
+  });
+
+  grid.innerHTML = filtradas.length
+    ? filtradas.map(renderCard).join('')
+    : '<div class="vazio">Nenhuma unidade com esses filtros no momento. Fala com a gente que a lista muda toda semana.</div>';
+
+  const contador = document.getElementById('contador-unidades');
+  if (contador) {
+    contador.textContent = `${filtradas.length} unidade${filtradas.length === 1 ? '' : 's'} encontrada${filtradas.length === 1 ? '' : 's'}`;
+  }
+
+  ligarCarrosseis();
+  ligarMapas();
+  ligarCompartilhar();
+  ajustarAlturaFotos();
+}
+
+document.getElementById('filtro-preco').addEventListener('change', (e) => {
+  filtroPreco = e.target.value;
+  aplicarFiltros();
+});
+document.getElementById('filtro-quartos').addEventListener('change', (e) => {
+  filtroQuartos = e.target.value;
+  aplicarFiltros();
+});
+document.getElementById('filtro-tipo').addEventListener('change', (e) => {
+  filtroTipo = e.target.value;
+  aplicarFiltros();
+});
+
+function ordenarCasas() {
+  CASAS.sort((a, b) => {
+    const aTemFotos = a.fotos && a.fotos.length > 0;
+    const bTemFotos = b.fotos && b.fotos.length > 0;
+    if (aTemFotos !== bTemFotos) return aTemFotos ? -1 : 1; // "em breve" (sem foto) sempre por último
+    return a.preco - b.preco;
+  });
+}
+
+function aplicarTextos(t) {
+  const def = (chave) => t[chave] ?? TEXTOS_FALLBACK[chave] ?? '';
+
+  document.getElementById('txt-hero-selo').textContent = def('hero_selo');
+  document.getElementById('txt-hero-titulo-pre').textContent = def('hero_titulo_pre');
+  document.getElementById('txt-hero-destaque').textContent = def('hero_destaque');
+  document.getElementById('txt-hero-titulo-pos').textContent = def('hero_titulo_pos');
+  document.getElementById('txt-hero-subtitulo').textContent = def('hero_subtitulo');
+  document.getElementById('txt-stat-casas-ano-2').textContent = def('stat_casas_ano');
+  document.getElementById('txt-stat-casas-ano-label').textContent = def('stat_casas_ano_label');
+  document.getElementById('txt-stat-familias').textContent = def('stat_familias');
+  document.getElementById('txt-stat-familias-label').textContent = def('stat_familias_label');
+  document.getElementById('txt-quem-somos-titulo').textContent = def('quem_somos_titulo');
+  document.getElementById('txt-quem-somos-p1').textContent = def('quem_somos_paragrafo1');
+  document.getElementById('txt-quem-somos-p2').textContent = def('quem_somos_paragrafo2');
+  document.getElementById('txt-footer').textContent = def('footer_texto');
+  document.getElementById('txt-cta-final-titulo').textContent = def('cta_final_titulo');
+  document.getElementById('txt-cta-final-texto').textContent = def('cta_final_texto');
+
+  WHATSAPP_NUMERO = def('whatsapp_numero') || TEXTOS_FALLBACK.whatsapp_numero;
+
+  const linkCtaFinal = document.getElementById('link-cta-final');
+  const msgCtaFinal = 'Olá! Vi a vitrine de casas da Premium e quero fazer uma simulação de financiamento.';
+  linkCtaFinal.href = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msgCtaFinal)}`;
+
+  const linkFabWhats = document.getElementById('link-fab-whats');
+  const msgFabWhats = 'Olá! Vi a vitrine de casas da Premium e quero saber mais.';
+  linkFabWhats.href = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msgFabWhats)}`;
+}
+
+function normalizarCasaDaApi(c) {
+  return {
+    id: c.id,
+    nome: c.nome,
+    empreendimento: c.empreendimento,
+    categoria: c.categoria,
+    bairro: c.bairro,
+    fotos: (c.fotos || []).map(f => f.url),
+    m2: c.m2,
+    dorm: c.dorm,
+    banh: c.banh,
+    gar: c.gar,
+    preco: c.preco,
+    prazo: c.prazo,
+    linkPost: c.link_post,
+    linkLocalizacao: c.link_localizacao,
+    mapaLat: c.mapa_lat,
+    mapaLng: c.mapa_lng,
+  };
+}
+
+// ─── Compartilhar uma casa específica ───────────────────────────────
+function mostrarToastShare(msg) {
+  let t = document.getElementById('toast-share');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'toast-share';
+    t.className = 'toast-share';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.classList.add('mostrar');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('mostrar'), 3000);
+}
+
+function compartilharCasa(id, nome) {
+  const url = (location.origin + location.pathname) + (id ? `?casa=${id}` : '');
+  const dados = { title: `${nome} · Premium Empreendimentos`, text: `Olha essa casa da Premium: ${nome}`, url };
+  if (navigator.share) {
+    navigator.share(dados).catch(() => {}); // abre o menu nativo de compartilhar (celular)
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(url)
+      .then(() => mostrarToastShare('🔗 Link copiado! Agora é só colar no WhatsApp.'))
+      .catch(() => prompt('Copie o link desta casa:', url));
+  } else {
+    prompt('Copie o link desta casa:', url);
+  }
+}
+
+function ligarCompartilhar() {
+  document.querySelectorAll('.btn-compartilhar').forEach(btn => {
+    btn.addEventListener('click', () => compartilharCasa(btn.dataset.id, btn.dataset.nome));
+  });
+}
+
+// Se a URL tem ?casa=ID, mostra SÓ aquela casa (link compartilhado) + botão "ver todas".
+function tratarCasaCompartilhada() {
+  const casaId = new URLSearchParams(location.search).get('casa');
+  if (!casaId) return; // modo normal: mostra tudo
+
+  // esconde o que não faz sentido quando é uma casa só
+  ['topo', 'quem-somos', 'contato'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  const busca = document.querySelector('.busca-card');
+  if (busca) busca.style.display = 'none';
+  document.getElementById('barra-ver-todas').hidden = false;
+
+  const casa = CASAS.find(c => String(c.id) === String(casaId));
+  const grid = document.getElementById('grid');
+  const titulo = document.querySelector('.secao-titulo h2');
+  const contador = document.getElementById('contador-unidades');
+  if (contador) contador.textContent = '';
+
+  if (casa) {
+    if (titulo) titulo.textContent = casa.nome;
+    grid.innerHTML = renderCard(casa);
+    ligarCarrosseis();
+    ligarMapas();
+    ligarCompartilhar();
+    ajustarAlturaFotos();
+  } else {
+    if (titulo) titulo.textContent = 'Casa não encontrada';
+    grid.innerHTML = '<div class="vazio">Essa casa não está mais disponível ou o link expirou. Toque em "Ver todas as casas" acima pra conferir as unidades disponíveis.</div>';
+  }
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+async function iniciar() {
+  let textos = TEXTOS_FALLBACK;
+  try {
+    const [respCasas, respTextos] = await Promise.all([
+      fetch(`${API_BASE}/api/casas`),
+      fetch(`${API_BASE}/api/textos`),
+    ]);
+    if (!respCasas.ok || !respTextos.ok) throw new Error('API respondeu com erro');
+    const casasDaApi = await respCasas.json();
+    textos = await respTextos.json();
+    CASAS = casasDaApi.map(normalizarCasaDaApi);
+  } catch (erro) {
+    console.warn('Não deu pra buscar da API, usando dados salvos localmente:', erro);
+    CASAS = CASAS_FALLBACK;
+  }
+
+  ordenarCasas();
+  recomputarDerivados();
+  aplicarTextos(textos);
+  aplicarFiltros();
+  tratarCasaCompartilhada();
+}
+
+iniciar();
+</script>
+
+</body>
+</html>
