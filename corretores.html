@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal do Corretor | Premium Empreendimentos</title>
+<meta name="description" content="Portal para corretores parceiros pesquisarem as unidades disponíveis da Premium Empreendimentos e copiarem o link para enviar aos clientes.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --laranja:#EC4F1F;
+    --laranja-ui:#E8820C;
+    --ouro:#C48A1E;
+    --whats:#25D366;
+    --whats-escuro:#1DA851;
+    --bg:#ffffff;
+    --bg-alt:#f7f6f4;
+    --card:#ffffff;
+    --card-border:#e8e6e2;
+    --card-border-hover:#f2cd9a;
+    --text:#1a1a1a;
+    --muted:#6b7076;
+    --sombra: 0 16px 32px -14px rgba(20,18,15,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',-apple-system,'Segoe UI',Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.logo,.preco{font-family:'Poppins',Inter,sans-serif}
+
+  .navbar{
+    position:sticky;top:0;z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px 20px;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(0,0,0,.07);
+  }
+  .navbar-logo{
+    display:flex;align-items:center;
+    text-decoration:none;
+    flex-shrink:0;
+  }
+  .navbar-logo img{display:block;height:44px;width:auto}
+  .navbar-tag{
+    font-size:11.5px;
+    font-weight:700;
+    color:var(--laranja-ui);
+    background:rgba(236,79,31,.08);
+    padding:5px 12px;
+    border-radius:20px;
+    text-transform:uppercase;
+    letter-spacing:.4px;
+  }
+
+  header{
+    position:relative;
+    padding:40px 20px 110px;
+    text-align:center;
+    overflow:hidden;
+    background:#ffffff;
+  }
+  .header-inner{position:relative;z-index:1}
+  .selo{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:rgba(196,138,30,.1);
+    border:1px solid rgba(196,138,30,.35);
+    color:var(--ouro);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.4px;
+    padding:6px 14px;
+    border-radius:30px;
+    margin-bottom:18px;
+  }
+  h1{
+    font-weight:800;
+    font-size:clamp(28px,5.4vw,44px);
+    margin-bottom:14px;
+    line-height:1.18;
+    letter-spacing:-.5px;
+  }
+  h1 span.destaque{color:var(--laranja)}
+  header p{
+    color:var(--muted);
+    font-size:16px;
+    max-width:560px;
+    margin:0 auto;
+    line-height:1.55;
+  }
+
+  .busca-card{
+    position:relative;
+    max-width:900px;
+    margin:-78px auto 0;
+    padding:22px 0 8px;
+    background:linear-gradient(180deg,#ffffff,#fbfaf8);
+    border:1px solid var(--card-border);
+    border-radius:22px;
+    box-shadow:var(--sombra);
+    z-index:2;
+  }
+  .busca-titulo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:0 20px 14px;
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    color:var(--text);
+    border-bottom:1px solid var(--card-border);
+    margin-bottom:16px;
+  }
+  .busca-titulo .ponto{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--laranja);
+    box-shadow:0 0 0 4px rgba(236,79,31,.18);
+  }
+  .filtros-wrap{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    padding:0 20px 16px;
+  }
+  .filtro-grupo{
+    flex:1;
+    min-width:160px;
+  }
+  .filtro-label{
+    display:block;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.6px;
+    color:var(--muted);
+    margin-bottom:7px;
+    font-weight:600;
+  }
+  .filtro-select{
+    width:100%;
+    background:rgba(20,18,15,.035) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M1 1l5 5 5-5" stroke="%236b7076" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat right 14px center;
+    border:1px solid var(--card-border);
+    color:var(--text);
+    padding:12px 34px 12px 14px;
+    border-radius:12px;
+    font-size:14px;
+    font-family:inherit;
+    font-weight:500;
+    cursor:pointer;
+    transition:.15s;
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+  }
+  .filtro-select:hover{border-color:var(--laranja-ui)}
+  .filtro-select:focus{outline:none;border-color:var(--laranja);box-shadow:0 0 0 3px rgba(236,79,31,.15)}
+
+  .secao-titulo{
+    max-width:1100px;
+    margin:44px auto 4px;
+    padding:0 16px;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .secao-titulo h2{
+    font-size:clamp(19px,3vw,24px);
+    font-weight:700;
+  }
+  .secao-titulo span{
+    color:var(--muted);
+    font-size:13px;
+  }
+
+  .grid{
+    max-width:1100px;
+    margin:0 auto;
+    padding:16px 16px 60px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    align-items:start;
+    gap:22px;
+  }
+
+  .card{
+    background:linear-gradient(180deg,#ffffff,#fdfcfb);
+    border:1px solid var(--card-border);
+    border-radius:18px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 10px 24px -16px rgba(20,18,15,.18);
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{
+    transform:translateY(-5px);
+    border-color:var(--card-border-hover);
+    box-shadow:0 24px 36px -16px rgba(236,79,31,.22);
+  }
+
+  .card .foto-wrap{
+    position:relative;
+    aspect-ratio:4/3;
+    background:#f4f3f1;
+    overflow:hidden;
+  }
+  .foto-scroll{
+    display:flex;
+    width:100%;height:100%;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+  }
+  .foto-scroll::-webkit-scrollbar{display:none}
+  .foto-scroll img{
+    flex:0 0 100%;
+    scroll-snap-align:start;
+    width:100%;height:100%;object-fit:contain;display:block;
+  }
+  .dots{
+    position:absolute;bottom:10px;left:0;right:0;
+    display:flex;justify-content:center;gap:5px;
+    z-index:2;
+  }
+  .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:rgba(255,255,255,.4);
+    border:none;padding:0;
+    cursor:pointer;
+    transition:background .15s, transform .15s;
+  }
+  .dot.ativo{background:#fff;transform:scale(1.3)}
+
+  .seta{
+    position:absolute;top:50%;
+    transform:translateY(-50%);
+    width:32px;height:32px;
+    border-radius:50%;
+    background:rgba(0,0,0,.5);
+    backdrop-filter:blur(2px);
+    border:none;
+    color:#fff;
+    font-size:16px;
+    line-height:1;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    z-index:3;
+    transition:background .15s;
+  }
+  .seta:hover{background:rgba(0,0,0,.75)}
+  .seta.esquerda{left:10px}
+  .seta.direita{right:10px}
+  .card .foto-wrap.placeholder{
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#f1efeb,#e6e3dd);
+    color:var(--muted);
+    font-size:13px;
+    text-align:center;
+    padding:20px;
+  }
+  .card-body{
+    padding:16px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1;
+  }
+  .card-body h3{
+    font-size:19px;
+  }
+  .card-body .categoria{
+    font-size:13px;
+    color:var(--muted);
+  }
+  .btn-ver-mapa{
+    margin-top:6px;
+    background:none;
+    border:none;
+    padding:0;
+    color:var(--laranja-ui);
+    font-size:12.5px;
+    font-weight:600;
+    cursor:pointer;
+    text-decoration:underline;
+  }
+  .btn-ver-mapa:hover{color:var(--laranja)}
+  .mapa-modal{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    background:rgba(0,0,0,.72);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    animation:aparecerMapa .18s ease;
+  }
+  .mapa-modal[hidden]{display:none}
+  @keyframes aparecerMapa{from{opacity:0}to{opacity:1}}
+  .mapa-modal-caixa{
+    position:relative;
+    width:min(960px,96vw);
+    height:min(80vh,720px);
+    background:#fff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.6);
+  }
+  .mapa-modal-frame{width:100%;height:100%}
+  .mapa-modal-frame iframe{width:100%;height:100%;border:0;display:block}
+  .mapa-modal-fechar{
+    position:absolute;
+    top:12px;
+    right:12px;
+    z-index:2;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:rgba(0,0,0,.62);
+    color:#fff;
+    border:none;
+    font-size:24px;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .mapa-modal-fechar:hover{background:rgba(0,0,0,.85)}
+  .specs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:12.5px;
+    color:var(--muted);
+    padding:8px 0;
+    border-top:1px solid var(--card-border);
+    border-bottom:1px solid var(--card-border);
+  }
+  .specs span{white-space:nowrap}
+
+  .financiamento{
+    font-size:12.5px;
+    color:var(--muted);
+  }
+
+  .preco-wrap{margin-top:2px}
+  .preco-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .preco{font-size:24px;font-weight:700;color:var(--text);letter-spacing:-.3px}
+
+  .btn-compartilhar{
+    width:100%;
+    margin-top:auto;
+    background:var(--laranja);
+    border:none;
+    color:#fff;
+    font-size:13.5px;
+    font-weight:700;
+    padding:13px 10px;
+    border-radius:11px;
+    cursor:pointer;
+    transition:.15s;
+    box-shadow:0 8px 18px -6px rgba(236,79,31,.4);
+  }
+  .btn-compartilhar:hover{background:#d1430f;transform:translateY(-2px)}
+
+  .barra-ver-todas{
+    max-width:1100px;
+    margin:24px auto 0;
+    padding:0 16px;
+  }
+  .btn-ver-todas{
+    background:var(--laranja);
+    color:#fff;
+    border:none;
+    padding:13px 24px;
+    border-radius:12px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 8px 18px -6px rgba(236,79,31,.45);
+    transition:.15s;
+  }
+  .btn-ver-todas:hover{background:#d1430f;transform:translateY(-1px)}
+
+  .toast-share{
+    position:fixed;
+    bottom:24px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#1a1a1a;
+    color:#fff;
+    padding:12px 20px;
+    border-radius:30px;
+    font-size:13.5px;
+    font-weight:500;
+    z-index:250;
+    opacity:0;
+    transition:opacity .2s;
+    pointer-events:none;
+    max-width:90vw;
+    text-align:center;
+  }
+  .toast-share.mostrar{opacity:1}
+
+  footer{
+    text-align:center;
+    padding:8px 20px 46px;
+  }
+  footer p{color:var(--muted);font-size:13px}
+
+  .vazio{
+    grid-column:1/-1;
+    text-align:center;
+    color:var(--muted);
+    padding:40px 0;
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="#topo" class="navbar-logo" aria-label="Premium Empreendimentos">
+    <img src="images/logo-premium.png" alt="Premium Empreendimentos">
+  </a>
+  <span class="navbar-tag">Portal do Corretor</span>
+</nav>
+
+<header id="topo">
+  <div class="header-inner">
+    <div class="selo">Área exclusiva para corretores parceiros</div>
+    <h1>Encontre a unidade certa<br>e copie o link <span class="destaque">pro seu cliente</span></h1>
+    <p>Pesquise as unidades disponíveis da Premium, filtre pelo que seu cliente precisa e use o botão "Copiar link" em cada casa para enviar direto pra ele.</p>
+  </div>
+</header>
+
+<div class="busca-card">
+  <div class="busca-titulo"><span class="ponto"></span> Filtre e encontre</div>
+  <div class="filtros-wrap">
+  <div class="filtro-grupo">
+    <label class="filtro-label" for="filtro-preco">Preço</label>
+    <select class="filtro-select" id="filtro-preco">
+      <option value="todos">Todas</option>
+      <option value="300000">Até R$ 300 mil</option>
+      <option value="400000">Até R$ 400 mil</option>
+      <option value="600000">Até R$ 600 mil</option>
+      <option value="1000000">Até R$ 1 milhão</option>
+      <option value="1500000">Até R$ 1,5 milhões</option>
+    </select>
+  </div>
+
+  <div class="filtro-grupo">
+    <label class="filtro-label" for="filtro-quartos">Dormitórios</label>
+    <select class="filtro-select" id="filtro-quartos">
+      <option value="todos">Todos</option>
+      <option value="1">1 quarto</option>
+      <option value="2">2 quartos</option>
+      <option value="3">3 quartos</option>
+    </select>
+  </div>
+
+  <div class="filtro-grupo">
+    <label class="filtro-label" for="filtro-tipo">Tipo de imóvel</label>
+    <select class="filtro-select" id="filtro-tipo">
+      <option value="todos">Todos</option>
+      <option value="Casa Única">Casa Única</option>
+      <option value="Casa Geminada">Casa Geminada</option>
+      <option value="Studio">Studio</option>
+    </select>
+  </div>
+  </div>
+</div>
+
+<div class="barra-ver-todas" id="barra-ver-todas" hidden>
+  <button type="button" class="btn-ver-todas" onclick="location.href = location.pathname">🏠 Ver todas as unidades</button>
+</div>
+
+<div class="secao-titulo" id="imoveis">
+  <h2>Unidades disponíveis</h2>
+  <span id="contador-unidades"></span>
+</div>
+
+<main class="grid" id="grid"></main>
+
+<footer>
+  <p>Portal exclusivo para corretores parceiros da Premium Empreendimentos.</p>
+</footer>
+
+<!-- Modal do mapa (satélite) — sobreposto à página, fecha ao clicar fora -->
+<div class="mapa-modal" id="mapa-modal" hidden>
+  <div class="mapa-modal-caixa">
+    <button type="button" class="mapa-modal-fechar" aria-label="Fechar mapa">×</button>
+    <div class="mapa-modal-frame" id="mapa-modal-frame"></div>
+  </div>
+</div>
+
+<script>
+// URL da API/painel administrativo (backend no Railway).
+const API_BASE = 'https://casas-disponiveis-api-production.up.railway.app';
+
+// Dados usados só se a API estiver fora do ar (o site nunca fica em branco).
+// Publicado automaticamente pelo publicar_no_site.py — não editar na mão.
+const CASAS_FALLBACK = [
+  {
+    id: 4,
+    nome: "Und 04 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: ["images/d1c43c623a194f2b9751a59603199bcf.jpg", "images/9b5c878f871e45a5bd04d5305e067e81.jpg", "images/aea40ed5d1c44abebd597bd44a9a9bde.jpg", "images/00df3d4b7d1d4df6abc29a7605cc741a.jpg", "images/247d5d531bc24c209c970a4f012825b1.jpg", "images/20305aabdc8d4740a8841b9c7690e8f2.jpg", "images/363d84429e2e44e19f47ffc90c04abbd.jpg", "images/28b61fd319984ee9bf9120f0ba42020a.jpg"],
+    m2: "",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 210000.0,
+    prazo: "07/27",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 5,
+    nome: "Und 03 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: ["images/d1c43c623a194f2b9751a59603199bcf.jpg", "images/9b5c878f871e45a5bd04d5305e067e81.jpg", "images/aea40ed5d1c44abebd597bd44a9a9bde.jpg", "images/00df3d4b7d1d4df6abc29a7605cc741a.jpg", "images/247d5d531bc24c209c970a4f012825b1.jpg", "images/20305aabdc8d4740a8841b9c7690e8f2.jpg", "images/363d84429e2e44e19f47ffc90c04abbd.jpg", "images/28b61fd319984ee9bf9120f0ba42020a.jpg"],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 210000.0,
+    prazo: "07/27",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 3,
+    nome: "Und 05 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: ["images/d1c43c623a194f2b9751a59603199bcf.jpg", "images/9b5c878f871e45a5bd04d5305e067e81.jpg", "images/aea40ed5d1c44abebd597bd44a9a9bde.jpg", "images/00df3d4b7d1d4df6abc29a7605cc741a.jpg", "images/247d5d531bc24c209c970a4f012825b1.jpg", "images/20305aabdc8d4740a8841b9c7690e8f2.jpg", "images/363d84429e2e44e19f47ffc90c04abbd.jpg", "images/28b61fd319984ee9bf9120f0ba42020a.jpg"],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 215000.0,
+    prazo: "07/27",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 6,
+    nome: "Und 02 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: ["images/d1c43c623a194f2b9751a59603199bcf.jpg", "images/9b5c878f871e45a5bd04d5305e067e81.jpg", "images/aea40ed5d1c44abebd597bd44a9a9bde.jpg", "images/00df3d4b7d1d4df6abc29a7605cc741a.jpg", "images/247d5d531bc24c209c970a4f012825b1.jpg", "images/20305aabdc8d4740a8841b9c7690e8f2.jpg", "images/363d84429e2e44e19f47ffc90c04abbd.jpg", "images/28b61fd319984ee9bf9120f0ba42020a.jpg"],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 215000.0,
+    prazo: "07/27",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 7,
+    nome: "Und 01 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: ["images/d1c43c623a194f2b9751a59603199bcf.jpg", "images/9b5c878f871e45a5bd04d5305e067e81.jpg", "images/aea40ed5d1c44abebd597bd44a9a9bde.jpg", "images/00df3d4b7d1d4df6abc29a7605cc741a.jpg", "images/247d5d531bc24c209c970a4f012825b1.jpg", "images/20305aabdc8d4740a8841b9c7690e8f2.jpg", "images/363d84429e2e44e19f47ffc90c04abbd.jpg", "images/28b61fd319984ee9bf9120f0ba42020a.jpg"],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 225000.0,
+    prazo: "07/27",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 2,
+    nome: "Und 06 - Tóquio",
+    empreendimento: "Tóquio",
+    categoria: "Studio",
+    bairro: "Nova Divineia",
+    fotos: ["images/d1c43c623a194f2b9751a59603199bcf.jpg", "images/9b5c878f871e45a5bd04d5305e067e81.jpg", "images/aea40ed5d1c44abebd597bd44a9a9bde.jpg", "images/00df3d4b7d1d4df6abc29a7605cc741a.jpg", "images/247d5d531bc24c209c970a4f012825b1.jpg", "images/20305aabdc8d4740a8841b9c7690e8f2.jpg", "images/363d84429e2e44e19f47ffc90c04abbd.jpg", "images/28b61fd319984ee9bf9120f0ba42020a.jpg"],
+    m2: "34,50",
+    dorm: "1",
+    banh: "1",
+    gar: "1",
+    preco: 240000.0,
+    prazo: "07/27",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 15,
+    nome: "Und 03 - Viena",
+    empreendimento: "Viena",
+    categoria: "Casa Geminada",
+    bairro: "Bairro Pioneiro",
+    fotos: ["https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-1.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-2.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-3.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-4.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-5.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-6.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-7.jpg"],
+    m2: "51",
+    dorm: "2",
+    banh: "1",
+    gar: "1",
+    preco: 321526.86,
+    prazo: "09/26",
+    linkPost: "https://www.instagram.com/p/DRkvlHNklcB/",
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 16,
+    nome: "Und 02 - Viena",
+    empreendimento: "Viena",
+    categoria: "Casa Geminada",
+    bairro: "Bairro Pioneiro",
+    fotos: ["https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-1.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-2.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-3.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-4.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-5.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-6.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/viena-7.jpg"],
+    m2: "51",
+    dorm: "2",
+    banh: "1",
+    gar: "1",
+    preco: 321526.86,
+    prazo: "09/26",
+    linkPost: "https://www.instagram.com/p/DRkvlHNklcB/",
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 8,
+    nome: "Und 06 - Barcelona",
+    empreendimento: "Barcelona",
+    categoria: "Casa Geminada",
+    bairro: "Bairro Pioneiro",
+    fotos: ["https://premiumempreendimentos.github.io/casas-disponiveis/images/barcelona-1.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/barcelona-3.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/barcelona-4.jpg", "images/3d4a0ca0d19a41f686ca7d86e3b590e0.jpg"],
+    m2: "59,00",
+    dorm: "2",
+    banh: "1",
+    gar: "1",
+    preco: 370000.0,
+    prazo: "01/27",
+    linkPost: "https://www.instagram.com/p/DYP2-h4j2V4/",
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 11,
+    nome: "Und 02 - Paris",
+    empreendimento: "Paris",
+    categoria: "Casa Geminada",
+    bairro: "Nova Divineia",
+    fotos: ["https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-1.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-2.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-3.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-4.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-5.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-6.jpg"],
+    m2: "70",
+    dorm: "3",
+    banh: "1",
+    gar: "2",
+    preco: 446391.66,
+    prazo: "06/26",
+    linkPost: "https://www.instagram.com/p/DXotHsfmsYJ/",
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 12,
+    nome: "Und 01 - Paris",
+    empreendimento: "Paris",
+    categoria: "Casa Geminada",
+    bairro: "Nova Divineia",
+    fotos: ["https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-1.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-2.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-3.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-4.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-5.jpg", "https://premiumempreendimentos.github.io/casas-disponiveis/images/paris-6.jpg"],
+    m2: "70",
+    dorm: "2",
+    banh: "2",
+    gar: "2",
+    preco: 465121.38,
+    prazo: "06/26",
+    linkPost: "https://www.instagram.com/p/DXotHsfmsYJ/",
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 13,
+    nome: "Casa 08",
+    empreendimento: "Casa 08",
+    categoria: "Casa Única",
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/b69130f81493463084af4cec7d0d6dff.jpg", "images/91360ccdd7124db6ac1681c818eacee5.jpg", "images/b94fdef82c9d43bcacf1fabcd18ed58f.jpg", "images/aab6cf72d32c43598f81e5a7ed88a99a.jpg", "images/50e4cb270bc64fe1bf1c087d4b7c86e7.jpg", "images/aa4c3a1491954d66a2f108a3a511000b.jpg"],
+    m2: "151",
+    dorm: "3",
+    banh: "3",
+    gar: "2",
+    preco: 889661.7,
+    prazo: "11/26",
+    linkPost: null,
+    linkLocalizacao: "https://maps.app.goo.gl/eq5u14izDvLfKxbZ6",
+    mapaLat: -26.8668861,
+    mapaLng: -52.9931251,
+  },
+  {
+    id: 1,
+    nome: "Casa 10",
+    empreendimento: "Casa 10",
+    categoria: "Casa Única",
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/4aed3979bf794048823804dc455bf8a2.jpg", "images/5a7e701be4d0435d93e7a1d7a8bc2164.jpg", "images/676602c7c7974cb3857682083b6fb324.jpg", "images/118d7ba810e54501bbf55fd42ad70113.jpg", "images/ab26c693244b4f2baa620edd3a694143.jpg"],
+    m2: "150",
+    dorm: "3 (1 suíte)",
+    banh: "2",
+    gar: "2",
+    preco: 961458.96,
+    prazo: "07/27",
+    linkPost: "https://www.instagram.com/p/DZr-OPFkt9t/",
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+  {
+    id: 14,
+    nome: "Casa 07",
+    empreendimento: "Casa 07",
+    categoria: "Casa Única",
+    bairro: "Bairro Pioneiro",
+    fotos: ["images/6705d226d14449a3a73bdbdb13ad61cb.jpg", "images/84e58a9968d54953a96d9b38156885f5.jpg", "images/e310f3acb9cc423c862a4de2387cf395.jpg", "images/83bea02d500540cc9798e063b9be1101.jpg", "images/2dda49cea0764042adc241f650f09f07.jpg"],
+    m2: "195",
+    dorm: "3",
+    banh: "4",
+    gar: "2",
+    preco: 983310.3,
+    prazo: "10/26",
+    linkPost: null,
+    linkLocalizacao: null,
+    mapaLat: null,
+    mapaLng: null,
+  },
+];
+
+let CASAS = [];
+
+function formatarPreco(v) {
+  return v.toLocaleString('pt-BR', {style:'currency', currency:'BRL', maximumFractionDigits:0});
+}
+
+function renderCard(casa) {
+  const temFotos = casa.fotos && casa.fotos.length > 0;
+  const temVariasFotos = temFotos && casa.fotos.length > 1;
+
+  const fotoHtml = temFotos
+    ? `<div class="foto-scroll">
+        ${casa.fotos.map(f => `<img src="${f}" alt="${casa.nome}" loading="lazy">`).join('')}
+      </div>
+      ${temVariasFotos ? `
+      <button type="button" class="seta esquerda" aria-label="Foto anterior">&#8249;</button>
+      <button type="button" class="seta direita" aria-label="Próxima foto">&#8250;</button>
+      <div class="dots">${casa.fotos.map((_,i) => `<button type="button" class="dot${i===0?' ativo':''}" aria-label="Ir para foto ${i+1}"></button>`).join('')}</div>
+      ` : ''}`
+    : `Fotos em breve<br>(lançamento)`;
+
+  const m2Num = parseFloat(String(casa.m2).replace(',', '.'));
+  const mostrarM2 = m2Num > 100;
+
+  const financiamento = casa.preco <= 600000
+    ? '🏦 Financiamento pela Minha Casa Minha Vida, Caixa Econômica Federal'
+    : '🏦 Financiamento SBPE, Caixa Econômica Federal';
+
+  return `
+  <div class="card" data-preco="${casa.preco}">
+    <div class="foto-wrap${temFotos ? '' : ' placeholder'}">
+      ${fotoHtml}
+    </div>
+    <div class="card-body">
+      <div>
+        <h3>${casa.nome}</h3>
+        <div class="categoria">📍 ${casa.categoria} · ${casa.bairro}, Pinhalzinho SC</div>
+        ${casa.mapaLat && casa.mapaLng ? `
+        <button type="button" class="btn-ver-mapa" data-lat="${casa.mapaLat}" data-lng="${casa.mapaLng}">🗺️ Ver localização no mapa</button>
+        ` : ''}
+      </div>
+      <div class="specs">
+        ${mostrarM2 ? `<span>📐 ${casa.m2} m²</span>` : ''}
+        <span>🛏️ ${casa.dorm} dorm.</span>
+        <span>🚿 ${casa.banh} banh.</span>
+        <span>🚗 ${casa.gar} vaga${casa.gar > 1 ? 's' : ''}</span>
+        <span>🔑 Entrega ${casa.prazo}</span>
+      </div>
+      <div class="financiamento">${financiamento}</div>
+      <div class="preco-wrap">
+        <div class="preco-label">Valor</div>
+        <div class="preco">${formatarPreco(casa.preco)}</div>
+      </div>
+      <button type="button" class="btn-compartilhar" data-id="${casa.id ?? ''}" data-nome="${String(casa.nome || '').replace(/"/g, '&quot;')}">🔗 Copiar link desta casa</button>
+    </div>
+  </div>`;
+}
+
+function ajustarAlturaFotos() {
+  document.querySelectorAll('#grid .card .foto-wrap:not(.placeholder)').forEach(wrap => {
+    const img = wrap.querySelector('.foto-scroll img');
+    if (!img) return;
+    const aplicar = () => {
+      if (img.naturalWidth && img.naturalHeight) {
+        wrap.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`;
+      }
+    };
+    if (img.complete) aplicar();
+    else img.addEventListener('load', aplicar, { once: true });
+  });
+}
+
+function ligarCarrosseis() {
+  document.querySelectorAll('.foto-scroll').forEach(scroller => {
+    const wrap = scroller.parentElement;
+    const dots = wrap.querySelectorAll('.dot');
+    if (!dots.length) return;
+    const total = dots.length;
+
+    const irPara = (i) => {
+      scroller.scrollTo({ left: i * scroller.clientWidth, behavior: 'smooth' });
+    };
+
+    scroller.addEventListener('scroll', () => {
+      const i = Math.round(scroller.scrollLeft / scroller.clientWidth);
+      dots.forEach((d, idx) => d.classList.toggle('ativo', idx === i));
+    }, { passive: true });
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => irPara(i)));
+
+    const setaEsq = wrap.querySelector('.seta.esquerda');
+    const setaDir = wrap.querySelector('.seta.direita');
+    if (setaEsq && setaDir) {
+      setaEsq.addEventListener('click', () => {
+        const atual = Math.round(scroller.scrollLeft / scroller.clientWidth);
+        irPara(Math.max(0, atual - 1));
+      });
+      setaDir.addEventListener('click', () => {
+        const atual = Math.round(scroller.scrollLeft / scroller.clientWidth);
+        irPara(Math.min(total - 1, atual + 1));
+      });
+    }
+  });
+}
+
+const mapaModal = document.getElementById('mapa-modal');
+const mapaModalFrame = document.getElementById('mapa-modal-frame');
+
+function abrirMapaModal(lat, lng) {
+  mapaModalFrame.innerHTML = `<iframe src="https://maps.google.com/maps?q=${lat},${lng}&t=k&z=18&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`;
+  mapaModal.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+
+function fecharMapaModal() {
+  mapaModal.hidden = true;
+  mapaModalFrame.innerHTML = '';
+  document.body.style.overflow = '';
+}
+
+mapaModal.addEventListener('click', (e) => {
+  if (e.target === mapaModal || e.target.classList.contains('mapa-modal-fechar')) fecharMapaModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !mapaModal.hidden) fecharMapaModal();
+});
+
+function ligarMapas() {
+  document.querySelectorAll('.btn-ver-mapa').forEach(btn => {
+    btn.addEventListener('click', () => abrirMapaModal(btn.dataset.lat, btn.dataset.lng));
+  });
+}
+
+let filtroPreco = 'todos';
+let filtroQuartos = 'todos';
+let filtroTipo = 'todos';
+
+function aplicarFiltros() {
+  const grid = document.getElementById('grid');
+  const filtradas = CASAS.filter(c => {
+    const passaPreco = filtroPreco === 'todos' || c.preco <= Number(filtroPreco);
+    const passaQuartos = filtroQuartos === 'todos' || parseInt(c.dorm, 10) === Number(filtroQuartos);
+    const passaTipo = filtroTipo === 'todos' || c.categoria === filtroTipo;
+    return passaPreco && passaQuartos && passaTipo;
+  });
+
+  grid.innerHTML = filtradas.length
+    ? filtradas.map(renderCard).join('')
+    : '<div class="vazio">Nenhuma unidade com esses filtros no momento.</div>';
+
+  const contador = document.getElementById('contador-unidades');
+  if (contador) {
+    contador.textContent = `${filtradas.length} unidade${filtradas.length === 1 ? '' : 's'} encontrada${filtradas.length === 1 ? '' : 's'}`;
+  }
+
+  ligarCarrosseis();
+  ligarMapas();
+  ligarCompartilhar();
+  ajustarAlturaFotos();
+}
+
+document.getElementById('filtro-preco').addEventListener('change', (e) => {
+  filtroPreco = e.target.value;
+  aplicarFiltros();
+});
+document.getElementById('filtro-quartos').addEventListener('change', (e) => {
+  filtroQuartos = e.target.value;
+  aplicarFiltros();
+});
+document.getElementById('filtro-tipo').addEventListener('change', (e) => {
+  filtroTipo = e.target.value;
+  aplicarFiltros();
+});
+
+function ordenarCasas() {
+  CASAS.sort((a, b) => {
+    const aTemFotos = a.fotos && a.fotos.length > 0;
+    const bTemFotos = b.fotos && b.fotos.length > 0;
+    if (aTemFotos !== bTemFotos) return aTemFotos ? -1 : 1;
+    return a.preco - b.preco;
+  });
+}
+
+function normalizarCasaDaApi(c) {
+  return {
+    id: c.id,
+    nome: c.nome,
+    empreendimento: c.empreendimento,
+    categoria: c.categoria,
+    bairro: c.bairro,
+    fotos: (c.fotos || []).map(f => f.url),
+    m2: c.m2,
+    dorm: c.dorm,
+    banh: c.banh,
+    gar: c.gar,
+    preco: c.preco,
+    prazo: c.prazo,
+    linkPost: c.link_post,
+    linkLocalizacao: c.link_localizacao,
+    mapaLat: c.mapa_lat,
+    mapaLng: c.mapa_lng,
+  };
+}
+
+// ─── Copiar o link de uma casa específica ───────────────────────────
+function mostrarToastShare(msg) {
+  let t = document.getElementById('toast-share');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'toast-share';
+    t.className = 'toast-share';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.classList.add('mostrar');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('mostrar'), 3000);
+}
+
+function compartilharCasa(id, nome) {
+  // o link gerado aponta pro SITE PÚBLICO (não pro portal do corretor) — é o que
+  // o cliente final do corretor deve receber, igual a vitrine normal.
+  const url = `https://premiumempreendimentos.github.io/casas-disponiveis/${id ? `?casa=${id}` : ''}`;
+  const dados = { title: `${nome} · Premium Empreendimentos`, text: `Olha essa casa da Premium: ${nome}`, url };
+  if (navigator.share) {
+    navigator.share(dados).catch(() => {});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(url)
+      .then(() => mostrarToastShare('🔗 Link copiado! Agora é só enviar pro seu cliente.'))
+      .catch(() => prompt('Copie o link desta casa:', url));
+  } else {
+    prompt('Copie o link desta casa:', url);
+  }
+}
+
+function ligarCompartilhar() {
+  document.querySelectorAll('.btn-compartilhar').forEach(btn => {
+    btn.addEventListener('click', () => compartilharCasa(btn.dataset.id, btn.dataset.nome));
+  });
+}
+
+async function iniciar() {
+  try {
+    const resp = await fetch(`${API_BASE}/api/casas`);
+    if (!resp.ok) throw new Error('API respondeu com erro');
+    const casasDaApi = await resp.json();
+    CASAS = casasDaApi.map(normalizarCasaDaApi);
+  } catch (erro) {
+    console.warn('Não deu pra buscar da API, usando dados salvos localmente:', erro);
+    CASAS = CASAS_FALLBACK;
+  }
+
+  ordenarCasas();
+  aplicarFiltros();
+}
+
+iniciar();
+</script>
+
+</body>
+</html>
