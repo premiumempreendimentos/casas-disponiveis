@@ -1351,7 +1351,8 @@ function ligarCompartilhar() {
 
 // Se a URL tem ?casa=ID, mostra SÓ aquela casa (link compartilhado) + botão "ver todas".
 function tratarCasaCompartilhada() {
-  const casaId = new URLSearchParams(location.search).get('casa');
+  const params = new URLSearchParams(location.search);
+  const casaId = params.get('casa');
   if (!casaId) return; // modo normal: mostra tudo
 
   // esconde o que não faz sentido quando é uma casa só
@@ -1361,7 +1362,8 @@ function tratarCasaCompartilhada() {
   });
   const busca = document.querySelector('.busca-card');
   if (busca) busca.style.display = 'none';
-  document.getElementById('barra-ver-todas').hidden = false;
+  // link veio do portal do corretor (?origem=corretor): não mostra "Ver todas as casas".
+  document.getElementById('barra-ver-todas').hidden = params.get('origem') === 'corretor';
 
   const casa = CASAS.find(c => String(c.id) === String(casaId));
   const grid = document.getElementById('grid');
