@@ -949,7 +949,7 @@ function ordenarCasas() {
     const aTemFotos = a.fotos && a.fotos.length > 0;
     const bTemFotos = b.fotos && b.fotos.length > 0;
     if (aTemFotos !== bTemFotos) return aTemFotos ? -1 : 1;
-    return a.preco - b.preco;
+    return b.preco - a.preco; // maior valor primeiro
   });
 }
 
