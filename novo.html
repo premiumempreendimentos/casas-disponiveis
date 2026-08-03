@@ -1369,6 +1369,8 @@ function tratarCasaCompartilhada() {
   if (vemDoCorretor) {
     const flutuantes = document.querySelector('.flutuantes');
     if (flutuantes) flutuantes.style.display = 'none';
+    const navLinks = document.querySelector('.navbar-links');
+    if (navLinks) navLinks.style.display = 'none';
   }
 
   const casa = CASAS.find(c => String(c.id) === String(casaId));

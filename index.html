@@ -1409,6 +1409,10 @@ function tratarCasaCompartilhada() {
     if (flutuantes) flutuantes.style.display = 'none';
     const footerSocial = document.querySelector('.footer-social');
     if (footerSocial) footerSocial.style.display = 'none';
+    // esses links apontam pra seções que já estão escondidas (Início/Quem Somos/Contato),
+    // e "Imóveis" levaria pra rolar até um grid que só tem essa 1 casa — sem sentido aqui.
+    const navLinks = document.querySelector('.navbar-links');
+    if (navLinks) navLinks.style.display = 'none';
   }
 
   const casa = CASAS.find(c => String(c.id) === String(casaId));
