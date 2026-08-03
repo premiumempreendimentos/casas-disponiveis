@@ -1362,8 +1362,14 @@ function tratarCasaCompartilhada() {
   });
   const busca = document.querySelector('.busca-card');
   if (busca) busca.style.display = 'none';
-  // link veio do portal do corretor (?origem=corretor): não mostra "Ver todas as casas".
-  document.getElementById('barra-ver-todas').hidden = params.get('origem') === 'corretor';
+  // link veio do portal do corretor (?origem=corretor): não mostra "Ver todas as casas"
+  // nem os ícones flutuantes de Instagram/WhatsApp.
+  const vemDoCorretor = params.get('origem') === 'corretor';
+  document.getElementById('barra-ver-todas').hidden = vemDoCorretor;
+  if (vemDoCorretor) {
+    const flutuantes = document.querySelector('.flutuantes');
+    if (flutuantes) flutuantes.style.display = 'none';
+  }
 
   const casa = CASAS.find(c => String(c.id) === String(casaId));
   const grid = document.getElementById('grid');
