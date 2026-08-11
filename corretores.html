@@ -1000,7 +1000,7 @@ function compartilharCasa(id, nome) {
   const url = `https://premiumempreendimentos.github.io/casas-disponiveis/${id ? `?casa=${id}&origem=corretor` : ''}`;
   // mensagem sem citar "Premium" — o corretor passa a informação como dele, não como
   // divulgação da construtora (mesma regra de nunca vender "direto com a construtora").
-  const dados = { title: nome, text: `Essas são as informações de ${nome}:`, url };
+  const dados = { title: nome, text: `Essas são as informações da ${nome}:`, url };
   if (navigator.share) {
     navigator.share(dados).catch(() => {});
   } else if (navigator.clipboard) {
