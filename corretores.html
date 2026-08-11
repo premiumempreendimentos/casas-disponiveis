@@ -998,7 +998,9 @@ function compartilharCasa(id, nome) {
   // "&origem=corretor" pra esconder o botão "Ver todas as casas" nessa página de destino
   // (o corretor quer que o cliente foque só naquela unidade, não navegue pras outras).
   const url = `https://premiumempreendimentos.github.io/casas-disponiveis/${id ? `?casa=${id}&origem=corretor` : ''}`;
-  const dados = { title: `${nome} · Premium Empreendimentos`, text: `Olha essa casa da Premium: ${nome}`, url };
+  // mensagem sem citar "Premium" — o corretor passa a informação como dele, não como
+  // divulgação da construtora (mesma regra de nunca vender "direto com a construtora").
+  const dados = { title: nome, text: `Essas são as informações de ${nome}:`, url };
   if (navigator.share) {
     navigator.share(dados).catch(() => {});
   } else if (navigator.clipboard) {
