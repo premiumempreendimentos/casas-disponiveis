@@ -379,17 +379,6 @@
     align-items:start; /* cada card com a altura da sua foto, sem esticar pra emparelhar */
     gap:22px;
   }
-  @media (min-width:760px){
-    .grid.grid-casa-unica{
-      display:flex;
-      justify-content:center;
-      padding-top:34px;
-    }
-    .grid.grid-casa-unica .card{
-      width:100%;
-      max-width:620px;
-    }
-  }
 
   .card{
     background:linear-gradient(180deg,#ffffff,#fdfcfb);
@@ -537,6 +526,80 @@
     justify-content:center;
   }
   .mapa-modal-fechar:hover{background:rgba(0,0,0,.85)}
+
+  .card .foto-wrap{cursor:zoom-in}
+  .foto-modal{
+    position:fixed;
+    inset:0;
+    z-index:220;
+    background:rgba(0,0,0,.88);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    animation:aparecerMapa .18s ease;
+  }
+  .foto-modal[hidden]{display:none}
+  .foto-modal-caixa{
+    width:min(920px,90vw);
+    max-height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .foto-modal-caixa img{
+    max-width:100%;
+    max-height:90vh;
+    border-radius:10px;
+    display:block;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.7);
+  }
+  .foto-modal-fechar{
+    position:absolute;
+    top:16px;
+    right:16px;
+    z-index:2;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    color:#fff;
+    border:none;
+    font-size:26px;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .foto-modal-fechar:hover{background:rgba(255,255,255,.28)}
+  .foto-modal-seta{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    border:none;
+    color:#fff;
+    font-size:22px;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+  }
+  .foto-modal-seta:hover{background:rgba(255,255,255,.28)}
+  .foto-modal-seta-esq{left:16px}
+  .foto-modal-seta-dir{right:16px}
+  @media (max-width:600px){
+    .foto-modal-seta{width:40px;height:40px;font-size:18px}
+    .foto-modal-seta-esq{left:6px}
+    .foto-modal-seta-dir{right:6px}
+    .foto-modal-fechar{top:8px;right:8px}
+  }
   .specs{
     display:flex;
     flex-wrap:wrap;
@@ -798,6 +861,16 @@
     <button type="button" class="mapa-modal-fechar" aria-label="Fechar mapa">×</button>
     <div class="mapa-modal-frame" id="mapa-modal-frame"></div>
   </div>
+</div>
+
+<!-- Lightbox de foto — clica na foto do card e ela abre grande, sobreposta à página -->
+<div class="foto-modal" id="foto-modal" hidden>
+  <button type="button" class="foto-modal-fechar" aria-label="Fechar foto">×</button>
+  <button type="button" class="foto-modal-seta foto-modal-seta-esq" aria-label="Foto anterior">&#8249;</button>
+  <div class="foto-modal-caixa">
+    <img id="foto-modal-img" src="" alt="">
+  </div>
+  <button type="button" class="foto-modal-seta foto-modal-seta-dir" aria-label="Próxima foto">&#8250;</button>
 </div>
 
 <script>
@@ -1197,8 +1270,61 @@ function ligarCarrosseis() {
         irPara(Math.min(total - 1, atual + 1));
       });
     }
+
+    // clica na foto (não nas setas/dots) e ela abre grande, com as mesmas fotos pra navegar
+    const imgs = [...scroller.querySelectorAll('img')];
+    imgs.forEach((img, i) => {
+      img.addEventListener('click', () => abrirFotoModal(imgs.map(im => im.src), i));
+    });
   });
 }
+
+// ─── Lightbox de foto: clica na foto do card e ela abre grande, sobreposta à página ───
+const fotoModal = document.getElementById('foto-modal');
+const fotoModalImg = document.getElementById('foto-modal-img');
+let fotoModalLista = [];
+let fotoModalIndice = 0;
+
+function atualizarFotoModal() {
+  fotoModalImg.src = fotoModalLista[fotoModalIndice];
+}
+
+function abrirFotoModal(fotos, indiceInicial) {
+  fotoModalLista = fotos;
+  fotoModalIndice = indiceInicial;
+  atualizarFotoModal();
+  fotoModal.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+
+function fecharFotoModal() {
+  fotoModal.hidden = true;
+  fotoModalImg.src = '';
+  document.body.style.overflow = '';
+}
+
+function fotoModalAnterior() {
+  fotoModalIndice = (fotoModalIndice - 1 + fotoModalLista.length) % fotoModalLista.length;
+  atualizarFotoModal();
+}
+
+function fotoModalProxima() {
+  fotoModalIndice = (fotoModalIndice + 1) % fotoModalLista.length;
+  atualizarFotoModal();
+}
+
+document.querySelector('.foto-modal-fechar').addEventListener('click', fecharFotoModal);
+document.querySelector('.foto-modal-seta-esq').addEventListener('click', fotoModalAnterior);
+document.querySelector('.foto-modal-seta-dir').addEventListener('click', fotoModalProxima);
+fotoModal.addEventListener('click', (e) => {
+  if (e.target === fotoModal) fecharFotoModal(); // clicou no fundo escuro, não na foto/botões
+});
+document.addEventListener('keydown', (e) => {
+  if (fotoModal.hidden) return;
+  if (e.key === 'Escape') fecharFotoModal();
+  if (e.key === 'ArrowLeft') fotoModalAnterior();
+  if (e.key === 'ArrowRight') fotoModalProxima();
+});
 
 const mapaModal = document.getElementById('mapa-modal');
 const mapaModalFrame = document.getElementById('mapa-modal-frame');
@@ -1389,7 +1515,6 @@ function tratarCasaCompartilhada() {
   const titulo = document.querySelector('.secao-titulo h2');
   const contador = document.getElementById('contador-unidades');
   if (contador) contador.textContent = '';
-  grid.classList.add('grid-casa-unica');
 
   if (casa) {
     if (titulo) titulo.textContent = casa.nome;
