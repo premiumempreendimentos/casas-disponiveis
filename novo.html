@@ -379,6 +379,17 @@
     align-items:start; /* cada card com a altura da sua foto, sem esticar pra emparelhar */
     gap:22px;
   }
+  @media (min-width:760px){
+    .grid.grid-casa-unica{
+      display:flex;
+      justify-content:center;
+      padding-top:34px;
+    }
+    .grid.grid-casa-unica .card{
+      width:100%;
+      max-width:620px;
+    }
+  }
 
   .card{
     background:linear-gradient(180deg,#ffffff,#fdfcfb);
@@ -1378,6 +1389,7 @@ function tratarCasaCompartilhada() {
   const titulo = document.querySelector('.secao-titulo h2');
   const contador = document.getElementById('contador-unidades');
   if (contador) contador.textContent = '';
+  grid.classList.add('grid-casa-unica');
 
   if (casa) {
     if (titulo) titulo.textContent = casa.nome;
