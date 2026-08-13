@@ -379,6 +379,17 @@
     align-items:start; /* cada card com a altura da sua foto, sem esticar pra emparelhar */
     gap:22px;
   }
+  /* Link de uma casa só (compartilhamento): o card sozinho ficava grudado na coluna da
+     esquerda, com um vazio enorme do lado direito em telas largas. Aqui ele fica com o
+     MESMO tamanho de sempre, só que centralizado — sem exagero (o zoom fica por conta
+     do clique na foto, ver .foto-modal). */
+  @media (min-width:760px){
+    .grid.grid-casa-unica{
+      grid-template-columns:minmax(300px,380px);
+      justify-content:center;
+      padding-top:34px;
+    }
+  }
 
   .card{
     background:linear-gradient(180deg,#ffffff,#fdfcfb);
@@ -1518,6 +1529,7 @@ function tratarCasaCompartilhada() {
 
   if (casa) {
     if (titulo) titulo.textContent = casa.nome;
+    grid.classList.add('grid-casa-unica'); // centraliza o card no desktop (mesmo tamanho, só não fica grudado à esquerda)
     grid.innerHTML = renderCard(casa);
     ligarCarrosseis();
     ligarMapas();
