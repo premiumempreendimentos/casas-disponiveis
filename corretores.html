@@ -320,9 +320,46 @@
     border-radius:16px;
     overflow:hidden;
     box-shadow:0 30px 80px -20px rgba(0,0,0,.6);
+    display:flex;
+    flex-direction:column;
   }
-  .mapa-modal-frame{width:100%;height:100%}
+  .mapa-modal-frame{width:100%;flex:1;min-height:0}
   .mapa-modal-frame iframe{width:100%;height:100%;border:0;display:block}
+  .mapa-modal-acoes{
+    display:flex;
+    gap:10px;
+    padding:12px;
+    background:#fff;
+    border-top:1px solid var(--card-border);
+  }
+  .mapa-modal-btn{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:12px 10px;
+    border-radius:11px;
+    font-size:13.5px;
+    font-weight:700;
+    font-family:inherit;
+    cursor:pointer;
+    text-decoration:none;
+    transition:.15s;
+    border:1px solid var(--card-border);
+    background:var(--bg-alt);
+    color:var(--text);
+  }
+  .mapa-modal-btn:hover{transform:translateY(-2px);border-color:var(--laranja-ui)}
+  .mapa-modal-btn-abrir{
+    background:linear-gradient(135deg,var(--laranja),var(--laranja-ui));
+    color:#fff;
+    border:none;
+    box-shadow:0 8px 18px -6px rgba(236,79,31,.4);
+  }
+  @media (max-width:520px){
+    .mapa-modal-acoes{flex-direction:column}
+  }
   .mapa-modal-fechar{
     position:absolute;
     top:12px;
@@ -580,6 +617,10 @@
   <div class="mapa-modal-caixa">
     <button type="button" class="mapa-modal-fechar" aria-label="Fechar mapa">×</button>
     <div class="mapa-modal-frame" id="mapa-modal-frame"></div>
+    <div class="mapa-modal-acoes">
+      <button type="button" class="mapa-modal-btn" id="mapa-modal-copiar">📋 Copiar link</button>
+      <a class="mapa-modal-btn mapa-modal-btn-abrir" id="mapa-modal-abrir" href="#" target="_blank" rel="noopener">🗺️ Abrir no Google Maps</a>
+    </div>
   </div>
 </div>
 
@@ -892,7 +933,7 @@ function renderCard(casa) {
         <h3>${casa.nome}</h3>
         <div class="categoria">📍 ${casa.categoria} · ${casa.bairro}, Pinhalzinho SC</div>
         ${casa.mapaLat && casa.mapaLng ? `
-        <button type="button" class="btn-ver-mapa" data-lat="${casa.mapaLat}" data-lng="${casa.mapaLng}">🗺️ Ver localização no mapa</button>
+        <button type="button" class="btn-ver-mapa" data-lat="${casa.mapaLat}" data-lng="${casa.mapaLng}" data-link="${casa.linkLocalizacao || ''}">🗺️ Ver localização no mapa</button>
         ` : ''}
       </div>
       <div class="specs">
@@ -1014,9 +1055,16 @@ document.addEventListener('keydown', (e) => {
 
 const mapaModal = document.getElementById('mapa-modal');
 const mapaModalFrame = document.getElementById('mapa-modal-frame');
+const mapaModalCopiar = document.getElementById('mapa-modal-copiar');
+const mapaModalAbrir = document.getElementById('mapa-modal-abrir');
+let mapaModalLinkAtual = '';
 
-function abrirMapaModal(lat, lng) {
+function abrirMapaModal(lat, lng, link) {
   mapaModalFrame.innerHTML = `<iframe src="https://maps.google.com/maps?q=${lat},${lng}&t=k&z=18&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`;
+  // prefere o link original do Google Maps (o que foi cadastrado pra essa casa); se por
+  // algum motivo não tiver, monta um link de busca a partir da coordenada como reserva.
+  mapaModalLinkAtual = link || `https://www.google.com/maps?q=${lat},${lng}`;
+  mapaModalAbrir.href = mapaModalLinkAtual;
   mapaModal.hidden = false;
   document.body.style.overflow = 'hidden';
 }
@@ -1027,6 +1075,16 @@ function fecharMapaModal() {
   document.body.style.overflow = '';
 }
 
+mapaModalCopiar.addEventListener('click', () => {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(mapaModalLinkAtual)
+      .then(() => mostrarToastShare('📋 Link da localização copiado!'))
+      .catch(() => prompt('Copie o link da localização:', mapaModalLinkAtual));
+  } else {
+    prompt('Copie o link da localização:', mapaModalLinkAtual);
+  }
+});
+
 mapaModal.addEventListener('click', (e) => {
   if (e.target === mapaModal || e.target.classList.contains('mapa-modal-fechar')) fecharMapaModal();
 });
@@ -1036,7 +1094,7 @@ document.addEventListener('keydown', (e) => {
 
 function ligarMapas() {
   document.querySelectorAll('.btn-ver-mapa').forEach(btn => {
-    btn.addEventListener('click', () => abrirMapaModal(btn.dataset.lat, btn.dataset.lng));
+    btn.addEventListener('click', () => abrirMapaModal(btn.dataset.lat, btn.dataset.lng, btn.dataset.link));
   });
 }
 
