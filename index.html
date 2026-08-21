@@ -930,7 +930,7 @@ const CASAS_FALLBACK = [
     banh: "4",
     gar: "2",
     preco: 992640.6,
-    prazo: "10/26",
+    prazo: "Casa pronta",
     linkPost: null,
     linkLocalizacao: "https://maps.app.goo.gl/ZuPD7xHtdTDyzpuo7?g_st=ipc",
     mapaLat: -26.859841,
@@ -1251,7 +1251,7 @@ function renderCard(casa) {
         <span>🛏️ ${casa.dorm} dorm.</span>
         <span>🚿 ${casa.banh} banh.</span>
         <span>🚗 ${casa.gar} vaga${casa.gar > 1 ? 's' : ''}</span>
-        <span>🔑 Entrega ${casa.prazo}</span>
+        <span>🔑 ${(casa.prazo || '').includes('/') ? `Entrega ${casa.prazo}` : (casa.prazo || '')}</span>
       </div>
       <div class="financiamento">${financiamento}</div>
       <div class="preco-wrap">
