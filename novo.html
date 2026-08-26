@@ -990,7 +990,7 @@ const CASAS_FALLBACK = [
     m2: "59,00",
     dorm: "2",
     banh: "1",
-    gar: "1",
+    gar: "1 vaga + moto",
     preco: 370000.0,
     prazo: "01/27",
     linkPost: "https://www.instagram.com/p/DYP2-h4j2V4/",
@@ -1204,7 +1204,7 @@ function renderCard(casa) {
         ${mostrarM2 ? `<span>📐 ${casa.m2} m²</span>` : ''}
         <span>🛏️ ${casa.dorm} dorm.</span>
         <span>🚿 ${casa.banh} banh.</span>
-        <span>🚗 ${casa.gar} vaga${casa.gar > 1 ? 's' : ''}</span>
+        <span>🚗 ${/^\d+$/.test(String(casa.gar ?? '').trim()) ? `${casa.gar} vaga${casa.gar > 1 ? 's' : ''}` : (casa.gar || '')}</span>
         <span>🔑 ${(casa.prazo || '').includes('/') ? `Entrega ${casa.prazo}` : (casa.prazo || '')}</span>
       </div>
       <div class="financiamento">${financiamento}</div>
