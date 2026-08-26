@@ -628,6 +628,17 @@
     color:var(--muted);
   }
 
+  .observacao{
+    font-size:11.5px;
+    line-height:1.45;
+    color:var(--muted);
+    background:rgba(236,79,31,.06);
+    border-left:3px solid var(--laranja);
+    border-radius:0 8px 8px 0;
+    padding:7px 10px;
+    margin-top:2px;
+  }
+
   .preco-wrap{margin-top:2px}
   .preco-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
   .preco{font-size:24px;font-weight:700;color:var(--text);letter-spacing:-.3px}
@@ -907,6 +918,7 @@ const CASAS_FALLBACK = [
     linkLocalizacao: "https://maps.app.goo.gl/ZuPD7xHtdTDyzpuo7?g_st=ipc",
     mapaLat: -26.859841,
     mapaLng: -52.9905444,
+    observacao: null,
   },
   {
     id: 1,
@@ -925,6 +937,7 @@ const CASAS_FALLBACK = [
     linkLocalizacao: "https://maps.app.goo.gl/tLqUoQDquHBkLeeB8",
     mapaLat: -26.859254,
     mapaLng: -52.990785,
+    observacao: null,
   },
   {
     id: 13,
@@ -943,6 +956,7 @@ const CASAS_FALLBACK = [
     linkLocalizacao: "https://maps.app.goo.gl/eq5u14izDvLfKxbZ6",
     mapaLat: -26.8668861,
     mapaLng: -52.9931251,
+    observacao: null,
   },
   {
     id: 12,
@@ -961,6 +975,7 @@ const CASAS_FALLBACK = [
     linkLocalizacao: "https://maps.app.goo.gl/poHHgFq8zANEVx3k7",
     mapaLat: -26.865505,
     mapaLng: -52.991602,
+    observacao: null,
   },
   {
     id: 11,
@@ -979,6 +994,7 @@ const CASAS_FALLBACK = [
     linkLocalizacao: "https://maps.app.goo.gl/poHHgFq8zANEVx3k7",
     mapaLat: -26.865505,
     mapaLng: -52.991602,
+    observacao: null,
   },
   {
     id: 8,
@@ -997,6 +1013,7 @@ const CASAS_FALLBACK = [
     linkLocalizacao: "https://maps.app.goo.gl/k3ngh2o6R9HsnsQH8",
     mapaLat: -26.853883,
     mapaLng: -52.998805,
+    observacao: null,
   },
   {
     id: 15,
@@ -1015,6 +1032,7 @@ const CASAS_FALLBACK = [
     linkLocalizacao: "https://maps.app.goo.gl/est628rvfZPQiiM89",
     mapaLat: -26.86518,
     mapaLng: -52.991522,
+    observacao: null,
   },
   {
     id: 16,
@@ -1033,6 +1051,7 @@ const CASAS_FALLBACK = [
     linkLocalizacao: "https://maps.app.goo.gl/est628rvfZPQiiM89",
     mapaLat: -26.86518,
     mapaLng: -52.991522,
+    observacao: null,
   },
   {
     id: 7,
@@ -1051,6 +1070,7 @@ const CASAS_FALLBACK = [
     linkLocalizacao: "https://maps.app.goo.gl/kRCodiGYWo8EfKGf9",
     mapaLat: -26.866055,
     mapaLng: -52.991684,
+    observacao: "As fotos com móveis são de demonstração. A casa é entregue sem mobília, e a decoração está ali só pra você ver como o espaço fica.",
   },
   {
     id: 3,
@@ -1069,6 +1089,7 @@ const CASAS_FALLBACK = [
     linkLocalizacao: "https://maps.app.goo.gl/kRCodiGYWo8EfKGf9",
     mapaLat: -26.866055,
     mapaLng: -52.991684,
+    observacao: null,
   },
   {
     id: 6,
@@ -1087,6 +1108,7 @@ const CASAS_FALLBACK = [
     linkLocalizacao: "https://maps.app.goo.gl/kRCodiGYWo8EfKGf9",
     mapaLat: -26.866055,
     mapaLng: -52.991684,
+    observacao: "As fotos com móveis são de demonstração. A casa é entregue sem mobília, e a decoração está ali só pra você ver como o espaço fica.",
   },
   {
     id: 4,
@@ -1105,6 +1127,7 @@ const CASAS_FALLBACK = [
     linkLocalizacao: "https://maps.app.goo.gl/kRCodiGYWo8EfKGf9",
     mapaLat: -26.866055,
     mapaLng: -52.991684,
+    observacao: null,
   },
   {
     id: 5,
@@ -1123,6 +1146,7 @@ const CASAS_FALLBACK = [
     linkLocalizacao: "https://maps.app.goo.gl/kRCodiGYWo8EfKGf9",
     mapaLat: -26.866055,
     mapaLng: -52.991684,
+    observacao: null,
   },
 ];
 
@@ -1207,6 +1231,7 @@ function renderCard(casa) {
         <span>🚗 ${/^\d+$/.test(String(casa.gar ?? '').trim()) ? `${casa.gar} vaga${casa.gar > 1 ? 's' : ''}` : (casa.gar || '')}</span>
         <span>🔑 ${(casa.prazo || '').includes('/') ? `Entrega ${casa.prazo}` : (casa.prazo || '')}</span>
       </div>
+      ${casa.observacao ? `<div class="observacao">${casa.observacao}</div>` : ''}
       <div class="financiamento">${financiamento}</div>
       <div class="preco-wrap">
         <div class="preco-label">Valor</div>
