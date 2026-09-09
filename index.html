@@ -758,6 +758,15 @@
     padding:8px 20px 46px;
   }
   footer p{color:var(--muted);font-size:13px;margin-bottom:10px}
+  .footer-legal{margin-top:22px}
+  .footer-legal a{
+    color:var(--muted);
+    font-size:12.5px;
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:color .2s,border-color .2s;
+  }
+  .footer-legal a:hover{color:var(--text);border-bottom-color:var(--card-border)}
 
   .vazio{
     grid-column:1/-1;
@@ -903,6 +912,9 @@
     </svg>
     Siga a @premium_empreendimentos
   </a>
+  <p class="footer-legal">
+    <a href="privacidade.html">Política de Privacidade</a>
+  </p>
 </footer>
 
 <!-- Modal do mapa (satélite) — sobreposto à página, fecha ao clicar fora -->
